@@ -7,6 +7,7 @@ import { CardsCountSlider } from 'common/components/number-of-cards-slider/Cards
 import { ClearFilter } from 'common/components/clear-filter/ClearFilter';
 import { CardsPagination } from 'common/components/pagination/CardsPagination';
 import { CardsRating } from 'common/components/rating/CardsRating';
+import { CustomTable } from 'common/components/table/CustomTable';
 import { TableActions } from 'common/components/table-actions-buttons/TableActions';
 
 export const Sandbox = () => {
@@ -21,6 +22,7 @@ export const Sandbox = () => {
             <ClearFilter />
             <CardsRating defaultValue={2.5} />
             <TableActions />
+            <CustomTable/>
         </Stack>
     );
 };
