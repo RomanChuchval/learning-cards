@@ -1,9 +1,6 @@
-import React from "react";
+import React from 'react';
+import { PageTitle } from 'common/components/page-title/PageTitle';
 
 export const Packs = () => {
-    return (
-        <div>
-            <h1>Packs</h1>
-        </div>
-    );
+    return <PageTitle title={'Packs list'} />;
 };
