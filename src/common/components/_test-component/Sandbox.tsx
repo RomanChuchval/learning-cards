@@ -7,6 +7,7 @@ import { CardsCountSlider } from 'common/components/number-of-cards-slider/Cards
 import { ClearFilter } from 'common/components/clear-filter/ClearFilter';
 import { CardsPagination } from 'common/components/pagination/CardsPagination';
 import { CardsRating } from 'common/components/rating/CardsRating';
+import { CustomTable } from 'common/components/table/CustomTable';
 
 export const Sandbox = () => {
     return (
@@ -16,9 +17,11 @@ export const Sandbox = () => {
             <SearchBar />
             <ShowPacksCards />
             <CardsCountSlider />
-            <CardsPagination page={1} itemsCountForPage={7} totalCount={100} onChange={()=>{}}/>
+            <CardsPagination page={1} itemsCountForPage={7} totalCount={100} onChange={() => {
+            }} />
             <ClearFilter />
-            <CardsRating defaultValue={2.5}/>
+            <CardsRating defaultValue={2.5} />
+            <CustomTable/>
         </Stack>
     );
 };
