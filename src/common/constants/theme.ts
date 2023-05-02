@@ -16,7 +16,7 @@ export const theme = createTheme({
     components: {
         MuiPaper: {
             defaultProps: {
-                elevation: 4,
+                elevation: 1,
             },
             styleOverrides: {
                 root: {
