@@ -5,6 +5,7 @@ import { Stack } from '@mui/material';
 import { ShowPacksCards } from 'common/components/show-packs-cards/ShowPacksCards';
 import { CardsCountSlider } from 'common/components/number-of-cards-slider/CardsCountSlider';
 import { ClearFilter } from 'common/components/clear-filter/ClearFilter';
+import { CardsPagination } from 'common/components/pagination/CardsPagination';
 
 export const Sandbox = () => {
     return (
@@ -14,6 +15,7 @@ export const Sandbox = () => {
             <SearchBar />
             <ShowPacksCards />
             <CardsCountSlider />
+            <CardsPagination page={1} itemsCountForPage={7} totalCount={100} onChange={()=>{}}/>
             <ClearFilter />
         </Stack>
     );
