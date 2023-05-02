@@ -8,15 +8,7 @@ type PageTitlePropsType = {
 
 export const PageTitle: FC<PageTitlePropsType> = ({ title }) => {
     return (
-        <Box
-            component={'h3'}
-            sx={{
-                display: 'flex',
-                minWidth: '200px',
-                mt: '39px',
-                pl: '25px',
-            }}
-        >
+        <Box component={'h3'}>
             <Typography sx={{ fontWeight: '600', fontSize: '22px' }}>{title}</Typography>
         </Box>
     );
