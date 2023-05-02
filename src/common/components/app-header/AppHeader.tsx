@@ -20,6 +20,7 @@ export const AppHeader = () => {
                     <Link to={paths.PAGE_NOT_FOUND}>404</Link>
                     <Link to={paths.PROFILE}>Profile</Link>
                     <Link to={paths.PACKS}>Packs</Link>
+                    <Link to={paths.SANDBOX}>test</Link>
                     <SuperButton
                         callback={() => {}}
                         width={'113'}
