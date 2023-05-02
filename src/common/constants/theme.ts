@@ -1,16 +1,16 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
     typography: {
-        fontFamily: "Montserrat, sans-serif",
+        fontFamily: 'Montserrat, sans-serif',
     },
     palette: {
-        mode: "light",
+        mode: 'light',
         primary: {
-            main: "#366EFF",
+            main: '#366EFF',
         },
         secondary: {
-            main: "#FCFCFC",
+            main: '#FCFCFC',
         },
     },
     components: {
@@ -20,14 +20,14 @@ export const theme = createTheme({
             },
             styleOverrides: {
                 root: {
-                    display: "flex",
+                    display: 'flex',
                 },
             },
         },
         MuiTypography: {
             styleOverrides: {
                 root: {
-                    lineHeight: "27px",
+                    lineHeight: '27px',
                 },
             },
         },
