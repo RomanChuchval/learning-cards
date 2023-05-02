@@ -1,12 +1,12 @@
-import React from 'react';
-import { Box, FormControl, MenuItem, Pagination, Select, SelectChangeEvent } from '@mui/material';
+import React from 'react'
+import { Box, FormControl, MenuItem, Pagination, Select, SelectChangeEvent } from '@mui/material'
 
 export type CardsPaginationPropsType = {
-    page: number;
-    itemsCountForPage: number;
-    totalCount: number;
-    onChange: (page: number, count: number) => void;
-};
+    page: number
+    itemsCountForPage: number
+    totalCount: number
+    onChange: (page: number, count: number) => void
+}
 
 export const CardsPagination: React.FC<CardsPaginationPropsType> = ({
     page,
@@ -14,27 +14,27 @@ export const CardsPagination: React.FC<CardsPaginationPropsType> = ({
     totalCount,
     onChange,
 }) => {
-    const lastPage = Math.ceil(totalCount / itemsCountForPage);
+    const lastPage = Math.ceil(totalCount / itemsCountForPage)
     const styleForContainer = {
         display: 'flex',
         alignItems: 'center',
         width: '100%',
         flexWrap: 'wrap',
         gap: '20px',
-    };
+    }
     const styleForFormControl = {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         gap: '10px',
-    };
+    }
 
     const handleSelectorChange = (event: SelectChangeEvent) => {
-        onChange(page, +event.target.value);
-    };
+        onChange(page, +event.target.value)
+    }
     const handlePaginationChange = (event: React.ChangeEvent<unknown>, page: number) => {
-        onChange(page, itemsCountForPage);
-    };
+        onChange(page, itemsCountForPage)
+    }
 
     return (
         <Box sx={styleForContainer}>
@@ -59,5 +59,5 @@ export const CardsPagination: React.FC<CardsPaginationPropsType> = ({
                 <Box component={'span'}>Cards per Page</Box>
             </FormControl>
         </Box>
-    );
-};
+    )
+}

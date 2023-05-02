@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
-import TextField from '@mui/material/TextField';
-import { Eye } from 'common';
-import Box from '@mui/material/Box';
+import React, { FC } from 'react'
+import TextField from '@mui/material/TextField'
+import { Eye } from 'common'
+import Box from '@mui/material/Box'
 
 type PasswordInputType = {
-    label: string;
-};
+    label: string
+}
 
 export const PasswordInput: FC<PasswordInputType> = ({ label }) => {
     return (
@@ -21,5 +21,5 @@ export const PasswordInput: FC<PasswordInputType> = ({ label }) => {
                 <Eye />
             </Box>
         </Box>
-    );
-};
+    )
+}

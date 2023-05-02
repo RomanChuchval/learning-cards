@@ -1,9 +1,18 @@
-import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import React from 'react';
-import { CardsRating } from 'common/components/rating/CardsRating';
+import {
+    IconButton,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+} from '@mui/material'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import React from 'react'
+import { CardsRating } from 'common/components/rating/CardsRating'
 
-const tableCellForHeader = ['Cards', 'Last Updated', 'Created by', 'Actions', 'kjsdhf'];
+const tableCellForHeader = ['Cards', 'Last Updated', 'Created by', 'Actions', 'kjsdhf']
 const tableCellForBody = [
     {
         answer: 'no answer',
@@ -14,7 +23,7 @@ const tableCellForBody = [
         user_id: '142151531535151',
         created: '2020-05-13T11:05:44.867Z',
         updated: '2020-05-13T11:05:44.867Z',
-        _id: '5ebbd48876810f1ad0e7ece3'
+        _id: '5ebbd48876810f1ad0e7ece3',
     },
     {
         answer: 'no answer',
@@ -25,7 +34,7 @@ const tableCellForBody = [
         user_id: '142151531535151',
         created: '2020-05-13T11:05:44.867Z',
         updated: '2020-05-13T11:05:44.867Z',
-        _id: '5ebbd48876810f1ad0e7ece3'
+        _id: '5ebbd48876810f1ad0e7ece3',
     },
     {
         answer: 'no answer',
@@ -36,53 +45,62 @@ const tableCellForBody = [
         user_id: '142151531535151',
         created: '2020-05-13T11:05:44.867Z',
         updated: '2020-05-13T11:05:44.867Z',
-        _id: '5ebbd48876810f1ad0e7ece3'
-    }
-];
+        _id: '5ebbd48876810f1ad0e7ece3',
+    },
+]
 
 export const CustomTable = () => {
     const tableHeaderSX = {
         fontWeight: 900,
         '&:first-child': { paddingLeft: '40px' },
-        '&:last-child': { paddingRight: '54px' }
-    };
+        '&:last-child': { paddingRight: '54px' },
+    }
     const tableBodySX = {
         wordWrap: 'break-word',
         minWidth: '200px',
-        maxWidth: '300px'
-    };
+        maxWidth: '300px',
+    }
 
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label='simple table'>
                 <TableHead>
                     <TableRow sx={{ background: '#EFEFEF' }}>
-                        {tableCellForHeader.map(textHead =>
+                        {tableCellForHeader.map(textHead => (
                             <TableCell sx={tableHeaderSX} key={textHead}>
                                 {textHead}
-                                {(textHead === 'Last Updated') &&
-                                <IconButton onClick={() => {
-                                    alert('sortTable');
-                                }}>
-                                    <ArrowDropDownIcon />
-                                </IconButton>}
+                                {textHead === 'Last Updated' && (
+                                    <IconButton
+                                        onClick={() => {
+                                            alert('sortTable')
+                                        }}
+                                    >
+                                        <ArrowDropDownIcon />
+                                    </IconButton>
+                                )}
                             </TableCell>
-                        )}
+                        ))}
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {tableCellForBody.map(textBody => {
-                        return <TableRow key={textBody._id}>
-                            <TableCell sx={{ ...tableBodySX, paddingLeft: '40px' }}>{textBody.question}</TableCell>
-                            <TableCell sx={tableBodySX}>{textBody.answer}</TableCell>
-                            <TableCell>{textBody.updated}</TableCell>
-                            <TableCell sx={{ paddingRight: '54px' }}><CardsRating
-                                defaultValue={Math.floor(textBody.grade * 2) / 2} /></TableCell>
-                        </TableRow>;
+                        return (
+                            <TableRow key={textBody._id}>
+                                <TableCell sx={{ ...tableBodySX, paddingLeft: '40px' }}>
+                                    {textBody.question}
+                                </TableCell>
+                                <TableCell sx={tableBodySX}>{textBody.answer}</TableCell>
+                                <TableCell>{textBody.updated}</TableCell>
+                                <TableCell sx={{ paddingRight: '54px' }}>
+                                    <CardsRating
+                                        defaultValue={Math.floor(textBody.grade * 2) / 2}
+                                    />
+                                </TableCell>
+                            </TableRow>
+                        )
                     })}
                 </TableBody>
             </Table>
         </TableContainer>
-    );
-};
-
+    )
+}

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Slider, Typography } from '@mui/material';
-import Box from '@mui/material/Box';
+import React, { useState } from 'react'
+import { Slider, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
 
 export const CardsCountSlider = () => {
-    const [value, setValue] = useState<number[]>([0, 100]);
+    const [value, setValue] = useState<number[]>([0, 100])
 
     const handleChange = (event: Event, newValue: number | number[]) => {
-        if (Array.isArray(newValue)) setValue(newValue);
-    };
+        if (Array.isArray(newValue)) setValue(newValue)
+    }
 
     const boxSx = {
         width: '63px',
@@ -18,13 +18,13 @@ export const CardsCountSlider = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-    };
+    }
     const typographySx = {
         fontSize: '16px',
         fontWeight: '600',
         lineHeight: '20px',
         textAlign: 'center',
-    };
+    }
 
     return (
         <Box>
@@ -41,5 +41,5 @@ export const CardsCountSlider = () => {
                 </Box>
             </Box>
         </Box>
-    );
-};
+    )
+}

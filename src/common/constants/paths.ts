@@ -11,4 +11,4 @@ export const paths = {
     CARDS: '/cards',
     LEARN: '/learn',
     SANDBOX: '/sandbox',
-} as const;
+} as const

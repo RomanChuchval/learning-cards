@@ -1,7 +1,7 @@
-import React from 'react';
-import Box from '@mui/material/Box';
-import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
-import IconButton from '@mui/material/IconButton';
+import React from 'react'
+import Box from '@mui/material/Box'
+import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
+import IconButton from '@mui/material/IconButton'
 export const ClearFilter = () => {
     const boxSx = {
         width: '36px',
@@ -16,7 +16,7 @@ export const ClearFilter = () => {
             bgcolor: 'rgba(000, 000, 000, 0.13)',
         },
         overflow: 'hidden',
-    };
+    }
 
     return (
         <Box sx={boxSx}>
@@ -24,5 +24,5 @@ export const ClearFilter = () => {
                 <FilterAltOffIcon />
             </IconButton>
         </Box>
-    );
-};
+    )
+}

@@ -1,14 +1,14 @@
-import React from 'react';
-import { PageTitle } from 'common/components/page-title/PageTitle';
-import { SearchBar } from 'common/components/search-bar/SearchBar';
-import { Stack } from '@mui/material';
-import { ShowPacksCards } from 'common/components/show-packs-cards/ShowPacksCards';
-import { CardsCountSlider } from 'common/components/number-of-cards-slider/CardsCountSlider';
-import { ClearFilter } from 'common/components/clear-filter/ClearFilter';
-import { CardsPagination } from 'common/components/pagination/CardsPagination';
-import { CardsRating } from 'common/components/rating/CardsRating';
-import { CustomTable } from 'common/components/table/CustomTable';
-import { TableActions } from 'common/components/table-actions-buttons/TableActions';
+import React from 'react'
+import { PageTitle } from 'common/components/page-title/PageTitle'
+import { SearchBar } from 'common/components/search-bar/SearchBar'
+import { Stack } from '@mui/material'
+import { ShowPacksCards } from 'common/components/show-packs-cards/ShowPacksCards'
+import { CardsCountSlider } from 'common/components/number-of-cards-slider/CardsCountSlider'
+import { ClearFilter } from 'common/components/clear-filter/ClearFilter'
+import { CardsPagination } from 'common/components/pagination/CardsPagination'
+import { CardsRating } from 'common/components/rating/CardsRating'
+import { CustomTable } from 'common/components/table/CustomTable'
+import { TableActions } from 'common/components/table-actions-buttons/TableActions'
 
 export const Sandbox = () => {
     return (
@@ -22,7 +22,7 @@ export const Sandbox = () => {
             <ClearFilter />
             <CardsRating defaultValue={2.5} />
             <TableActions />
-            <CustomTable/>
+            <CustomTable />
         </Stack>
-    );
-};
+    )
+}

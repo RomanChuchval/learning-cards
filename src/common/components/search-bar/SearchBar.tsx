@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
-import Box from '@mui/material/Box';
-import SearchIcon from '@mui/icons-material/Search';
-import TextField from '@mui/material/TextField';
-import { InputAdornment, Typography } from '@mui/material';
+import React, { FC } from 'react'
+import Box from '@mui/material/Box'
+import SearchIcon from '@mui/icons-material/Search'
+import TextField from '@mui/material/TextField'
+import { InputAdornment, Typography } from '@mui/material'
 
 type SearchBarPropsType = {
-    fullWidth?: boolean;
-};
+    fullWidth?: boolean
+}
 
 export const SearchBar: FC<SearchBarPropsType> = ({ fullWidth }) => {
     return (
@@ -27,5 +27,5 @@ export const SearchBar: FC<SearchBarPropsType> = ({ fullWidth }) => {
                 }}
             />
         </Box>
-    );
-};
+    )
+}

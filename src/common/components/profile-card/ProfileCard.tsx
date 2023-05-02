@@ -1,14 +1,14 @@
-import React from 'react';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Avatar from '@mui/material/Avatar';
-import myAvatar from 'assets/img/avatar.jpg';
-import Badge from '@mui/material/Badge';
-import IconButton from '@mui/material/IconButton';
-import LocalSeeOutlinedIcon from '@mui/icons-material/LocalSeeOutlined';
-import LogoutIcon from '@mui/icons-material/Logout';
-import { EditableTitle, InfoMessage, SuperButton } from 'common';
+import React from 'react'
+import Paper from '@mui/material/Paper'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Avatar from '@mui/material/Avatar'
+import myAvatar from 'assets/img/avatar.jpg'
+import Badge from '@mui/material/Badge'
+import IconButton from '@mui/material/IconButton'
+import LocalSeeOutlinedIcon from '@mui/icons-material/LocalSeeOutlined'
+import LogoutIcon from '@mui/icons-material/Logout'
+import { EditableTitle, InfoMessage, SuperButton } from 'common'
 
 export const ProfileCard = () => {
     return (
@@ -60,5 +60,5 @@ export const ProfileCard = () => {
                 />
             </Paper>
         </Box>
-    );
-};
+    )
+}

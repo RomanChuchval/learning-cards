@@ -1,11 +1,11 @@
-import React, { FC, ReactNode } from 'react';
-import Popover from '@mui/material/Popover';
+import React, { FC, ReactNode } from 'react'
+import Popover from '@mui/material/Popover'
 
 type CustomPopoverPropsType = {
-    anchorEl: HTMLButtonElement | null;
-    handleClose: () => void;
-    children?: ReactNode;
-};
+    anchorEl: HTMLButtonElement | null
+    handleClose: () => void
+    children?: ReactNode
+}
 
 export const CustomPopover: FC<CustomPopoverPropsType> = ({ handleClose, anchorEl, children }) => {
     return (
@@ -24,5 +24,5 @@ export const CustomPopover: FC<CustomPopoverPropsType> = ({ handleClose, anchorE
         >
             {children}
         </Popover>
-    );
-};
+    )
+}

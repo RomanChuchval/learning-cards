@@ -1,17 +1,17 @@
-import React from 'react';
-import { EmailInput, Form, PasswordInput } from 'common';
-import { useAppDispatch } from 'app/hooks';
-import { authThunks } from 'features/auth/auth.slice';
+import React from 'react'
+import { EmailInput, Form, PasswordInput } from 'common'
+import { useAppDispatch } from 'app/hooks'
+import { authThunks } from 'features/auth/auth.slice'
 
 export const Registration = () => {
-    const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch()
     const registerHandler = () => {
         const payload = {
             email: 'rchuchvaldev@gmail.com',
             password: 'qwerqwerqaz',
-        };
-        dispatch(authThunks.register(payload));
-    };
+        }
+        dispatch(authThunks.register(payload))
+    }
 
     return (
         <div>
@@ -27,5 +27,5 @@ export const Registration = () => {
             </Form>
             <button onClick={registerHandler}>reg</button>
         </div>
-    );
-};
+    )
+}

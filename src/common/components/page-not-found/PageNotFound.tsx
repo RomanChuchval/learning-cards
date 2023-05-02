@@ -1,12 +1,12 @@
-import React from 'react';
-import notFound from 'assets/img/400.svg';
-import { SuperButton } from 'common/components/button/SuperButton';
-import { useNavigate } from 'react-router-dom';
-import { Grid, Typography } from '@mui/material';
-import Box from '@mui/material/Box';
+import React from 'react'
+import notFound from 'assets/img/400.svg'
+import { SuperButton } from 'common/components/button/SuperButton'
+import { useNavigate } from 'react-router-dom'
+import { Grid, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
 
 export const PageNotFound = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
     return (
         <Grid
             container
@@ -28,7 +28,7 @@ export const PageNotFound = () => {
                 <Grid item>
                     <SuperButton
                         callback={() => {
-                            navigate('/');
+                            navigate('/')
                         }}
                         name={'Back to home page!'}
                         textColor={'white'}
@@ -41,5 +41,5 @@ export const PageNotFound = () => {
                 <img src={notFound} alt='Page not found' />
             </Grid>
         </Grid>
-    );
-};
+    )
+}

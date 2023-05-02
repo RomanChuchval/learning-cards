@@ -1,11 +1,11 @@
-import React, { FC, ReactNode } from 'react';
-import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LogoutIcon from '@mui/icons-material/Logout';
+import React, { FC, ReactNode } from 'react'
+import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import LogoutIcon from '@mui/icons-material/Logout'
 
 type PopoverListPropsType = {
-    children?: ReactNode;
-};
+    children?: ReactNode
+}
 export const PopoverProfileList: FC<PopoverListPropsType> = () => {
     return (
         <List>
@@ -27,5 +27,5 @@ export const PopoverProfileList: FC<PopoverListPropsType> = () => {
                 </ListItemButton>
             </ListItem>
         </List>
-    );
-};
+    )
+}

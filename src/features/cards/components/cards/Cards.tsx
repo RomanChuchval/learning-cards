@@ -1,5 +1,5 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React from 'react'
+import { Outlet } from 'react-router-dom'
 
 export const Cards = () => {
     return (
@@ -7,5 +7,5 @@ export const Cards = () => {
             <h1>Cards</h1>
             <Outlet />
         </div>
-    );
-};
+    )
+}
