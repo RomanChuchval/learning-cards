@@ -31,5 +31,25 @@ export const theme = createTheme({
                 },
             },
         },
+        MuiPopover: {
+            styleOverrides: {
+                paper: {
+                    width: 'max-content',
+                    position: 'relative',
+                    overflow: 'visible',
+                    borderRadius: '1px',
+                    marginTop: '15px',
+                    '::after': {
+                        content: '""',
+                        position: 'absolute',
+                        display: 'block',
+                        right: '18px',
+                        top: '-19px',
+                        border: '10px solid transparent',
+                        borderBottom: '10px solid white',
+                    },
+                },
+            },
+        },
     },
 });
