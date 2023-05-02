@@ -15,7 +15,6 @@ export const CardsCountSlider = () => {
         border: '1px solid rgba(000, 000, 000, 0.3)',
         borderRadius: '3px',
         padding: '3px',
-        elevation: 1,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
