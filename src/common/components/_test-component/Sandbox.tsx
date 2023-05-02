@@ -7,6 +7,7 @@ export const Sandbox = () => {
     return (
         <Stack spacing={5} sx={{ mt: '50px' }}>
             <PageTitle title={'Packs list'} />
+            <SearchBar fullWidth={true} />
             <SearchBar />
         </Stack>
     );
