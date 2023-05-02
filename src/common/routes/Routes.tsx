@@ -12,6 +12,7 @@ import { ForgotPassword } from 'features/auth/components/forgot-password/ForgotP
 import { Login } from 'features/auth/components/login/Login';
 import { Registration } from 'features/auth/components/registration/Registration';
 import { NewPassword } from 'features/auth/components/new-password/NewPassword';
+import { Sandbox } from 'common/components/_test-component/Sandbox';
 
 export const router = createHashRouter([
     {
@@ -55,7 +56,10 @@ export const router = createHashRouter([
             {
                 path: paths.SET_NEW_PASSWORD,
                 element: <NewPassword />,
-                errorElement: <PageNotFound />,
+            },
+            {
+                path: paths.SANDBOX,
+                element: <Sandbox />,
             },
         ],
     },
