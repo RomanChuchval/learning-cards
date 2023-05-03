@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles'
+import styled from '@mui/material/styles/styled'
 
 type AppLinkPropsType = {
     colorText?: string

@@ -2,7 +2,11 @@ import React, { FC, PropsWithChildren } from 'react'
 import { SuperButton } from 'common/components/button/SuperButton'
 import { Link } from 'react-router-dom'
 import { AppLink } from 'common/components/link/AppLink'
-import { FormControl, FormGroup, Grid, Paper, Typography } from '@mui/material'
+import FormControl from '@mui/material/FormControl'
+import FormGroup from '@mui/material/FormGroup'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
 
 type FormPropsType = {
     description?: string

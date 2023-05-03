@@ -3,7 +3,7 @@ import logo from 'assets/img/logo.svg'
 import { Link } from 'react-router-dom'
 import AppBar from '@mui/material/AppBar/AppBar'
 import Toolbar from '@mui/material/Toolbar/Toolbar'
-import { Container } from '@mui/material'
+import Container from '@mui/material/Container'
 import { paths, SuperButton } from 'common'
 import { HeaderProfile } from 'common/components/header-profile/HeaderProfile'
 

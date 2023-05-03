@@ -1,5 +1,10 @@
 import React from 'react'
-import { Box, FormControl, MenuItem, Pagination, Select, SelectChangeEvent } from '@mui/material'
+import Box from '@mui/material/Box'
+import FormControl from '@mui/material/FormControl'
+import MenuItem from '@mui/material/MenuItem'
+import Pagination from '@mui/material/Pagination'
+import Select from '@mui/material/Select'
+import { SelectChangeEvent } from '@mui/material/Select/SelectInput'
 
 export type CardsPaginationPropsType = {
     page: number

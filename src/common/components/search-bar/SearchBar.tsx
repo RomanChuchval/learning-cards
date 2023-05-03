@@ -2,7 +2,8 @@ import React, { FC } from 'react'
 import Box from '@mui/material/Box'
 import SearchIcon from '@mui/icons-material/Search'
 import TextField from '@mui/material/TextField'
-import { InputAdornment, Typography } from '@mui/material'
+import InputAdornment from '@mui/material/InputAdornment'
+import Typography from '@mui/material/Typography'
 
 type SearchBarPropsType = {
     fullWidth?: boolean

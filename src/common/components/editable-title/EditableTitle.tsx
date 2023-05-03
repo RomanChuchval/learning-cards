@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, useState } from 'react'
-import { Typography } from '@mui/material'
+import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { SuperButton } from 'common'
 import BorderColorIcon from '@mui/icons-material/BorderColor'

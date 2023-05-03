@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '@mui/material/Button'
-import { ButtonGroup, Typography } from '@mui/material'
+import ButtonGroup from '@mui/material/ButtonGroup'
+import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 
 export const ShowPacksCards = () => {

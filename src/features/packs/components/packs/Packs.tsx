@@ -1,6 +1,6 @@
 import React from 'react'
 import { SuperButton } from 'common'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid'
 import { PageTitle } from 'common/components/page-title/PageTitle'
 import { SearchBar } from 'common/components/search-bar/SearchBar'
 import { ShowPacksCards } from 'common/components/show-packs-cards/ShowPacksCards'
