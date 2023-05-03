@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react'
+import React from 'react'
 import Divider from '@mui/material/Divider'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
@@ -12,10 +12,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from 'app/hooks/hooks'
 import { authThunks } from 'features/auth/auth.slice'
 
-type PopoverListPropsType = {
-    children?: ReactNode
-}
-export const PopoverProfileList: FC<PopoverListPropsType> = () => {
+export const PopoverProfileList = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const handleLogout = () => dispatch(authThunks.logout())
