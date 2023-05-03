@@ -19,6 +19,9 @@ const slice = createSlice({
             .addCase(logout.fulfilled, (state, action) => {
                 state.profile = null
             })
+            .addCase(authMe.fulfilled, (state, action) => {
+                state.profile = action.payload.profile
+            })
     },
 })
 
@@ -33,7 +36,7 @@ const register = createAppAsyncThunk<void, RegisterBodyType>(
 const login = createAppAsyncThunk<{ profile: UserProfileType }, LoginBodyType>(
     'auth/login',
     async (data, thunkAPI) => {
-        const { dispatch, getState, rejectWithValue } = thunkAPI
+        // const { dispatch, getState, rejectWithValue } = thunkAPI
         const res = await authApi.login(data)
         return { profile: res.data }
     }
@@ -43,6 +46,11 @@ const logout = createAppAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await authApi.logout()
 })
 
+const authMe = createAppAsyncThunk('auth/me', async (_, thunkAPI) => {
+    const res = await authApi.me()
+    return { profile: res.data }
+})
+
 export const authReducer = slice.reducer
 export const authActions = slice.actions
-export const authThunks = { register, login, logout }
+export const authThunks = { register, login, logout, authMe }
