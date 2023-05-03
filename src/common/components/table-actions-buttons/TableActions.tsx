@@ -10,7 +10,7 @@ type TableActionsPropsType = {}
 export const TableActions: FC<TableActionsPropsType> = () => {
     return (
         <Box>
-            <IconButton>
+            <IconButton sx={{ paddingLeft: '0' }}>
                 <SchoolIcon />
             </IconButton>
             <IconButton>
