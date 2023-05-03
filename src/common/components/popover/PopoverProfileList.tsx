@@ -9,7 +9,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { paths } from 'common/constants'
 import { useNavigate } from 'react-router-dom'
-import { useAppDispatch } from 'app/hooks'
+import { useAppDispatch } from 'app/hooks/hooks'
 import { authThunks } from 'features/auth/auth.slice'
 
 type PopoverListPropsType = {

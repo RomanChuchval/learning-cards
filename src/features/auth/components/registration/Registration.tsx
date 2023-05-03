@@ -1,6 +1,6 @@
 import React from 'react'
 import { EmailInput, Form, PasswordInput, paths } from 'common'
-import { useAppDispatch } from 'app/hooks'
+import { useAppDispatch } from 'app/hooks/hooks'
 import { authThunks } from 'features/auth/auth.slice'
 
 export const Registration = () => {
