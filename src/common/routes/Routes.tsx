@@ -13,6 +13,7 @@ import { Login } from 'features/auth/components/login/Login'
 import { Registration } from 'features/auth/components/registration/Registration'
 import { NewPassword } from 'features/auth/components/new-password/NewPassword'
 import { Sandbox } from 'common/components/_test-component/Sandbox'
+import { RequireAuth } from 'common/hoc/RequireAuth'
 
 export const router = createHashRouter([
     {
@@ -21,21 +22,27 @@ export const router = createHashRouter([
         errorElement: <PageNotFound />,
         children: [
             {
-                path: paths.CARDS,
-                element: <Cards />,
-            },
-            {
-                path: paths.PACKS,
-                element: <Packs />,
-            },
-            {
-                path: paths.PROFILE,
-                index: true,
-                element: <Profile />,
-            },
-            {
-                path: paths.LEARN,
-                element: <Learn />,
+                path: paths.MAIN,
+                element: <RequireAuth />,
+                children: [
+                    {
+                        path: paths.CARDS,
+                        element: <Cards />,
+                    },
+                    {
+                        path: paths.PACKS,
+                        element: <Packs />,
+                    },
+                    {
+                        path: paths.PROFILE,
+                        index: true,
+                        element: <Profile />,
+                    },
+                    {
+                        path: paths.LEARN,
+                        element: <Learn />,
+                    },
+                ],
             },
             {
                 path: paths.CHECK_EMAIL,
