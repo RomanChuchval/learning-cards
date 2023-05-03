@@ -45,4 +45,4 @@ const logout = createAppAsyncThunk('auth/logout', async (_, thunkAPI) => {
 
 export const authReducer = slice.reducer
 export const authActions = slice.actions
-export const authThunks = { register, login }
+export const authThunks = { register, login, logout }
