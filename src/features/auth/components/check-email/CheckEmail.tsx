@@ -2,11 +2,14 @@ import React from 'react'
 import email from 'assets/img/email.svg'
 import Box from '@mui/material/Box'
 import { Form, InfoMessage, paths } from 'common'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
+import { useAuth } from 'features/auth/useAuth'
 
 export const CheckEmail = () => {
     const navigate = useNavigate()
+    const { profile } = useAuth()
 
+    if (profile) return <Navigate to={paths.PACKS} />
     return (
         <Box>
             <Form
