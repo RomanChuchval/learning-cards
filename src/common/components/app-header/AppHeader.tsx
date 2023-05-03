@@ -6,9 +6,11 @@ import Toolbar from '@mui/material/Toolbar/Toolbar'
 import Container from '@mui/material/Container'
 import { paths, SuperButton } from 'common'
 import { HeaderProfile } from 'common/components/header-profile/HeaderProfile'
+import { useAuth } from 'features/auth/useAuth'
 
 export const AppHeader = () => {
     const navigate = useNavigate()
+    const { profile } = useAuth()
 
     return (
         <AppBar color={'inherit'} position={'static'}>
@@ -22,20 +24,20 @@ export const AppHeader = () => {
                     </Link>
                     <Link to={paths.LOGIN}>log</Link>
                     <Link to={paths.REGISTER}>reg</Link>
-                    <Link to={paths.CHECK_EMAIL}>check</Link>
                     <Link to={paths.SET_NEW_PASSWORD}>new</Link>
-                    <Link to={paths.FORGOT_PASSWORD}>forgot</Link>
-                    <Link to={paths.PAGE_NOT_FOUND}>404</Link>
                     <Link to={paths.SANDBOX}>test</Link>
-                    <HeaderProfile userName={'userName'} />
-                    <SuperButton
-                        callback={() => navigate(paths.LOGIN)}
-                        width={'113'}
-                        rounded={true}
-                        color={'primary'}
-                        textColor={'white'}
-                        name={'Sign In'}
-                    />
+                    {profile ? (
+                        <HeaderProfile userName={'userName'} />
+                    ) : (
+                        <SuperButton
+                            callback={() => navigate(paths.LOGIN)}
+                            width={'113'}
+                            rounded={true}
+                            color={'primary'}
+                            textColor={'white'}
+                            name={'Sign In'}
+                        />
+                    )}
                 </Toolbar>
             </Container>
         </AppBar>
