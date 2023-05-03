@@ -1,22 +1,14 @@
 import React, { FC } from 'react'
 import { Checkbox, FormControlLabel } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import { AppLink, EmailInput, Form, PasswordInput, paths } from 'common'
-import { useAppDispatch } from 'app/hooks'
-import { authThunks } from 'features/auth/auth.slice'
+import { useAuth } from 'features/auth/useAuth'
 
 export const Login: FC<any> = () => {
-    const dispatch = useAppDispatch()
-    const handleLogin = () => {
-        const payload = {
-            email: 'rchuchvaldev@gmail.com',
-            password: 'qwerqwer',
-            rememberMe: true,
-        }
-        dispatch(authThunks.login(payload))
-    }
+    const { login, profile } = useAuth()
 
+    if (profile) return <Navigate to={paths.PACKS} />
     return (
         <Box>
             <Form
@@ -24,7 +16,7 @@ export const Login: FC<any> = () => {
                 description={"Don't have an account?"}
                 title={'Sign In'}
                 btnName={'Sign In'}
-                onClick={handleLogin}
+                onClick={login}
             >
                 <EmailInput label={'Email'} />
                 <PasswordInput label={'Password'} />
