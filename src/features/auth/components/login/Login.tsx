@@ -8,14 +8,14 @@ import { authThunks } from 'features/auth/auth.slice'
 
 export const Login: FC<any> = () => {
     const dispatch = useAppDispatch()
-    // const loginHandler = () => {
-    //     const payload = {
-    //         email: 'rchuchvaldev@gmail.com',
-    //         password: 'qwerqwerqaz',
-    //         rememberMe: true,
-    //     }
-    //     dispatch(authThunks.login(payload))
-    // }
+    const handleLogin = () => {
+        const payload = {
+            email: 'rchuchvaldev@gmail.com',
+            password: 'qwerqwer',
+            rememberMe: true,
+        }
+        dispatch(authThunks.login(payload))
+    }
 
     return (
         <Box>
@@ -24,7 +24,7 @@ export const Login: FC<any> = () => {
                 description={"Don't have an account?"}
                 title={'Sign In'}
                 btnName={'Sign In'}
-                onClick={() => {}}
+                onClick={handleLogin}
             >
                 <EmailInput label={'Email'} />
                 <PasswordInput label={'Password'} />

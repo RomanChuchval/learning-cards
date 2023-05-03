@@ -9,12 +9,16 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { paths } from 'common/constants'
 import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from 'app/hooks'
+import { authThunks } from 'features/auth/auth.slice'
 
 type PopoverListPropsType = {
     children?: ReactNode
 }
 export const PopoverProfileList: FC<PopoverListPropsType> = () => {
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
+    const handleLogout = () => dispatch(authThunks.logout())
 
     return (
         <List>
@@ -28,7 +32,7 @@ export const PopoverProfileList: FC<PopoverListPropsType> = () => {
             </ListItem>
             <Divider />
             <ListItem disablePadding>
-                <ListItemButton onClick={() => {}}>
+                <ListItemButton onClick={handleLogout}>
                     <ListItemIcon>
                         <LogoutIcon />
                     </ListItemIcon>

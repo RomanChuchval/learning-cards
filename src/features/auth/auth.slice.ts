@@ -2,12 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import { authApi, LoginBodyType, UserProfileType, RegisterBodyType } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 
-// const login = createAsyncThunk('auth/login', async (arg: LoginDataType, thunkAPI) => {
-//     const { dispatch, getState, rejectWithValue } = thunkAPI;
-//     const res = await authApi.login(arg);
-//     dispatch(authActions.setProfile({ profile: res.data }));
-// });
-
 const slice = createSlice({
     name: 'auth',
     initialState: {
@@ -22,25 +16,32 @@ const slice = createSlice({
             .addCase(register.rejected, (state, action) => {
                 debugger
             })
+            .addCase(logout.fulfilled, (state, action) => {
+                state.profile = null
+            })
     },
 })
 
 const register = createAppAsyncThunk<void, RegisterBodyType>(
     'auth/register',
-    async (arg, thunkAPI) => {
+    async (data, thunkAPI) => {
         // const {dispatch, getState, rejectWithValue} = thunkAPI
-        const res = await authApi.register(arg)
+        const res = await authApi.register(data)
     }
 )
 
 const login = createAppAsyncThunk<{ profile: UserProfileType }, LoginBodyType>(
     'auth/login',
-    async (arg, thunkAPI) => {
+    async (data, thunkAPI) => {
         const { dispatch, getState, rejectWithValue } = thunkAPI
-        const res = await authApi.login(arg)
+        const res = await authApi.login(data)
         return { profile: res.data }
     }
 )
+
+const logout = createAppAsyncThunk('auth/logout', async (_, thunkAPI) => {
+    await authApi.logout()
+})
 
 export const authReducer = slice.reducer
 export const authActions = slice.actions
