@@ -10,9 +10,10 @@ export const ShowPacksCards = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 flexDirection: 'column',
+                alignItems: 'center',
             }}
         >
-            <Typography sx={{ fontWeight: '500', fontSize: '16px', lineHeight: '17px', mb: '8px' }}>
+            <Typography sx={{ fontWeight: '500', fontSize: '16px', mb: '8px' }}>
                 Show packs cards
             </Typography>
             <ButtonGroup variant='outlined'>
