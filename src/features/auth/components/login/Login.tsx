@@ -8,22 +8,23 @@ import { authThunks } from 'features/auth/auth.slice'
 
 export const Login: FC<any> = () => {
     const dispatch = useAppDispatch()
-    const loginHandler = () => {
-        const payload = {
-            email: 'rchuchvaldev@gmail.com',
-            password: 'qwerqwerqaz',
-            rememberMe: true,
-        }
-        dispatch(authThunks.login(payload))
-    }
+    // const loginHandler = () => {
+    //     const payload = {
+    //         email: 'rchuchvaldev@gmail.com',
+    //         password: 'qwerqwerqaz',
+    //         rememberMe: true,
+    //     }
+    //     dispatch(authThunks.login(payload))
+    // }
 
     return (
         <Box>
             <Form
-                link={{ to: '/', text: 'Sign Up' }}
+                link={{ to: paths.REGISTER, text: 'Sign Up' }}
                 description={"Don't have an account?"}
                 title={'Sign In'}
                 btnName={'Sign In'}
+                onClick={() => {}}
             >
                 <EmailInput label={'Email'} />
                 <PasswordInput label={'Password'} />
@@ -36,7 +37,6 @@ export const Login: FC<any> = () => {
                     <Link to={paths.FORGOT_PASSWORD}>Forgot Password?</Link>
                 </AppLink>
             </Form>
-            <button onClick={loginHandler}>login</button>
         </Box>
     )
 }

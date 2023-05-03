@@ -12,6 +12,7 @@ type FormPropsType = {
     }
     title: string
     btnName: string
+    onClick: () => void
 }
 
 export const Form: FC<FormPropsType & PropsWithChildren> = ({
@@ -20,6 +21,7 @@ export const Form: FC<FormPropsType & PropsWithChildren> = ({
     description,
     link,
     title,
+    onClick,
 }) => {
     return (
         <Grid paddingTop={'70px'} container alignItems={'center'} justifyContent={'center'}>
@@ -42,7 +44,7 @@ export const Form: FC<FormPropsType & PropsWithChildren> = ({
                             width={'347'}
                             rounded={true}
                             margin={'30px 0 0 0'}
-                            callback={() => {}}
+                            callback={onClick}
                         />
                         {description && (
                             <Typography

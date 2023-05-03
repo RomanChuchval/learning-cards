@@ -1,12 +1,19 @@
 import React from 'react'
 import email from 'assets/img/email.svg'
 import Box from '@mui/material/Box'
-import { Form, InfoMessage } from 'common'
+import { Form, InfoMessage, paths } from 'common'
+import { useNavigate } from 'react-router-dom'
 
 export const CheckEmail = () => {
+    const navigate = useNavigate()
+
     return (
         <Box>
-            <Form title={'Check Email'} btnName={'Back to login'}>
+            <Form
+                title={'Check Email'}
+                btnName={'Back to login'}
+                onClick={() => navigate(paths.LOGIN)}
+            >
                 <Box
                     display={'flex'}
                     flexDirection={'column'}

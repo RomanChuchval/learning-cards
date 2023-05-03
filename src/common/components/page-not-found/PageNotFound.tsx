@@ -4,6 +4,7 @@ import { SuperButton } from 'common/components/button/SuperButton'
 import { useNavigate } from 'react-router-dom'
 import { Grid, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
+import { paths } from 'common'
 
 export const PageNotFound = () => {
     const navigate = useNavigate()
@@ -28,7 +29,7 @@ export const PageNotFound = () => {
                 <Grid item>
                     <SuperButton
                         callback={() => {
-                            navigate('/')
+                            navigate(paths.PACKS)
                         }}
                         name={'Back to home page!'}
                         textColor={'white'}

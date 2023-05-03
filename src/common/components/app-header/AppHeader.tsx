@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from 'assets/img/logo.svg'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import AppBar from '@mui/material/AppBar/AppBar'
 import Toolbar from '@mui/material/Toolbar/Toolbar'
 import { Container } from '@mui/material'
@@ -15,15 +15,15 @@ export const AppHeader = () => {
                     disableGutters
                     sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}
                 >
-                    <img src={logo} alt='app-logo' />
-                    <NavLink to={paths.LOGIN}>log</NavLink>
+                    <Link to={paths.PACKS}>
+                        <img src={logo} alt='app-logo' />
+                    </Link>
+                    <Link to={paths.LOGIN}>log</Link>
                     <Link to={paths.REGISTER}>reg</Link>
                     <Link to={paths.CHECK_EMAIL}>check</Link>
                     <Link to={paths.SET_NEW_PASSWORD}>new</Link>
                     <Link to={paths.FORGOT_PASSWORD}>forgot</Link>
                     <Link to={paths.PAGE_NOT_FOUND}>404</Link>
-                    <Link to={paths.PROFILE}>Profile</Link>
-                    <Link to={paths.PACKS}>Packs</Link>
                     <Link to={paths.SANDBOX}>test</Link>
                     <HeaderProfile userName={'userName'} />
                     <SuperButton
