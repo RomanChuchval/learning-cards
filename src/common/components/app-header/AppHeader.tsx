@@ -11,7 +11,10 @@ export const AppHeader = () => {
     return (
         <AppBar color={'inherit'} position={'static'}>
             <Container fixed>
-                <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Toolbar
+                    disableGutters
+                    sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}
+                >
                     <img src={logo} alt='app-logo' />
                     <NavLink to={paths.LOGIN}>log</NavLink>
                     <Link to={paths.REGISTER}>reg</Link>
