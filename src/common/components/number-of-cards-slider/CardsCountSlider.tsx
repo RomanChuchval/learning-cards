@@ -31,7 +31,7 @@ export const CardsCountSlider = () => {
             <Typography sx={{ fontSize: '16px', fontWeight: '500', mb: '8px' }}>
                 Number of cards
             </Typography>
-            <Box sx={{ width: 250, display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ width: 300, display: 'flex', alignItems: 'center' }}>
                 <Box sx={boxSx}>
                     <Typography sx={typographySx}>{value[0]}</Typography>
                 </Box>
