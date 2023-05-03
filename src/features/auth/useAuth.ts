@@ -14,9 +14,10 @@ export const useAuth = () => {
         }
         dispatch(authThunks.login(payload))
     }
+    const logout = () => dispatch(authThunks.logout())
 
     const isProfileDefine = () => !!profile
     const isUserAuth = isProfileDefine()
 
-    return { login, profile, isUserAuth }
+    return { login, profile, isUserAuth, logout }
 }
