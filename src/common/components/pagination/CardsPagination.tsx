@@ -48,7 +48,7 @@ export const CardsPagination: React.FC<CardsPaginationPropsType> = ({
                 <Box component={'span'}>Show</Box>
                 <Select
                     autoWidth={true}
-                    sx={{ width: '60px', height: '36px' }}
+                    sx={{ width: '70px', height: '36px' }}
                     value={`${itemsCountForPage}`}
                     onChange={handleSelectorChange}
                 >
