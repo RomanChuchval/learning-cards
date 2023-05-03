@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { authApi, LoginDataType, ProfileType, RegisterDataType } from 'features/auth/auth.api'
+import { authApi, LoginBodyType, UserProfileType, RegisterBodyType } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 
 // const login = createAsyncThunk('auth/login', async (arg: LoginDataType, thunkAPI) => {
@@ -11,7 +11,7 @@ import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 const slice = createSlice({
     name: 'auth',
     initialState: {
-        profile: null as ProfileType | null,
+        profile: null as UserProfileType | null,
     },
     reducers: {},
     extraReducers: builder => {
@@ -25,7 +25,7 @@ const slice = createSlice({
     },
 })
 
-const register = createAppAsyncThunk<void, RegisterDataType>(
+const register = createAppAsyncThunk<void, RegisterBodyType>(
     'auth/register',
     async (arg, thunkAPI) => {
         // const {dispatch, getState, rejectWithValue} = thunkAPI
@@ -33,7 +33,7 @@ const register = createAppAsyncThunk<void, RegisterDataType>(
     }
 )
 
-const login = createAppAsyncThunk<{ profile: ProfileType }, LoginDataType>(
+const login = createAppAsyncThunk<{ profile: UserProfileType }, LoginBodyType>(
     'auth/login',
     async (arg, thunkAPI) => {
         const { dispatch, getState, rejectWithValue } = thunkAPI

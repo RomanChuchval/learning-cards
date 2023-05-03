@@ -1,25 +1,57 @@
 import { instance } from 'common/api/api'
 
 export const authApi = {
-    register: (data: RegisterDataType) => {
+    login: (data: LoginBodyType) => {
+        return instance.post<UserProfileType>('auth/login', data)
+    },
+    logout: () => {
+        return instance.delete<AuthResponseType>('auth/me')
+    },
+    register: (data: RegisterBodyType) => {
         return instance.post<RegisterResponseType>('auth/register', data)
     },
-    login: (data: LoginDataType) => {
-        return instance.post<ProfileType>('auth/login', data)
+    me: () => {
+        return instance.post<UserProfileType>('auth/me')
+    },
+    updateProfile: (data: UpdateProfileBodyType) => {
+        return instance.put<UserProfileType>('auth/me', data)
+    },
+    forgotPassword: (data: ForgotPassBodyType) => {
+        return instance.post<AuthResponseType>('auth/forgot', data)
+    },
+    setNewPassword: (data: SetNewPassBodyType) => {
+        return instance.post<AuthResponseType>('auth/set-new-password', data)
     },
 }
 
 //TYPES
-export type RegisterDataType = Omit<LoginDataType, 'rememberMe'>
-export type RegisterResponseType = {
-    addedUser: Omit<ProfileType, 'token' | 'tokenDeathTime'>
+export type RegisterBodyType = Omit<LoginBodyType, 'rememberMe'>
+export type UpdateProfileBodyType = {
+    name: string
+    avatar: string
 }
-export type LoginDataType = {
+export type LoginBodyType = {
     email: string
     password: string
     rememberMe: boolean
 }
-export type ProfileType = {
+export type SetNewPassBodyType = {
+    password: string
+    resetPasswordToken: string //token from url
+}
+export type ForgotPassBodyType = {
+    email: string
+    from: string
+    message: string
+}
+export type RegisterResponseType = {
+    addedUser: Omit<UserProfileType, 'token' | 'tokenDeathTime' | 'avatar'>
+}
+export type AuthResponseType = {
+    info: string
+    error?: string
+}
+export type UserProfileType = {
     _id: string
     email: string
     rememberMe: boolean
@@ -32,4 +64,6 @@ export type ProfileType = {
     __v: number
     token: string
     tokenDeathTime: number
+    avatar: string
+    error?: string
 }
