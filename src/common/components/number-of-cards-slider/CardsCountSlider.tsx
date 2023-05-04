@@ -1,13 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider from '@mui/material/Slider'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 
-export const CardsCountSlider = () => {
+type CardsCountSliderPropsType = {
+    onChange: (minCardsCount: string, maxCardsCount: string) => void
+}
+
+export const CardsCountSlider: React.FC<CardsCountSliderPropsType> = ({ onChange }) => {
     const [value, setValue] = useState<number[]>([0, 100])
+    const [timeoutId, setTimeoutId] = useState<number | undefined>(undefined)
+    useEffect(() => {
+
+    }, [value])
 
     const handleChange = (event: Event, newValue: number | number[]) => {
         if (Array.isArray(newValue)) setValue(newValue)
+        if (onChange) {
+            clearTimeout(timeoutId)
+            const newTimeout = setTimeout(() => onChange(value[0] + '', value[1] + ''), 1500)
+            setTimeoutId(+newTimeout)
+        }
+
     }
 
     const boxSx = {
@@ -18,13 +32,13 @@ export const CardsCountSlider = () => {
         padding: '3px',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     }
     const typographySx = {
         fontSize: '16px',
         fontWeight: '600',
         lineHeight: '20px',
-        textAlign: 'center',
+        textAlign: 'center'
     }
 
     return (
