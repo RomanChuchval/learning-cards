@@ -14,6 +14,7 @@ import { Registration } from 'features/auth/components/registration/Registration
 import { NewPassword } from 'features/auth/components/new-password/NewPassword'
 import { Sandbox } from 'common/components/_test-component/Sandbox'
 import { RequireAuth } from 'common/hoc/RequireAuth'
+import { Auth } from 'common/hoc/Auth'
 
 export const router = createHashRouter([
     {
@@ -45,24 +46,30 @@ export const router = createHashRouter([
                 ],
             },
             {
-                path: paths.CHECK_EMAIL,
-                element: <CheckEmail />,
-            },
-            {
-                path: paths.FORGOT_PASSWORD,
-                element: <ForgotPassword />,
-            },
-            {
-                path: paths.LOGIN,
-                element: <Login />,
-            },
-            {
-                path: paths.REGISTER,
-                element: <Registration />,
-            },
-            {
-                path: paths.SET_NEW_PASSWORD,
-                element: <NewPassword />,
+                path: paths.AUTH,
+                element: <Auth />,
+                children: [
+                    {
+                        path: paths.CHECK_EMAIL,
+                        element: <CheckEmail />,
+                    },
+                    {
+                        path: paths.FORGOT_PASSWORD,
+                        element: <ForgotPassword />,
+                    },
+                    {
+                        path: paths.LOGIN,
+                        element: <Login />,
+                    },
+                    {
+                        path: paths.REGISTER,
+                        element: <Registration />,
+                    },
+                    {
+                        path: paths.SET_NEW_PASSWORD,
+                        element: <NewPassword />,
+                    },
+                ],
             },
             {
                 path: paths.SANDBOX,

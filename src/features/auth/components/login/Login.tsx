@@ -1,14 +1,13 @@
 import React, { FC } from 'react'
 import { Checkbox, FormControlLabel } from '@mui/material'
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import { AppLink, EmailInput, Form, PasswordInput, paths } from 'common'
 import { useAuth } from 'features/auth/useAuth'
 
 export const Login: FC<any> = () => {
-    const { login, profile } = useAuth()
+    const { login } = useAuth()
 
-    if (profile) return <Navigate to={paths.PACKS} />
     return (
         <Box>
             <Form
