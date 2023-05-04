@@ -9,20 +9,114 @@ import { CardsPagination } from 'common/components/pagination/CardsPagination'
 import { CardsRating } from 'common/components/rating/CardsRating'
 import { CustomTable } from 'common/components/table/CustomTable'
 import { TableActions } from 'common/components/table-actions-buttons/TableActions'
+import TableRow from '@mui/material/TableRow/TableRow'
+import TableCell from '@mui/material/TableCell/TableCell'
+
+const tableCellForBody = [
+    {
+        answer: 'no answer',
+        question: 'no question',
+        cardsPack_id: '5eb6a2f72f44849402d46c6ac4',
+        grade: 4.987525071790364,
+        shots: 1,
+        user_id: '142151531535151',
+        created: '2020-05-13T11:05:44.867Z',
+        updated: '2020-05-13T11:05:44.867Z',
+        _id: '5ebbd48876810f1ad0e7ece3',
+    },
+    {
+        answer: 'no answer',
+        question: 'no question',
+        cardsPack_id: '5eb6a2f72f44849402d46c6ac4',
+        grade: 4.987525071790364,
+        shots: 1,
+        user_id: '142151531535151',
+        created: '2020-05-13T11:05:44.867Z',
+        updated: '2020-05-13T11:05:44.867Z',
+        _id: '5ebbd48876810f1ad0e7ece3',
+    },
+    {
+        answer: 'no answer',
+        question: 'no question',
+        cardsPack_id: '5eb6a2f72f44849402d46c6ac4',
+        grade: 4.987525071790364,
+        shots: 1,
+        user_id: '142151531535151',
+        created: '2020-05-13T11:05:44.867Z',
+        updated: '2020-05-13T11:05:44.867Z',
+        _id: '5ebbd48876810f1ad0e7ece3',
+    },
+    {
+        answer: 'no answer',
+        question: 'no question',
+        cardsPack_id: '5eb6a2f72f44849402d46c6ac4',
+        grade: 4.987525071790364,
+        shots: 1,
+        user_id: '142151531535151',
+        created: '2020-05-13T11:05:44.867Z',
+        updated: '2020-05-13T11:05:44.867Z',
+        _id: '5ebbd48876810f1ad0e7ece3',
+    },
+    {
+        answer: 'no answer',
+        question: 'no question',
+        cardsPack_id: '5eb6a2f72f849402d446c6ac4',
+        grade: 3.656514,
+        shots: 1,
+        user_id: '142151531535151',
+        created: '2020-05-13T11:05:44.867Z',
+        updated: '2020-05-13T11:05:44.867Z',
+        _id: '5ebbd48876810f1ad0e7ece3',
+    },
+    {
+        answer: 'no answer',
+        question: 'no question',
+        cardsPack_id: '5eb6a2f72f8494032d46c6ac4',
+        grade: 4.75641614,
+        shots: 1,
+        user_id: '142151531535151',
+        created: '2020-05-13T11:05:44.867Z',
+        updated: '2020-05-13T11:05:44.867Z',
+        _id: '5ebbd48876810f1ad0e7ece3',
+    },
+]
+const tableBodySX = {
+    wordWrap: 'break-word',
+    minWidth: '200px',
+    maxWidth: '300px',
+}
 
 export const Sandbox = () => {
     return (
         <Stack spacing={5} sx={{ mt: '50px' }}>
             <PageTitle title={'Packs list'} />
-            <SearchBar fullWidth={true} />
-            <SearchBar />
-            <ShowPacksCards />
-            <CardsCountSlider />
-            <CardsPagination page={1} itemsCountForPage={7} totalCount={100} onChange={() => {}} />
-            <ClearFilter />
+            <SearchBar fullWidth={true} onChange={()=>{}} value={'sdf'}/>
+            <SearchBar onChange={()=>{}} value={'sdf'}/>
+            <ShowPacksCards onClick={()=>{}}/>
+            <CardsCountSlider onChange={()=>{}}/>
+            <CardsPagination page={1} pageCount={7} totalCount={100} onChange={() => {}} />
+            <ClearFilter clearFiltersHandler={()=>{}}/>
             <CardsRating defaultValue={2.5} />
             <TableActions />
-            <CustomTable />
+            <CustomTable sort={true} setSort={()=>{}} sortHandler={()=>{}}>
+                {tableCellForBody.map(textBody => {
+                    return (
+                        <TableRow key={textBody._id}>
+                            <TableCell sx={{ ...tableBodySX, paddingLeft: '40px' }}>
+                                {textBody.question}
+                            </TableCell>
+                            <TableCell sx={tableBodySX}>{textBody.answer}</TableCell>
+                            <TableCell>{textBody.updated}</TableCell>
+                            <TableCell sx={{ paddingRight: '54px' }}>
+                                <TableActions />
+                                {/*<CardsRating*/}
+                                {/*    defaultValue={Math.floor(textBody.grade * 2) / 2}*/}
+                                {/*/>*/}
+                            </TableCell>
+                        </TableRow>
+                    )
+                })}
+            </CustomTable>
         </Stack>
     )
 }

@@ -8,43 +8,45 @@ import { SelectChangeEvent } from '@mui/material/Select/SelectInput'
 
 export type CardsPaginationPropsType = {
     page: number
-    itemsCountForPage: number
+    pageCount: number
     totalCount: number
-    onChange: (page: number, count: number) => void
+    onChange: (page: string, count: string) => void
 }
 
 export const CardsPagination: React.FC<CardsPaginationPropsType> = ({
-    page,
-    itemsCountForPage,
-    totalCount,
-    onChange,
-}) => {
-    const lastPage = Math.ceil(totalCount / itemsCountForPage)
+                                                                        page,
+                                                                        pageCount,
+                                                                        totalCount,
+                                                                        onChange
+                                                                    }) => {
+    const lastPage = Math.ceil(totalCount / +pageCount) || 0
+
     const styleForContainer = {
         display: 'flex',
         alignItems: 'center',
         width: '100%',
         flexWrap: 'wrap',
-        gap: '20px',
+        gap: '20px'
     }
     const styleForFormControl = {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        gap: '10px',
+        gap: '10px'
     }
 
     const handleSelectorChange = (event: SelectChangeEvent) => {
-        onChange(page, +event.target.value)
+        onChange(page + '', event.target.value)
     }
     const handlePaginationChange = (event: React.ChangeEvent<unknown>, page: number) => {
-        onChange(page, itemsCountForPage)
+        onChange(page + '', pageCount + '')
     }
 
     return (
         <Box sx={styleForContainer}>
             <Pagination
                 count={lastPage}
+                page={+page}
                 color='primary'
                 shape='rounded'
                 onChange={handlePaginationChange}
@@ -54,12 +56,12 @@ export const CardsPagination: React.FC<CardsPaginationPropsType> = ({
                 <Select
                     autoWidth={true}
                     sx={{ width: '70px', height: '36px' }}
-                    value={`${itemsCountForPage}`}
+                    value={`${pageCount}`}
                     onChange={handleSelectorChange}
                 >
-                    <MenuItem value={4}>4</MenuItem>
-                    <MenuItem value={7}>7</MenuItem>
-                    <MenuItem value={10}>10</MenuItem>
+                    <MenuItem value={'4'}>4</MenuItem>
+                    <MenuItem value={'7'}>7</MenuItem>
+                    <MenuItem value={'10'}>10</MenuItem>
                 </Select>
                 <Box component={'span'}>Cards per Page</Box>
             </FormControl>
