@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren } from 'react'
+import React, { FC, FormEventHandler, PropsWithChildren } from 'react'
 import { SuperButton } from 'common/components/button/SuperButton'
 import { Link } from 'react-router-dom'
 import { AppLink } from 'common/components/link/AppLink'
@@ -16,7 +16,8 @@ type FormPropsType = {
     }
     title: string
     btnName: string
-    onClick: () => void
+    onClick?: () => void
+    onSubmit?: FormEventHandler
 }
 
 export const Form: FC<FormPropsType & PropsWithChildren> = ({
@@ -26,11 +27,12 @@ export const Form: FC<FormPropsType & PropsWithChildren> = ({
     link,
     title,
     onClick,
+    onSubmit,
 }) => {
     return (
         <Grid paddingTop={'70px'} container alignItems={'center'} justifyContent={'center'}>
             <Paper sx={{ padding: '40px 35px' }}>
-                <form style={{ maxWidth: '350px' }}>
+                <form onSubmit={onSubmit} style={{ maxWidth: '350px' }}>
                     <Typography
                         component={'h2'}
                         style={{ fontWeight: '600', fontSize: '26px', textAlign: 'center' }}

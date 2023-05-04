@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar/Toolbar'
 import Container from '@mui/material/Container'
 import { paths, SuperButton } from 'common'
 import { HeaderProfile } from 'common/components/header-profile/HeaderProfile'
-import { useAuth } from 'features/auth/useAuth'
+import { useAuth } from 'features/auth/hooks/useAuth'
 
 export const AppHeader = () => {
     const navigate = useNavigate()

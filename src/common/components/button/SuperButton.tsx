@@ -6,7 +6,7 @@ type SuperButtonType = {
     textColor?: 'white' | 'black'
     color?: 'primary' | 'secondary'
     width?: string
-    callback: () => void
+    callback?: () => void
     rounded?: boolean
     margin?: string
     icon?: ReactNode
@@ -33,6 +33,7 @@ export const SuperButton: React.FC<SuperButtonType> = memo(
                 variant='contained'
                 onClick={callback}
                 sx={btnStyle}
+                type={'submit'}
                 color={color}
                 startIcon={icon}
             >

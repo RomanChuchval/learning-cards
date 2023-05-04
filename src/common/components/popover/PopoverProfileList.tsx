@@ -9,7 +9,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { paths } from 'common/constants'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from 'features/auth/useAuth'
+import { useAuth } from 'features/auth/hooks/useAuth'
 
 export const PopoverProfileList = () => {
     const navigate = useNavigate()

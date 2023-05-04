@@ -12,7 +12,7 @@ export const ForgotPassword = () => {
                 btnName={'Send Instructions'}
                 onClick={() => {}}
             >
-                <EmailInput label={'Email'} />
+                {/*<EmailInput label={'Email'} />*/}
                 <InfoMessage
                     text={'Enter your email address and we will send you further instructions'}
                 />

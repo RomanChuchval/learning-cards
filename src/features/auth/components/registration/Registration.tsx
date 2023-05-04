@@ -1,7 +1,16 @@
 import React from 'react'
 import { EmailInput, Form, PasswordInput, paths } from 'common'
+import { useAppForm } from 'features/auth/hooks/useAppForm'
+import { useAuth } from 'features/auth/hooks/useAuth'
+import { useRedirect } from 'features/auth/hooks/useRedirect'
 
 export const Registration = () => {
+    const { errors, handleSubmit, register } = useAppForm(['email', 'password', 'confirmPassword'])
+    const { registration } = useAuth()
+    useRedirect()
+    const onSubmit = (data: any) => {
+        registration(data)
+    }
     return (
         <div>
             <Form
@@ -10,10 +19,21 @@ export const Registration = () => {
                 title={'Sign Up'}
                 btnName={'Sign Up'}
                 onClick={() => {}}
+                onSubmit={handleSubmit(onSubmit)}
             >
-                <EmailInput label={'Email'} />
-                <PasswordInput label={'Password'} />
-                <PasswordInput label={'Confirm password'} />
+                <EmailInput label={'Email'} name={'email'} register={register} errors={errors} />
+                <PasswordInput
+                    label={'Password'}
+                    name={'password'}
+                    register={register}
+                    errors={errors}
+                />
+                <PasswordInput
+                    label={'Confirm password'}
+                    name={'confirmPassword'}
+                    register={register}
+                    errors={errors}
+                />
             </Form>
         </div>
     )
