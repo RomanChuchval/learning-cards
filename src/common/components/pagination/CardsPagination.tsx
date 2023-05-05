@@ -46,7 +46,7 @@ export const CardsPagination: React.FC<CardsPaginationPropsType> = ({
         <Box sx={styleForContainer}>
             <Pagination
                 count={lastPage}
-                page={+page}
+                page={+page || 1}
                 color='primary'
                 shape='rounded'
                 onChange={handlePaginationChange}
@@ -56,7 +56,7 @@ export const CardsPagination: React.FC<CardsPaginationPropsType> = ({
                 <Select
                     autoWidth={true}
                     sx={{ width: '70px', height: '36px' }}
-                    value={`${pageCount}`}
+                    value={`${pageCount || 4}`}
                     onChange={handleSelectorChange}
                 >
                     <MenuItem value={'4'}>4</MenuItem>
