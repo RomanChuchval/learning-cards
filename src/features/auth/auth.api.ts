@@ -15,7 +15,7 @@ export const authApi = {
         return instance.post<UserProfileType>('auth/me')
     },
     updateProfile: (data: UpdateProfileBodyType) => {
-        return instance.put<UserProfileType>('auth/me', data)
+        return instance.put<{ updatedUser: UserProfileType; error?: string }>('auth/me', data)
     },
     forgotPassword: (data: ForgotPassBodyType) => {
         return axios.post<AuthResponseType>(
@@ -36,8 +36,8 @@ export const authApi = {
 //TYPES
 export type RegisterBodyType = Omit<LoginBodyType, 'rememberMe'>
 export type UpdateProfileBodyType = {
-    name: string
-    avatar: string
+    name?: string
+    avatar?: string
 }
 export type LoginBodyType = {
     email: string

@@ -22,12 +22,8 @@ export const AppHeader = () => {
                     <Link to={paths.PACKS}>
                         <img src={logo} alt='app-logo' />
                     </Link>
-                    <Link to={paths.LOGIN}>log</Link>
-                    <Link to={paths.REGISTER}>reg</Link>
-                    <Link to={paths.SET_NEW_PASSWORD}>new</Link>
-                    <Link to={paths.SANDBOX}>test</Link>
                     {profile ? (
-                        <HeaderProfile userName={'userName'} />
+                        <HeaderProfile userName={profile.name} avatar={profile.avatar} />
                     ) : (
                         <SuperButton
                             callback={() => navigate(paths.LOGIN)}

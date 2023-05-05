@@ -1,6 +1,10 @@
 import { useAppDispatch, useAppSelector } from 'app/hooks/hooks'
 import { authThunks } from 'features/auth/auth.slice'
-import { redirectPathSelector, profileSelector } from 'features/auth/auth.selectors'
+import {
+    redirectPathSelector,
+    profileSelector,
+    checkEmailMessageSelector,
+} from 'features/auth/auth.selectors'
 import { LoginFieldsType } from 'features/auth/components/login/Login'
 import { ForgotPassBodyType, RegisterBodyType, SetNewPassBodyType } from 'features/auth/auth.api'
 import { emailMessage } from 'features/auth/constants'
@@ -9,6 +13,7 @@ export const useAuth = () => {
     const dispatch = useAppDispatch()
     const profile = useAppSelector(profileSelector)
     const redirectPath = useAppSelector(redirectPathSelector)
+    const emailAddress = useAppSelector(checkEmailMessageSelector)
 
     const login = (data: LoginFieldsType) => {
         const payload = {
@@ -51,5 +56,6 @@ export const useAuth = () => {
         profile,
         isUserAuth,
         redirectPath,
+        emailAddress,
     }
 }
