@@ -2,7 +2,8 @@ import { useAppDispatch, useAppSelector } from 'app/hooks/hooks'
 import { authThunks } from 'features/auth/auth.slice'
 import { redirectPathSelector, profileSelector } from 'features/auth/auth.selectors'
 import { LoginFieldsType } from 'features/auth/components/login/Login'
-import { RegisterBodyType } from 'features/auth/auth.api'
+import { ForgotPassBodyType, RegisterBodyType, SetNewPassBodyType } from 'features/auth/auth.api'
+import { emailMessage } from 'features/auth/constants'
 
 export const useAuth = () => {
     const dispatch = useAppDispatch()
@@ -22,8 +23,33 @@ export const useAuth = () => {
         dispatch(authThunks.register(data))
     }
 
+    const forgotPassword = (data: { email: string }) => {
+        const payload: ForgotPassBodyType = {
+            email: data.email,
+            from: 'App developers ;)',
+            message: emailMessage,
+        }
+        dispatch(authThunks.forgotPassword(payload))
+    }
+    const setNewPassword = (password: string, token: string) => {
+        const payload: SetNewPassBodyType = {
+            password,
+            resetPasswordToken: token,
+        }
+        dispatch(authThunks.setNewPassword(payload))
+    }
+
     const isProfileDefine = () => !!profile
     const isUserAuth = isProfileDefine()
 
-    return { login, registration, logout, profile, isUserAuth, redirectPath }
+    return {
+        login,
+        registration,
+        logout,
+        forgotPassword,
+        setNewPassword,
+        profile,
+        isUserAuth,
+        redirectPath,
+    }
 }

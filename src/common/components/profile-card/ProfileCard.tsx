@@ -9,8 +9,10 @@ import IconButton from '@mui/material/IconButton'
 import LocalSeeOutlinedIcon from '@mui/icons-material/LocalSeeOutlined'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { EditableTitle, InfoMessage, SuperButton } from 'common'
+import { useAuth } from 'features/auth/hooks/useAuth'
 
 export const ProfileCard = () => {
+    const { logout } = useAuth()
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: '20px' }}>
             <Paper
@@ -51,7 +53,7 @@ export const ProfileCard = () => {
                 <EditableTitle title={'Roman'} margin={'20px 0 0 0'} />
                 <InfoMessage text={'rchuchval@gmail.com'} margin={'10px'} />
                 <SuperButton
-                    callback={() => {}}
+                    callback={logout}
                     name={'Logout'}
                     rounded={true}
                     color={'secondary'}
