@@ -14,6 +14,10 @@ export const PacksFilter: React.FC<PacksFilterPropsType> = ({ children }) => {
     const {
         packs,
         search,
+        valueSlider,
+        setValueSlider,
+        onMy,
+        setOnMy,
         onChangePagination,
         onChangeSlider,
         onChangeText,
@@ -27,10 +31,10 @@ export const PacksFilter: React.FC<PacksFilterPropsType> = ({ children }) => {
                 <SearchBar fullWidth={true} onChange={onChangeText} value={search} />
             </Grid>
             <Grid item md={3} display={'flex'} justifyContent={'center'}>
-                <ShowPacksCards onClick={onClickShowPacksCards} />
+                <ShowPacksCards onClick={onClickShowPacksCards} onMy={onMy} setOnMy={setOnMy}/>
             </Grid>
             <Grid item md={4} display={'flex'} justifyContent={'center'}>
-                <CardsCountSlider onChange={onChangeSlider} />
+                <CardsCountSlider onChange={onChangeSlider} minMax={valueSlider} setMinMax={setValueSlider}/>
             </Grid>
             <Grid item md={1} display={'flex'} justifyContent={'flex-end'}>
                 <ClearFilter clearFiltersHandler={clearFiltersHandler} />

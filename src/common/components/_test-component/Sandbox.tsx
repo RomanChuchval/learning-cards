@@ -92,8 +92,8 @@ export const Sandbox = () => {
             <PageTitle title={'Packs list'} />
             <SearchBar fullWidth={true} onChange={()=>{}} value={'sdf'}/>
             <SearchBar onChange={()=>{}} value={'sdf'}/>
-            <ShowPacksCards onClick={()=>{}}/>
-            <CardsCountSlider onChange={()=>{}}/>
+            <ShowPacksCards onClick={()=>{}} onMy={true} setOnMy={()=>{}}/>
+            <CardsCountSlider onChange={()=>{}} minMax={[]} setMinMax={()=>{}}/>
             <CardsPagination page={1} pageCount={7} totalCount={100} onChange={() => {}} />
             <ClearFilter clearFiltersHandler={()=>{}}/>
             <CardsRating defaultValue={2.5} />

@@ -6,19 +6,11 @@ import { PacksFilter } from 'features/packs/components/packs-filter/PacksFilter'
 import { PacksTable } from 'features/packs/components/packs-table/PacksTable'
 
 export const Packs = () => {
-    const { searchParams, filterHandler, } = useAppFilter()
+    const { searchParams, filterHandler} = useAppFilter()
+    const paramsSearch = Object.fromEntries(searchParams)
 
     useEffect(() => {
-        const params = Object.fromEntries(searchParams)
-        filterHandler( {
-            page: params.page,
-            pageCount: params.pageCount,
-            min: params.min || '',
-            max: params.max || '',
-            sortPacks: '0updated' || params.sortParams,
-            user_id: params.user_id,
-            packName: params.packName
-        })
+        filterHandler(paramsSearch)
     }, [])
 
     return (
@@ -30,4 +22,3 @@ export const Packs = () => {
         </Grid>
     )
 }
-

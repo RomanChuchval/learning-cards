@@ -1,24 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Slider from '@mui/material/Slider'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 
 type CardsCountSliderPropsType = {
     onChange: (minCardsCount: string, maxCardsCount: string) => void
+    minMax: number[]
+    setMinMax: (value: number[]) => void
 }
 
-export const CardsCountSlider: React.FC<CardsCountSliderPropsType> = ({ onChange }) => {
-    const [value, setValue] = useState<number[]>([0, 100])
-    const [timeoutId, setTimeoutId] = useState<number | undefined>(undefined)
+export const CardsCountSlider: React.FC<CardsCountSliderPropsType> = ({ onChange, minMax, setMinMax }) => {
 
+
+    const handleMouseUp = () => {
+        onChange(minMax[0].toString(), minMax[1].toString())
+    }
     const handleChange = (event: Event, newValue: number | number[]) => {
-        if (Array.isArray(newValue)) setValue(newValue)
-        if (onChange) {
-            clearTimeout(timeoutId)
-            const newTimeout = setTimeout(() => onChange(value[0] + '', value[1] + ''), 1500)
-            setTimeoutId(+newTimeout)
-        }
-
+        if (Array.isArray(newValue)) setMinMax(newValue)
     }
 
     const boxSx = {
@@ -45,11 +43,11 @@ export const CardsCountSlider: React.FC<CardsCountSliderPropsType> = ({ onChange
             </Typography>
             <Box sx={{ width: 300, display: 'flex', alignItems: 'center' }}>
                 <Box sx={boxSx}>
-                    <Typography sx={typographySx}>{value[0]}</Typography>
+                    <Typography sx={typographySx}>{minMax[0]}</Typography>
                 </Box>
-                <Slider value={value} onChange={handleChange} sx={{ m: '0 20px' }} />
+                <Slider value={minMax} onMouseUp={handleMouseUp} onChange={handleChange} sx={{ m: '0 20px' }} />
                 <Box sx={boxSx}>
-                    <Typography sx={typographySx}>{value[1]}</Typography>
+                    <Typography sx={typographySx}>{minMax[1]}</Typography>
                 </Box>
             </Box>
         </Box>

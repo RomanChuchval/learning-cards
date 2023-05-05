@@ -28,7 +28,7 @@ export const ClearFilter: React.FC<ClearFilterPropsType> = ({ clearFiltersHandle
 
     return (
         <Box sx={boxSx}>
-            <IconButton onMouseEnter={onClickHandler} sx={{ width: '50px' }} onClick={() => console.log('1')}>
+            <IconButton sx={{ width: '50px' }} onClick={onClickHandler}>
                 <FilterAltOffIcon />
             </IconButton>
         </Box>

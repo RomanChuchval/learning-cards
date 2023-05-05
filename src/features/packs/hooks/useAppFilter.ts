@@ -1,32 +1,29 @@
 import { useAppDispatch, useAppSelector } from 'app/hooks/hooks'
-import { packsSelectors } from 'features/packs/packs.selectors'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { userIdSelector } from 'features/auth/auth.selectors'
 import { useSearchParams } from 'react-router-dom'
-import { packsThunks } from 'features/packs/packs.slice'
+import { packsAction, packsThunks } from 'features/packs/packs.slice'
+import { packsSelector, paramsSelector } from 'features/packs/packs.selectors'
 
 export const useAppFilter = () => {
     const [search, setSearch] = useState('')
     const [sort, setSort] = useState(true)
+    const [onMy, setOnMy] = useState(true)
+    const [valueSlider, setValueSlider] = useState<number[]>([0, 100])
     const [timoutId, setTimeoutId] = useState<number | undefined>(undefined)
-    const packs = useAppSelector(packsSelectors)
+    const packs = useAppSelector(packsSelector)
+    const params = useAppSelector(paramsSelector)
     const userId = useAppSelector(userIdSelector)
     const dispatch = useAppDispatch()
     const [searchParams, setSearchParams] = useSearchParams()
 
+    useEffect(()=> {
+        setSearchParams({ ...params })
+    }, [params, setSearchParams])
+
     const filterHandler = (paramsArg: {}) => {
-        const params = Object.fromEntries(searchParams)
-        dispatch(packsThunks.getPacks({
-            page: '1',
-            pageCount: packs.pageCount + '',
-            min: packs.minCardsCount + '',
-            max: packs.maxCardsCount + '',
-            user_id: '',
-            packName: '',
-            sortPacks: '0updated',
-            ...paramsArg
-        }))
-        setSearchParams({ ...params, ...paramsArg })
+        dispatch(packsAction.setQueryParams({ params: { ...paramsArg } }))
+        dispatch(packsThunks.getPacks())
     }
     const onChangePagination = (page: string, pageCount: string) => {
         filterHandler({ page, pageCount })
@@ -34,8 +31,9 @@ export const useAppFilter = () => {
     const onChangeSlider = (min: string, max: string) => {
         filterHandler({ min, max })
     }
-    const onClickShowPacksCards = (value: string) => {
-        if (value === 'My') {
+    const onClickShowPacksCards = () => {
+        if (onMy) {
+            debugger
             filterHandler({ user_id: userId })
         } else {
             filterHandler({ user_id: '' })
@@ -51,16 +49,17 @@ export const useAppFilter = () => {
         setTimeoutId(+newTimeoutId)
     }
     const clearFiltersHandler = () => {
-        dispatch(packsThunks.getPacks({
+        filterHandler({
             page: '1',
             pageCount: '4',
             min: '0',
             max: '100',
             user_id: '',
             packName: ''
-        }))
-        setSearchParams({})
+        })
         setSearch('')
+        setValueSlider([0, 100])
+        setOnMy(false)
     }
     const sortHandler = () => {
         filterHandler({
@@ -73,8 +72,12 @@ export const useAppFilter = () => {
         userId,
         search,
         sort,
+        valueSlider,
+        setValueSlider,
         setSort,
         searchParams,
+        onMy,
+        setOnMy,
         filterHandler,
         sortHandler,
         onChangePagination,

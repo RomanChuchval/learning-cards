@@ -1,25 +1,24 @@
-import React, { MouseEventHandler, useState } from 'react'
+import React from 'react'
 import Button from '@mui/material/Button'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 
 type ShowPacksCardsPropsType = {
-    onClick: (value: string) => void
+    onClick: () => void
+    onMy: boolean
+    setOnMy: (value: boolean) => void
 }
 
-export const ShowPacksCards: React.FC<ShowPacksCardsPropsType> = ({onClick}) => {
-
-    const [state, setState] = useState('All')
+export const ShowPacksCards: React.FC<ShowPacksCardsPropsType> = ({onClick, onMy, setOnMy}) => {
 
     const onClickMy = () => {
-        onClick('My')
-        setState('My')
+        setOnMy(!onMy)
+        onClick()
     }
     const onClickAll = () => {
-        onClick('All')
-        setState('All')
-
+        setOnMy(!onMy)
+        onClick()
     }
 
     return (
@@ -35,8 +34,8 @@ export const ShowPacksCards: React.FC<ShowPacksCardsPropsType> = ({onClick}) => 
                 Show packs cards
             </Typography>
             <ButtonGroup variant='outlined'>
-                <Button onClick={onClickMy} disabled={state === 'My'}>My</Button>
-                <Button onClick={onClickAll} disabled={state === 'All'}>All</Button>
+                <Button onClick={onClickMy} disabled={!onMy}>My</Button>
+                <Button onClick={onClickAll} disabled={onMy}>All</Button>
             </ButtonGroup>
         </Box>
     )
