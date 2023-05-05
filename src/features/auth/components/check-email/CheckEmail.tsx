@@ -3,9 +3,11 @@ import email from 'assets/img/email.svg'
 import Box from '@mui/material/Box'
 import { Form, InfoMessage, paths } from 'common'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from 'features/auth/hooks/useAuth'
 
 export const CheckEmail = () => {
     const navigate = useNavigate()
+    const { emailAddress } = useAuth()
 
     return (
         <Box>
@@ -31,7 +33,7 @@ export const CheckEmail = () => {
                         alt='check-email'
                     />
                     <InfoMessage
-                        text={'We’ve sent an Email with instructions to example@mail.com'}
+                        text={`We’ve sent an Email with instructions to ${emailAddress}`}
                     />
                 </Box>
             </Form>

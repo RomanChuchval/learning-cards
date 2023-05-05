@@ -1,4 +1,3 @@
-export { Eye } from './eye/Eye'
 export { AppHeader } from './app-header/AppHeader'
 export { SuperButton } from './button/SuperButton'
 export { InfoMessage } from './info-message/InfoMessage'

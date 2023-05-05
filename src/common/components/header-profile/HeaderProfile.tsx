@@ -8,9 +8,10 @@ import { PopoverProfileList } from 'common/components/popover/PopoverProfileList
 
 type HeaderProfilePropsType = {
     userName: string
+    avatar: string
 }
 
-export const HeaderProfile: FC<HeaderProfilePropsType> = ({ userName }) => {
+export const HeaderProfile: FC<HeaderProfilePropsType> = ({ userName, avatar }) => {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -33,7 +34,7 @@ export const HeaderProfile: FC<HeaderProfilePropsType> = ({ userName }) => {
                 {userName}
             </Typography>
             <IconButton onClick={handleClick}>
-                <Avatar alt='user_avatar' src='/static/images/avatar/1.jpg' />
+                <Avatar alt='user_avatar' src={avatar} />
             </IconButton>
             <CustomPopover anchorEl={anchorEl} handleClose={handleClose}>
                 <PopoverProfileList />
