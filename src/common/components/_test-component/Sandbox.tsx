@@ -97,8 +97,8 @@ export const Sandbox = () => {
             <CardsPagination page={1} pageCount={7} totalCount={100} onChange={() => {}} />
             <ClearFilter clearFiltersHandler={()=>{}}/>
             <CardsRating defaultValue={2.5} />
-            <TableActions />
-            <CustomTable sort={true} setSort={()=>{}} sortHandler={()=>{}}>
+            <TableActions myCards={true}/>
+            <CustomTable sort={true} setSort={()=>{}} sortHandler={()=>{}} tableCellForHeader={['Cards', 'Last Updated', 'Created by', 'Actions']}>
                 {tableCellForBody.map(textBody => {
                     return (
                         <TableRow key={textBody._id}>
@@ -108,10 +108,7 @@ export const Sandbox = () => {
                             <TableCell sx={tableBodySX}>{textBody.answer}</TableCell>
                             <TableCell>{textBody.updated}</TableCell>
                             <TableCell sx={{ paddingRight: '54px' }}>
-                                <TableActions />
-                                {/*<CardsRating*/}
-                                {/*    defaultValue={Math.floor(textBody.grade * 2) / 2}*/}
-                                {/*/>*/}
+                                <TableActions myCards={true}/>
                             </TableCell>
                         </TableRow>
                     )

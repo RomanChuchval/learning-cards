@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Slider from '@mui/material/Slider'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
@@ -10,9 +10,6 @@ type CardsCountSliderPropsType = {
 export const CardsCountSlider: React.FC<CardsCountSliderPropsType> = ({ onChange }) => {
     const [value, setValue] = useState<number[]>([0, 100])
     const [timeoutId, setTimeoutId] = useState<number | undefined>(undefined)
-    useEffect(() => {
-
-    }, [value])
 
     const handleChange = (event: Event, newValue: number | number[]) => {
         if (Array.isArray(newValue)) setValue(newValue)

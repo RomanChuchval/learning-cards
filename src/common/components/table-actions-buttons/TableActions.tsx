@@ -5,20 +5,24 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 
-type TableActionsPropsType = {}
+type TableActionsPropsType = {
+    myCards: boolean
+}
 
-export const TableActions: FC<TableActionsPropsType> = () => {
+export const TableActions: FC<TableActionsPropsType> = ({ myCards }) => {
+
     return (
         <Box>
-            <IconButton sx={{ paddingLeft: '0' }}>
+            <IconButton size={'small'}>
                 <SchoolIcon />
             </IconButton>
-            <IconButton>
+            {myCards && <IconButton size={'small'}>
                 <BorderColorIcon />
-            </IconButton>
-            <IconButton>
+            </IconButton> }
+            {myCards && <IconButton size={'small'}>
                 <DeleteForeverIcon />
-            </IconButton>
+            </IconButton>}
+
         </Box>
     )
 }

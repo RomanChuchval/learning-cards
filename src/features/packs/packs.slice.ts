@@ -12,13 +12,18 @@ import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 const slice = createSlice({
     name: 'packs',
     initialState: {
-        packs: {} as PacksResponseType
+        packs: {} as PacksResponseType,
+        params: {} as GetPacksParamsType
     },
     reducers: {},
     extraReducers: builder => {
         builder
             .addCase(getPacks.fulfilled, (state, action) => {
                 state.packs = action.payload.packs
+                state.params.page = action.payload.packs.page.toString()
+                state.params.pageCount = action.payload.packs.pageCount.toString()
+                state.params.min = action.payload.packs.minCardsCount.toString()
+                state.params.max = action.payload.packs.maxCardsCount.toString()
             })
             .addCase(getPacks.rejected, (state, action) => {
                 console.warn('rejectedGet')
