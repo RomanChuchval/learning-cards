@@ -16,7 +16,7 @@ import { CardsRating } from 'common/components/rating/CardsRating'
 import { packsThunks } from 'features/packs/packs.slise'
 import { useSearchParams } from 'react-router-dom'
 import { userIdSelector } from 'features/auth/auth.selectors'
-import { GetPacksParamsType, packsApi } from 'features/packs/packs.api'
+import { GetPacksParamsType } from 'features/packs/packs.api'
 
 export const Packs = () => {
     const packs = useAppSelector(packsSelectors)
