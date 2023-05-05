@@ -10,6 +10,6 @@ export const useRedirect = () => {
 
     if (redirectPath !== '/') {
         navigate(redirectPath)
-        dispatch(authActions.setRedirectPath({ redirectPath: '/' }))
+        dispatch(authActions.clearRedirectPath())
     }
 }

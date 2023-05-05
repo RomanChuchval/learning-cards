@@ -1,4 +1,5 @@
 import { instance } from 'common/api/api'
+import axios from 'axios'
 
 export const authApi = {
     login: (data: LoginBodyType) => {
@@ -17,10 +18,18 @@ export const authApi = {
         return instance.put<UserProfileType>('auth/me', data)
     },
     forgotPassword: (data: ForgotPassBodyType) => {
-        return instance.post<AuthResponseType>('auth/forgot', data)
+        return axios.post<AuthResponseType>(
+            'https://neko-back.herokuapp.com/2.0/auth/forgot',
+            data,
+            { withCredentials: true }
+        )
     },
     setNewPassword: (data: SetNewPassBodyType) => {
-        return instance.post<AuthResponseType>('auth/set-new-password', data)
+        return axios.post<AuthResponseType>(
+            'https://neko-back.herokuapp.com/2.0/auth/set-new-password',
+            data,
+            { withCredentials: true }
+        )
     },
 }
 

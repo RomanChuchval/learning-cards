@@ -26,17 +26,20 @@ export const Packs = () => {
     const dispatch = useAppDispatch()
     const userId = useAppSelector(userIdSelector)
     const [searchParams, setSearchParams] = useSearchParams()
+
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
-        dispatch(packsThunks.getPacks({
-            page: params.page,
-            pageCount: params.pageCount,
-            min: params.min || '',
-            max: params.max || '',
-            sortPacks: '0updated' || params.sortParams,
-            user_id: params.user_id,
-            packName: params.packName
-        }))
+        dispatch(
+            packsThunks.getPacks({
+                page: params.page,
+                pageCount: params.pageCount,
+                min: params.min || '',
+                max: params.max || '',
+                sortPacks: '0updated' || params.sortParams,
+                user_id: params.user_id,
+                packName: params.packName,
+            })
+        )
     }, [dispatch, searchParams])
 
     const params: GetPacksParamsType = {
@@ -51,39 +54,46 @@ export const Packs = () => {
     }
 
     const onChangePagination = (page: string, pageCount: string) => {
-        dispatch(packsThunks.getPacks({
-            ...params,
-            page,
-            pageCount
-        }))
+        dispatch(
+            packsThunks.getPacks({
+                ...params,
+                page,
+                pageCount,
+            })
+        )
         setSearchParams({ ...params, page, pageCount })
     }
 
     const onChangeSlider = (min: string, max: string) => {
-        dispatch(packsThunks.getPacks({
-            ...params,
-            page: '1',
-            min,
-            max
-        }))
+        dispatch(
+            packsThunks.getPacks({
+                ...params,
+                page: '1',
+                min,
+                max,
+            })
+        )
         setSearchParams({ ...params, min, max, page: '1' })
     }
 
     const onClickShowPacksCards = (value: string) => {
         if (value === 'My') {
-            dispatch(packsThunks.getPacks({
-                ...params,
-                page: '1',
-                user_id: userId
-            }))
+            dispatch(
+                packsThunks.getPacks({
+                    ...params,
+                    page: '1',
+                    user_id: userId,
+                })
+            )
             setSearchParams({ ...params, user_id: userId + '', page: '1' })
         } else {
-            dispatch(packsThunks.getPacks({
-                ...params
-            }))
+            dispatch(
+                packsThunks.getPacks({
+                    ...params,
+                })
+            )
             setSearchParams({ ...params })
         }
-
     }
 
     const onChangeText = (value: string) => {
@@ -92,38 +102,48 @@ export const Packs = () => {
     }
     const searchHandler = (value: string) => {
         clearTimeout(timoutId)
-        const newTimeoutId = setTimeout(() => dispatch(packsThunks.getPacks({
-            ...params,
-            page: '1',
-            packName: value
-        })), 700)
+        const newTimeoutId = setTimeout(
+            () =>
+                dispatch(
+                    packsThunks.getPacks({
+                        ...params,
+                        page: '1',
+                        packName: value,
+                    })
+                ),
+            700
+        )
         setTimeoutId(+newTimeoutId)
         setSearchParams({ ...params, packName: value, page: '1' })
     }
 
     const clearFiltersHandler = () => {
-        dispatch(packsThunks.getPacks({
-            page: '1',
-            pageCount: '4',
-            min: '0',
-            max: '100',
-            user_id: '',
-            packName: ''
-        }))
+        dispatch(
+            packsThunks.getPacks({
+                page: '1',
+                pageCount: '4',
+                min: '0',
+                max: '100',
+                user_id: '',
+                packName: '',
+            })
+        )
         setSearchParams({})
         setSearch('')
     }
 
     const sortHandler = () => {
-        dispatch(packsThunks.getPacks({
-            ...params,
-            sortPacks: sort ? '0updated' : '1updated'
-        }))
+        dispatch(
+            packsThunks.getPacks({
+                ...params,
+                sortPacks: sort ? '0updated' : '1updated',
+            })
+        )
     }
     const tableBodySX = {
         wordWrap: 'break-word',
         minWidth: '200px',
-        maxWidth: '300px'
+        maxWidth: '300px',
     }
 
     return (
@@ -134,8 +154,7 @@ export const Packs = () => {
             <Grid item md={4} display={'flex'} justifyContent={'flex-end'}>
                 <SuperButton
                     name={'Add new pack'}
-                    callback={() => {
-                    }}
+                    callback={() => {}}
                     rounded={true}
                     textColor={'white'}
                 />
@@ -150,7 +169,7 @@ export const Packs = () => {
                 <CardsCountSlider onChange={onChangeSlider} />
             </Grid>
             <Grid item md={1} display={'flex'} justifyContent={'flex-end'}>
-                <ClearFilter clearFiltersHandler={clearFiltersHandler}/>
+                <ClearFilter clearFiltersHandler={clearFiltersHandler} />
             </Grid>
             <Grid item md={12}>
                 <CustomTable setSort={setSort} sort={sort} sortHandler={sortHandler}>
@@ -181,4 +200,3 @@ export const Packs = () => {
         </Grid>
     )
 }
-

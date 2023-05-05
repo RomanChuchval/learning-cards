@@ -5,7 +5,7 @@ export const paths = {
     LOGIN: '/auth/login',
     REGISTER: '/auth/registration',
     CHECK_EMAIL: '/auth/check-email',
-    SET_NEW_PASSWORD: '/auth/set-new-password',
+    SET_NEW_PASSWORD: '/auth/set-new-password/:token',
     FORGOT_PASSWORD: '/auth/forgot-password',
     PROFILE: '/profile',
     PACKS: '/packs',
