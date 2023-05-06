@@ -11,6 +11,7 @@ import { CustomTable } from 'common/components/table/CustomTable'
 import { TableActions } from 'common/components/table-actions-buttons/TableActions'
 import TableRow from '@mui/material/TableRow/TableRow'
 import TableCell from '@mui/material/TableCell/TableCell'
+import { PacksModal } from 'features/packs/components/modals/PacksModal'
 
 const tableCellForBody = [
     {
@@ -97,7 +98,7 @@ export const Sandbox = () => {
             <CardsPagination page={1} pageCount={7} totalCount={100} onChange={() => {}} />
             <ClearFilter clearFiltersHandler={()=>{}}/>
             <CardsRating defaultValue={2.5} />
-            <TableActions myCards={true}/>
+            {/*<TableActions myCards={true} handleOpen={()=>{}} getPackId={()=>{}} packId={'ssd'} onRemovePack={()=>{}}/>*/}
             <CustomTable sort={true} setSort={()=>{}} sortHandler={()=>{}} tableCellForHeader={['Cards', 'Last Updated', 'Created by', 'Actions']}>
                 {tableCellForBody.map(textBody => {
                     return (
@@ -108,7 +109,7 @@ export const Sandbox = () => {
                             <TableCell sx={tableBodySX}>{textBody.answer}</TableCell>
                             <TableCell>{textBody.updated}</TableCell>
                             <TableCell sx={{ paddingRight: '54px' }}>
-                                <TableActions myCards={true}/>
+                                {/*<TableActions myCards={true} handleOpen={()=>{}} getPackId={()=>{}} packId={'ssd'} onRemovePack={()=>{}}/>*/}
                             </TableCell>
                         </TableRow>
                     )
