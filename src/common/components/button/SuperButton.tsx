@@ -10,10 +10,11 @@ type SuperButtonType = {
     rounded?: boolean
     margin?: string
     icon?: ReactNode
+    type?: 'button'
 }
 
 export const SuperButton: React.FC<SuperButtonType> = memo(
-    ({ name, margin, rounded, textColor, color, callback, width, icon }) => {
+    ({ name, margin, rounded, textColor, color, callback, width, icon, type }) => {
         const btnStyle = {
             width: `${width}px`,
             color: textColor === 'white' ? '#FFFFFF' : '#000000',
@@ -25,7 +26,7 @@ export const SuperButton: React.FC<SuperButtonType> = memo(
             letterSpacing: '0.01em',
             margin: margin ? margin : '0',
             boxShadow:
-                '0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.5)',
+                '0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.5)'
         }
 
         return (
@@ -33,7 +34,7 @@ export const SuperButton: React.FC<SuperButtonType> = memo(
                 variant='contained'
                 onClick={callback}
                 sx={btnStyle}
-                type={'submit'}
+                type={type ? 'button' : 'submit'}
                 color={color}
                 startIcon={icon}
             >
