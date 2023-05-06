@@ -5,22 +5,31 @@ import { SuperButton } from 'common'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import TextField from '@mui/material/TextField'
 import IconButton from '@mui/material/IconButton'
+import { useAuth } from 'features/auth/hooks/useAuth'
 
 type EditableTitlePropsType = {
-    title: string
+    userName: string
     margin?: string
 }
 
-export const EditableTitle: FC<EditableTitlePropsType> = ({ title, margin }) => {
-    const [value, setValue] = useState<string>(title)
+export const EditableTitle: FC<EditableTitlePropsType> = ({ userName, margin }) => {
+    const [newUserName, setNewUserName] = useState<string>(userName)
     const [editMode, setEditMode] = useState<boolean>(false)
+    const { updateUserName } = useAuth()
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(e.currentTarget.value)
+        setNewUserName(e.currentTarget.value)
     }
+    const openEditorMode = () => setEditMode(true)
 
     const handleSetEditor = () => {
-        setEditMode(!editMode)
+        setEditMode(false)
+        updateUserName({ name: newUserName })
+    }
+
+    const handleBlur = () => {
+        setEditMode(false)
+        setNewUserName(userName)
     }
 
     return (
@@ -34,24 +43,25 @@ export const EditableTitle: FC<EditableTitlePropsType> = ({ title, margin }) => 
                         alignItems: 'center',
                     }}
                 >
-                    {value}
-                    <IconButton onClick={handleSetEditor}>
+                    {newUserName}
+                    <IconButton onClick={openEditorMode}>
                         <BorderColorIcon sx={{ color: '#000', fontSize: '20px' }} />
                     </IconButton>
                 </Typography>
             ) : (
                 <TextField
                     label='Nickname'
-                    value={value}
+                    value={newUserName}
                     autoFocus
                     name={'text'}
                     variant='standard'
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     InputProps={{
                         endAdornment: (
                             <SuperButton
                                 name={'Save'}
-                                callback={handleSetEditor}
+                                onMouseDown={handleSetEditor}
                                 textColor={'white'}
                                 margin={'0 0 5px 0'}
                             />

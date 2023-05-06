@@ -6,7 +6,12 @@ import {
     checkEmailMessageSelector,
 } from 'features/auth/auth.selectors'
 import { LoginFieldsType } from 'features/auth/components/login/Login'
-import { ForgotPassBodyType, RegisterBodyType, SetNewPassBodyType } from 'features/auth/auth.api'
+import {
+    ForgotPassBodyType,
+    RegisterBodyType,
+    SetNewPassBodyType,
+    UpdateProfileBodyType,
+} from 'features/auth/auth.api'
 import { emailMessage } from 'features/auth/constants'
 
 export const useAuth = () => {
@@ -14,6 +19,9 @@ export const useAuth = () => {
     const profile = useAppSelector(profileSelector)
     const redirectPath = useAppSelector(redirectPathSelector)
     const emailAddress = useAppSelector(checkEmailMessageSelector)
+
+    const isProfileDefine = () => Boolean(profile)
+    const isUserAuth = isProfileDefine()
 
     const login = (data: LoginFieldsType) => {
         const payload = {
@@ -27,7 +35,6 @@ export const useAuth = () => {
     const registration = (data: RegisterBodyType) => {
         dispatch(authThunks.register(data))
     }
-
     const forgotPassword = (data: { email: string }) => {
         const payload: ForgotPassBodyType = {
             email: data.email,
@@ -44,13 +51,15 @@ export const useAuth = () => {
         dispatch(authThunks.setNewPassword(payload))
     }
 
-    const isProfileDefine = () => !!profile
-    const isUserAuth = isProfileDefine()
+    const updateUserName = (data: UpdateProfileBodyType) => {
+        dispatch(authThunks.updateProfile(data))
+    }
 
     return {
         login,
         registration,
         logout,
+        updateUserName,
         forgotPassword,
         setNewPassword,
         profile,

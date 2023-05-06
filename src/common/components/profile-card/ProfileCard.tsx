@@ -62,7 +62,7 @@ export const ProfileCard = () => {
                         sx={{ width: '96px', height: '96px', mt: '30px' }}
                     />
                 </Badge>
-                <EditableTitle title={profile ? profile.name : ''} margin={'20px 0 0 0'} />
+                <EditableTitle userName={profile ? profile.name : ''} margin={'20px 0 0 0'} />
                 <InfoMessage text={profile ? profile.email : ''} margin={'10px'} />
                 <SuperButton
                     callback={logout}
