@@ -16,6 +16,7 @@ export const useValidators = () => {
             .required('Confirm password is required'),
         loginEmail: yup.string().required('Email is required'),
         loginPassword: yup.string().required('Password is required'),
+        textInput: yup.string().required('Name Pack is required')
     }
     return { validators }
 }
@@ -27,4 +28,5 @@ export type ValidatorsType = {
     confirmPassword?: yup.StringSchema<string, yup.AnyObject>
     loginEmail?: yup.StringSchema<string, yup.AnyObject>
     loginPassword?: yup.StringSchema<string, yup.AnyObject>
+    textInput?: yup.StringSchema<string, yup.AnyObject>
 }
