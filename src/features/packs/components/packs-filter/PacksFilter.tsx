@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAppFilter } from 'features/packs/hooks/useAppFilter'
+import { usePacksParamsFilter } from 'features/packs/hooks/usePacksParamsFilter'
 import Grid from '@mui/material/Grid'
 import { SearchBar } from 'common/components/search-bar/SearchBar'
 import { ShowPacksCards } from 'common/components/show-packs-cards/ShowPacksCards'
@@ -23,7 +23,7 @@ export const PacksFilter: React.FC<PacksFilterPropsType> = ({ children }) => {
         onChangeText,
         clearFiltersHandler,
         onClickShowPacksCards
-    } = useAppFilter()
+    } = usePacksParamsFilter()
 
     return (
         <>
