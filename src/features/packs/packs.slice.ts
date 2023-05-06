@@ -12,7 +12,14 @@ const slice = createSlice({
     name: 'packs',
     initialState: {
         packs: {} as PacksResponseType,
-        params: {} as GetPacksParamsType
+        params: {
+            page: '1',
+            pageCount: '4',
+            min: '0',
+            max: '100',
+            user_id: '',
+            packName: ''
+        } as GetPacksParamsType
     },
     reducers: {
         setQueryParams: (state, actions: PayloadAction<{ params: GetPacksParamsType }>) => {
@@ -27,9 +34,6 @@ const slice = createSlice({
             .addCase(getPacks.rejected, (state, action) => {
                 console.warn('rejectedGet')
             })
-            .addCase(createPack.fulfilled, (state, action) => {
-                state.packs.cardPacks.unshift(action.payload.pack)
-            })
             .addCase(createPack.rejected, (state, action) => {
                 console.warn('rejectedCreate')
             })
@@ -40,27 +44,25 @@ const slice = createSlice({
             .addCase(removePack.rejected, (state, action) => {
                 console.warn('rejectedRemove')
             })
-            .addCase(updatePack.fulfilled, (state, action) => {
-                const index = state.packs.cardPacks.findIndex(p => p._id === action.payload.pack._id)
-                if (index !== -1) state.packs.cardPacks[index] = action.payload.pack
-            })
     }
 })
 
 const getPacks = createAppAsyncThunk<{ packs: PacksResponseType }>(
     'packs/getPacks',
     async (data, thunkAPI) => {
+        debugger
         const { getState } = thunkAPI
         const params = getState().packs.params
         const res = await packsApi.getPacks(params)
         return { packs: res.data }
     }
 )
-const createPack = createAppAsyncThunk<{ pack: PackType }, CreatePackModelType>(
+const createPack = createAppAsyncThunk<void, CreatePackModelType>(
     'packs/createPack',
     async (data, thunkAPI) => {
-        const res = await packsApi.createPack(data)
-        return { pack: res.data.newCardsPack }
+        const {dispatch} = thunkAPI
+        await packsApi.createPack(data)
+        dispatch(packsThunks.getPacks())
     }
 )
 const removePack = createAppAsyncThunk<{ pack: PackType }, string>(
@@ -70,11 +72,12 @@ const removePack = createAppAsyncThunk<{ pack: PackType }, string>(
         return { pack: res.data.deletedCardsPack }
     }
 )
-const updatePack = createAppAsyncThunk<{ pack: PackType }, UpdatePackModelType>(
+const updatePack = createAppAsyncThunk<void, UpdatePackModelType>(
     'packs/updatePack',
     async (data, thunkAPI) => {
-        const res = await packsApi.updatePack(data)
-        return { pack: res.data.updatedCardsPack }
+        const {dispatch} = thunkAPI
+        await packsApi.updatePack(data)
+        dispatch(packsThunks.getPacks())
     }
 )
 
