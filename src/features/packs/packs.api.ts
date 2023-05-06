@@ -17,7 +17,7 @@ export const packsApi = {
         const data: PackModelType<UpdatePackModelType> = {
             cardsPack: packModel
         }
-        return instance.post<CommonResponseType & { updatedCardsPack: PackType }>('cards/pack', data)
+        return instance.put<CommonResponseType & { updatedCardsPack: PackType }>('cards/pack', data)
     }
 }
 

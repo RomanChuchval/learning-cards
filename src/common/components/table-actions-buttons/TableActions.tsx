@@ -7,16 +7,26 @@ import IconButton from '@mui/material/IconButton'
 
 type TableActionsPropsType = {
     myCards: boolean
+    packId: string
+    getPackId: (id: string) => void
+    handleOpen: () => void
 }
 
-export const TableActions: FC<TableActionsPropsType> = ({ myCards }) => {
+export const TableActions: FC<TableActionsPropsType> =
+    ({ handleOpen, getPackId, packId, myCards }) => {
+
+    const onUpdate = () => {
+        getPackId(packId)
+        handleOpen()
+    }
 
     return (
         <Box>
             <IconButton size={'small'}>
                 <SchoolIcon />
             </IconButton>
-            {myCards && <IconButton size={'small'}>
+            {myCards && <IconButton size={'small'}
+            onClick={onUpdate}>
                 <BorderColorIcon />
             </IconButton> }
             {myCards && <IconButton size={'small'}>
