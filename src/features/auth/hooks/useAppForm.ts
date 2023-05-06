@@ -22,16 +22,18 @@ export const useAppForm = (validateFields: ValidateFieldsType[]) => {
     const {
         handleSubmit,
         register,
-        formState: { errors },
+        reset,
+        formState: { errors }
     } = useForm<FormInputValues>({
         resolver: yupResolver(validateSchema),
-        mode: 'onTouched',
+        mode: 'onTouched'
     })
 
     return {
         handleSubmit,
         register,
         errors,
+        reset
     }
 }
 
@@ -42,6 +44,7 @@ export type ValidateFieldsType =
     | 'password'
     | 'loginPassword'
     | 'confirmPassword'
+    | 'textInput'
 
 export type FormInputValues = {
     email: string
@@ -50,4 +53,6 @@ export type FormInputValues = {
     loginPassword: string
     confirmPassword: string
     rememberMe: boolean
+    textInput: string
+    private: boolean
 }
