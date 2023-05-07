@@ -7,6 +7,7 @@ import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import { ThemeProvider } from '@mui/material'
 import { theme, router } from 'common'
+import 'react-toastify/dist/ReactToastify.css'
 
 const container = document.getElementById('root')!
 const root = createRoot(container)
