@@ -95,12 +95,12 @@ const authMe = createAppAsyncThunk<{ profile: UserProfileType }>(
     async (data, { rejectWithValue, dispatch }) => {
         try {
             const res = await authApi.me()
-            dispatch(appActions.setAppInitialize())
             return { profile: res.data }
         } catch (e) {
             const error = thunkErrorHandler(e)
-            dispatch(appActions.setAppInitialize())
             return rejectWithValue(error)
+        } finally {
+            dispatch(appActions.setAppInitialize())
         }
     }
 )
