@@ -6,9 +6,13 @@ import { authThunks } from 'features/auth/auth.slice'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
 import { AppNotify } from 'common/components/app-notify/AppNotify'
 import { useAppNotify } from 'app/hooks/useAppNotify'
+import { AppPreloader } from 'common/components/preloader/AppPreloader'
+import { useAppSelector } from 'app/hooks/useAppSelector'
+import { isInitializeSelector } from 'app/app.selectors'
 
 export const App = () => {
     const dispatch = useAppDispatch()
+    const initialize = useAppSelector(isInitializeSelector)
     useAppNotify()
 
     useEffect(() => {
@@ -18,9 +22,7 @@ export const App = () => {
     return (
         <>
             <AppHeader />
-            <Container fixed>
-                <Outlet />
-            </Container>
+            <Container fixed>{initialize ? <AppPreloader /> : <Outlet />}</Container>
             <AppNotify />
         </>
     )

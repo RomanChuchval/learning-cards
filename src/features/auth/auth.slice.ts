@@ -10,6 +10,7 @@ import {
 } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { thunkErrorHandler } from 'common/utils/thunkErrorHandler'
+import { appActions } from 'app/app.slice'
 
 const slice = createSlice({
     name: 'auth',
@@ -91,12 +92,14 @@ const logout = createAppAsyncThunk<InfoMessageType>(
 
 const authMe = createAppAsyncThunk<{ profile: UserProfileType }>(
     'auth/me',
-    async (data, { rejectWithValue }) => {
+    async (data, { rejectWithValue, dispatch }) => {
         try {
             const res = await authApi.me()
+            dispatch(appActions.setAppInitialize())
             return { profile: res.data }
         } catch (e) {
             const error = thunkErrorHandler(e)
+            dispatch(appActions.setAppInitialize())
             return rejectWithValue(error)
         }
     }

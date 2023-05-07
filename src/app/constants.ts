@@ -1,4 +1,4 @@
-import { isFulfilled, isRejected } from '@reduxjs/toolkit'
+import { isFulfilled, isPending, isRejected } from '@reduxjs/toolkit'
 import { authThunks } from 'features/auth/auth.slice'
 
 const rejected = isRejected(
@@ -15,5 +15,14 @@ const fulfilledWithInfo = isFulfilled(
     authThunks.setNewPassword
 )
 const loginFulfilled = isFulfilled(authThunks.login)
+const pending = isPending(
+    authThunks.login,
+    authThunks.forgotPassword,
+    authThunks.logout,
+    authThunks.updateProfile,
+    authThunks.register,
+    authThunks.setNewPassword
+)
+const initializePending = isPending(authThunks.authMe)
 
-export { rejected, fulfilledWithInfo, loginFulfilled }
+export { rejected, fulfilledWithInfo, loginFulfilled, initializePending, pending }
