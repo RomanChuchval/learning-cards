@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from 'app/hooks/hooks'
+import { useAppSelector } from 'app/hooks/useAppSelector'
 import { authThunks } from 'features/auth/auth.slice'
 import {
     redirectPathSelector,
@@ -13,6 +13,7 @@ import {
     UpdateProfileBodyType,
 } from 'features/auth/auth.api'
 import { emailMessage } from 'features/auth/constants'
+import { useAppDispatch } from 'app/hooks/useAppDispatch'
 
 export const useAuth = () => {
     const dispatch = useAppDispatch()

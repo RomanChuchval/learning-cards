@@ -1,10 +1,11 @@
-import { useAppDispatch, useAppSelector } from 'app/hooks/hooks'
+import { useAppSelector } from 'app/hooks/useAppSelector'
 import { useEffect, useState } from 'react'
 import { userIdSelector } from 'features/auth/auth.selectors'
 import { useSearchParams } from 'react-router-dom'
 import { packsAction, packsThunks } from 'features/packs/packs.slice'
 import { packsSelector, paramsSelector } from 'features/packs/packs.selectors'
 import { GetPacksParamsType } from 'features/packs/packs.api'
+import { useAppDispatch } from 'app/hooks/useAppDispatch'
 
 export const usePacksParamsFilter = () => {
     const [search, setSearch] = useState('')
@@ -25,7 +26,8 @@ export const usePacksParamsFilter = () => {
         if (params.pageCount) +params.pageCount > 4 && (lastParams.pageCount = params.pageCount)
         if (params.min) +params.min > 0 && (lastParams.min = params.min)
         if (params.max) +params.max !== 100 && (lastParams.max = params.max)
-        if (params.sortPacks) params.sortPacks === '1updated' && (lastParams.sortPacks = params.sortPacks)
+        if (params.sortPacks)
+            params.sortPacks === '1updated' && (lastParams.sortPacks = params.sortPacks)
         if (params.packName?.length) lastParams.packName = params.packName
         setSearchParams({ ...lastParams })
     }, [setSearchParams, params])
@@ -62,7 +64,7 @@ export const usePacksParamsFilter = () => {
             min: '0',
             max: '100',
             user_id: '',
-            packName: ''
+            packName: '',
         })
         setSearch('')
         setValueSlider([0, 100])
@@ -70,7 +72,7 @@ export const usePacksParamsFilter = () => {
     }
     const sortHandler = () => {
         onDispatchParams({
-            sortPacks: sort ? '1updated' : '0updated'
+            sortPacks: sort ? '1updated' : '0updated',
         })
     }
 
@@ -91,7 +93,6 @@ export const usePacksParamsFilter = () => {
         onChangeSlider,
         onClickShowPacksCards,
         onChangeText,
-        clearFiltersHandler
+        clearFiltersHandler,
     }
 }
-

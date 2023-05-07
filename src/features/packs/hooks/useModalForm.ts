@@ -1,8 +1,8 @@
 import { FormInputValues, useAppForm } from 'features/auth/hooks/useAppForm'
-import { useAppDispatch } from 'app/hooks/hooks'
 import { CreatePackModelType, UpdatePackModelType } from 'features/packs/packs.api'
 import { packsThunks } from 'features/packs/packs.slice'
 import { useState } from 'react'
+import { useAppDispatch } from 'app/hooks/useAppDispatch'
 
 export const useModalForm = (handleClose: () => void) => {
     const { register, errors, reset, handleSubmit } = useAppForm(['textInput'])
@@ -14,7 +14,7 @@ export const useModalForm = (handleClose: () => void) => {
     const createPack = (data: FormInputValues) => {
         const payload: CreatePackModelType = {
             name: data.textInput,
-            private: data.private
+            private: data.private,
         }
         dispatch(packsThunks.createPack(payload))
         handleClose()
@@ -24,7 +24,7 @@ export const useModalForm = (handleClose: () => void) => {
         const payload: UpdatePackModelType = {
             _id: packId,
             name: data.textInput,
-            private: data.private
+            private: data.private,
         }
         dispatch(packsThunks.updatePack(payload))
         handleClose()

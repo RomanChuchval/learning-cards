@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
-import { useAppDispatch } from 'app/hooks/hooks'
 import { authThunks } from 'features/auth/auth.slice'
+import { useAppDispatch } from 'app/hooks/useAppDispatch'
 
 export const useUploadImage = () => {
     const dispatch = useAppDispatch()
