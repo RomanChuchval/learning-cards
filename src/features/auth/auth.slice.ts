@@ -9,6 +9,7 @@ import {
     UpdateProfileBodyType,
 } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
+import { thunkErrorHandler } from 'common/utils/thunkErrorHandler'
 
 const slice = createSlice({
     name: 'auth',
@@ -51,49 +52,95 @@ const slice = createSlice({
 
 const register = createAppAsyncThunk<{ redirectPath: RedirectPathType }, RegisterBodyType>(
     'auth/register',
-    async data => {
-        await authApi.register(data)
-        return { redirectPath: '/auth/login' }
+    async (data, { rejectWithValue }) => {
+        try {
+            await authApi.register(data)
+            return { redirectPath: '/auth/login' }
+        } catch (e) {
+            const error = thunkErrorHandler(e)
+            return rejectWithValue(error)
+        }
     }
 )
 
 const login = createAppAsyncThunk<{ profile: UserProfileType }, LoginBodyType>(
     'auth/login',
-    async data => {
-        const res = await authApi.login(data)
-        return { profile: res.data }
+    async (data, { rejectWithValue }) => {
+        try {
+            const res = await authApi.login(data)
+            return { profile: res.data }
+        } catch (e) {
+            const error = thunkErrorHandler(e)
+            return rejectWithValue(error)
+        }
     }
 )
 
-const logout = createAppAsyncThunk<void>('auth/logout', async () => {
-    await authApi.logout()
-})
+const logout = createAppAsyncThunk<InfoMessageType>(
+    'auth/logout',
+    async (data, { rejectWithValue }) => {
+        try {
+            const res = await authApi.logout()
+            return { info: res.data.info }
+        } catch (e) {
+            const error = thunkErrorHandler(e)
+            return rejectWithValue(error)
+        }
+    }
+)
 
-const authMe = createAppAsyncThunk<{ profile: UserProfileType }>('auth/me', async () => {
-    const res = await authApi.me()
-    return { profile: res.data }
-})
+const authMe = createAppAsyncThunk<{ profile: UserProfileType }>(
+    'auth/me',
+    async (data, { rejectWithValue }) => {
+        try {
+            const res = await authApi.me()
+            return { profile: res.data }
+        } catch (e) {
+            const error = thunkErrorHandler(e)
+            return rejectWithValue(error)
+        }
+    }
+)
 
 const forgotPassword = createAppAsyncThunk<
-    { redirectPath: RedirectPathType; checkEmailMessage: string },
+    { redirectPath: RedirectPathType; checkEmailMessage: string } & InfoMessageType,
     ForgotPassBodyType
->('auth/forgotPass', async data => {
-    await authApi.forgotPassword(data)
-    return { redirectPath: '/auth/check-email', checkEmailMessage: data.email }
+>('auth/forgotPass', async (data, { rejectWithValue }) => {
+    try {
+        const res = await authApi.forgotPassword(data)
+        return {
+            redirectPath: '/auth/check-email',
+            checkEmailMessage: data.email,
+            info: res.data.info,
+        }
+    } catch (e) {
+        const error = thunkErrorHandler(e)
+        return rejectWithValue(error)
+    }
 })
 
 const setNewPassword = createAppAsyncThunk<
-    { info: string; error?: string; redirectPath: RedirectPathType },
+    { info: string; redirectPath: RedirectPathType } & InfoMessageType,
     SetNewPassBodyType
->('auth/setNewPassword', async data => {
-    const res = await authApi.setNewPassword(data)
-    return { info: res.data.info, error: res.data.error, redirectPath: '/auth/login' }
+>('auth/setNewPassword', async (data, { rejectWithValue }) => {
+    try {
+        const res = await authApi.setNewPassword(data)
+        return { error: res.data.error, redirectPath: '/auth/login', info: res.data.info }
+    } catch (e) {
+        const error = thunkErrorHandler(e)
+        return rejectWithValue(error)
+    }
 })
 const updateProfile = createAppAsyncThunk<{ profile: UserProfileType }, UpdateProfileBodyType>(
     'auth/updateProfile',
-    async data => {
-        const res = await authApi.updateProfile(data)
-        return { profile: res.data.updatedUser }
+    async (data, { rejectWithValue }) => {
+        try {
+            const res = await authApi.updateProfile(data)
+            return { profile: res.data.updatedUser }
+        } catch (e) {
+            const error = thunkErrorHandler(e)
+            return rejectWithValue(error)
+        }
     }
 )
 
@@ -111,3 +158,4 @@ export const authThunks = {
 
 // TYPES
 export type RedirectPathType = '/auth/login' | '/auth/check-email' | '/'
+export type InfoMessageType = { info: string }
