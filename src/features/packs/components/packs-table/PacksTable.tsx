@@ -13,49 +13,55 @@ import { useModalForm } from 'features/packs/hooks/useModalForm'
 export const PacksTable = () => {
     const { packs, userId, sort, setSort, sortHandler } = usePacksParamsFilter()
     const { open, handleClose, handleOpen } = useModalsPacks()
-    const {
-        register,
-        error,
-        updatePack,
-        handleSubmit,
-        setPackId,
-    } = useModalForm(handleClose)
+    const { register, error, updatePack, handleSubmit, setPackId } = useModalForm(handleClose)
 
     const tableBodySX = {
         wordWrap: 'break-word',
         minWidth: '50px',
-        maxWidth: '50px'
+        maxWidth: '50px',
     }
     return (
         <Grid item md={12}>
-            <CustomTable setSort={setSort} sort={sort} sortHandler={sortHandler}
-                         tableCellForHeader={['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']}>
+            <CustomTable
+                setSort={setSort}
+                sort={sort}
+                sortHandler={sortHandler}
+                tableCellForHeader={['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']}
+            >
                 {packs.cardPacks?.map(textBody => {
                     return (
                         <TableRow key={textBody._id}>
-                            <TableCell sx={{ ...tableBodySX, paddingLeft: '40px', maxWidth: '200px' }}>
+                            <TableCell
+                                sx={{ ...tableBodySX, paddingLeft: '40px', maxWidth: '200px' }}
+                            >
                                 {textBody.name}
                             </TableCell>
-                            <TableCell sx={{ ...tableBodySX, maxWidth: '200px' }}>{textBody.cardsCount}</TableCell>
+                            <TableCell sx={{ ...tableBodySX, maxWidth: '200px' }}>
+                                {textBody.cardsCount}
+                            </TableCell>
                             <TableCell sx={tableBodySX}>{textBody.updated}</TableCell>
                             <TableCell sx={tableBodySX}>{textBody.user_name}</TableCell>
                             <TableCell sx={tableBodySX}>
-                                <TableActions myCards={userId === textBody.user_id}
-                                              packId={textBody._id}
-                                              handleOpen={handleOpen}
-                                              getPackId={setPackId} />
+                                <TableActions
+                                    myCards={userId === textBody.user_id}
+                                    packId={textBody._id}
+                                    handleOpen={handleOpen}
+                                    getPackId={setPackId}
+                                />
                             </TableCell>
                         </TableRow>
                     )
                 })}
-                <PacksModal title={'Edit pack'} open={open} handleClose={handleClose}>
-                    <FormModals handleClose={handleClose}
-                                error={error}
-                                register={register}
-                                packHandler={updatePack}
-                                handleSubmit={handleSubmit} />
-                </PacksModal>
             </CustomTable>
+            <PacksModal title={'Edit pack'} open={open} handleClose={handleClose}>
+                <FormModals
+                    handleClose={handleClose}
+                    error={error}
+                    register={register}
+                    packHandler={updatePack}
+                    handleSubmit={handleSubmit}
+                />
+            </PacksModal>
         </Grid>
     )
 }
