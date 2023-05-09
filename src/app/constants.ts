@@ -15,7 +15,7 @@ const fulfilledWithInfo = isFulfilled(
     authThunks.setNewPassword
 )
 const loginFulfilled = isFulfilled(authThunks.login)
-const pending = isPending(
+const fulfilled = isFulfilled(
     authThunks.login,
     authThunks.forgotPassword,
     authThunks.logout,
@@ -23,6 +23,14 @@ const pending = isPending(
     authThunks.register,
     authThunks.setNewPassword
 )
+const pending = isPending(
+    authThunks.login,
+    authThunks.forgotPassword,
+    authThunks.logout,
+    authThunks.updateProfile,
+    authThunks.register,
+    authThunks.setNewPassword,
+)
 const initializePending = isPending(authThunks.authMe)
 
-export { rejected, fulfilledWithInfo, loginFulfilled, initializePending, pending }
+export { rejected, fulfilledWithInfo, loginFulfilled, initializePending, pending, fulfilled }
