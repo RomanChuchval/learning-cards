@@ -18,28 +18,28 @@ type FormModalsPropsType = {
 
 export const FormModals: React.FC<FormModalsPropsType> =
     ({ handleClose, handleSubmit, register, packHandler, error }) => {
-    return (
-        <form onSubmit={handleSubmit(packHandler)}>
-            <FormGroup sx={{ p: '30px 40px' }}>
-                <TextField variant='standard'
-                           label='Name Pack'
-                           margin='normal'
-                           error={!!error}
-                           helperText={`${error ? error : ''}`}
-                           {...register('textInput')} />
-                <FormControlLabel sx={{ p: '30px 0' }}
-                                  label={'Private pack'}
-                                  control={<Checkbox value={true} {...register('private')} />} />
-                <Box display={'flex'} justifyContent='space-between'>
-                    <SuperButton name={'Cancel'}
-                                 color={'secondary'}
-                                 rounded={true}
-                                 width={'130'}
-                                 type={'button'}
-                                 callback={handleClose} />
-                    <SuperButton name={'Save'} rounded={true} width={'130'} />
-                </Box>
-            </FormGroup>
-        </form>
-    )
-}
+        return (
+            <form onSubmit={handleSubmit(packHandler)}>
+                <FormGroup sx={{ p: '30px 40px' }}>
+                    <TextField variant='standard'
+                               label='Name Pack'
+                               margin='normal'
+                               error={!!error}
+                               helperText={`${error ? error : ''}`}
+                               {...register('textInput')} />
+                    <FormControlLabel sx={{ p: '30px 0' }}
+                                      label={'Private pack'}
+                                      control={<Checkbox value={true} {...register('private')} />} />
+                    <Box display={'flex'} justifyContent='space-between'>
+                        <SuperButton name={'Cancel'}
+                                     color={'secondary'}
+                                     rounded={true}
+                                     width={'130'}
+                                     type={'button'}
+                                     callback={handleClose} />
+                        <SuperButton name={'Save'} rounded={true} width={'130'} />
+                    </Box>
+                </FormGroup>
+            </form>
+        )
+    }
