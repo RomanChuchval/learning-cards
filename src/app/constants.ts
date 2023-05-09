@@ -1,7 +1,7 @@
-import { isFulfilled, isPending, isRejected } from '@reduxjs/toolkit'
+import { isFulfilled, isPending, isRejectedWithValue } from '@reduxjs/toolkit'
 import { authThunks } from 'features/auth/auth.slice'
 
-const rejected = isRejected(
+const rejected = isRejectedWithValue(
     authThunks.login,
     authThunks.forgotPassword,
     authThunks.logout,

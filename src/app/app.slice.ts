@@ -33,7 +33,7 @@ const slice = createSlice({
                 state.isAppInitialized = true
             })
             .addMatcher(rejected, (state, action) => {
-                state.error = action.payload as string
+                state.error = action.payload
             })
     },
 })
