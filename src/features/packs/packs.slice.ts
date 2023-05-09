@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
     CreatePackModelType,
     GetPacksParamsType,
-    packsApi, PacksResponseType,
-    PackType,
+    packsApi,
+    PacksResponseType,
     UpdatePackModelType
 } from 'features/packs/packs.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
@@ -31,17 +31,13 @@ const slice = createSlice({
             .addCase(getPacks.fulfilled, (state, action) => {
                 state.packs = action.payload.packs
             })
-            .addCase(getPacks.rejected, (state, action) => {
+            .addCase(getPacks.rejected, () => {
                 console.warn('rejectedGet')
             })
-            .addCase(createPack.rejected, (state, action) => {
+            .addCase(createPack.rejected, () => {
                 console.warn('rejectedCreate')
             })
-            .addCase(removePack.fulfilled, (state, action) => {
-                const index = state.packs.cardPacks.findIndex(p => p._id === action.payload.pack._id)
-                if (index !== -1) state.packs.cardPacks.slice(index, 1)
-            })
-            .addCase(removePack.rejected, (state, action) => {
+            .addCase(removePack.rejected, () => {
                 console.warn('rejectedRemove')
             })
     }
@@ -64,11 +60,12 @@ const createPack = createAppAsyncThunk<void, CreatePackModelType>(
         dispatch(packsThunks.getPacks())
     }
 )
-const removePack = createAppAsyncThunk<{ pack: PackType }, string>(
+const removePack = createAppAsyncThunk<void, string>(
     'packs/removePack',
     async (data, thunkAPI) => {
-        const res = await packsApi.removePack(data)
-        return { pack: res.data.deletedCardsPack }
+        const {dispatch} = thunkAPI
+        await packsApi.removePack(data)
+        dispatch(packsThunks.getPacks())
     }
 )
 const updatePack = createAppAsyncThunk<void, UpdatePackModelType>(
