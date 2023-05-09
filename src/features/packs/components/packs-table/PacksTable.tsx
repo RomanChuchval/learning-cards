@@ -4,7 +4,7 @@ import { CustomTable } from 'common/components/table/CustomTable'
 import TableRow from '@mui/material/TableRow/TableRow'
 import TableCell from '@mui/material/TableCell/TableCell'
 import React from 'react'
-import { TableActions } from 'features/packs/components/packs-table/table-actions-buttons/TableActions'
+import { TableActions } from 'features/packs/components/pack-actions/TableActions'
 
 export const PacksTable = () => {
     const { packs, userId, sort, setSort, sortHandler } = usePacksParamsFilter()

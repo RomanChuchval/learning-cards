@@ -4,11 +4,10 @@ import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
-import { FormModals } from 'features/packs/components/modals/form-modal/FormModals'
+import { EditorPacksModal } from 'features/packs/components/modals/packs-modals/EditorPacksModal'
+import { useModalsForm } from 'common/hooks/useModalsForm'
 import { FormInputValues } from 'features/auth/hooks/useAppForm'
-import { UseFormRegister } from 'react-hook-form/dist/types/form'
-import { UseFormHandleSubmit } from 'react-hook-form'
-import { RemoveModal } from 'features/packs/components/modals/remove-modal/RemoveModal'
+import { EditorModalForm } from './EditorModalForm'
 
 const style = {
     position: 'absolute',
@@ -22,20 +21,16 @@ const style = {
 }
 
 type PacksModalPropsType = {
-    children: React.ReactNode
     title: string
-    error: string | undefined
-    packName?: string
-    removeMod?: boolean
+    onEditor: (data: FormInputValues) => void
+    children: React.ReactNode
     open: boolean
     handleClose: () => void
-    handleSubmit: UseFormHandleSubmit<FormInputValues>
-    packHandler: (data: FormInputValues) => void
-    register: UseFormRegister<FormInputValues>
 }
 
-export const PacksModal: React.FC<PacksModalPropsType> = (
-    { children, title, packHandler, open, removeMod, error, handleSubmit, register, handleClose, packName }) => {
+export const EditorModal: React.FC<PacksModalPropsType> = (
+    { children, open, handleClose, title, onEditor }) => {
+    const {error, register, handleSubmit, editorHandler} = useModalsForm(onEditor)
     return (
         <div>
             {children}
@@ -51,19 +46,12 @@ export const PacksModal: React.FC<PacksModalPropsType> = (
                             <CloseIcon />
                         </IconButton>
                     </Box>
-                    {
-                        removeMod
-                        ? <RemoveModal packName={packName}
-                                       packHandler={()=>{} }
-                                       handleClose={handleClose}/>
-                        : <FormModals handleClose={handleClose}
-                                      packHandler={packHandler}
-                                      handleSubmit={handleSubmit}
-                                      error={error}
-                                      register={register} />
-                    }
+                    <EditorModalForm handleSubmit={handleSubmit} packHandler={editorHandler} handleClose={handleClose}>
+                        <EditorPacksModal error={error} register={register} />
+                    </EditorModalForm>
                 </Box>
             </Modal>
         </div>
     )
 }
+
