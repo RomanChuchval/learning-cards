@@ -78,6 +78,7 @@ export const usePacksParamsFilter = () => {
 
     return {
         packs,
+        params,
         userId,
         search,
         sort,
