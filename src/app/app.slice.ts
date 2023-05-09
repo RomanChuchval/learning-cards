@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { fulfilledWithInfo, initializePending, loginFulfilled, rejected } from 'app/constants'
+import { fulfilled, fulfilledWithInfo, initializePending, loginFulfilled, pending, rejected } from 'app/constants'
 
 const slice = createSlice({
     name: 'app',
@@ -23,17 +23,24 @@ const slice = createSlice({
     },
     extraReducers: builder => {
         builder
+            .addMatcher(initializePending, state => {
+                state.isAppInitialized = true
+            })
+            .addMatcher(pending, state => {
+                state.isLoading = true
+            })
+            .addMatcher(fulfilled, state => {
+                state.isLoading = false
+            })
             .addMatcher(fulfilledWithInfo, (state, action) => {
                 state.infoMessage = action.payload.info
             })
             .addMatcher(loginFulfilled, (state, action) => {
                 state.infoMessage = `Hello, ${action.payload.profile.name} !`
             })
-            .addMatcher(initializePending, state => {
-                state.isAppInitialized = true
-            })
             .addMatcher(rejected, (state, action) => {
                 state.error = action.payload
+                state.isLoading = false
             })
     },
 })
