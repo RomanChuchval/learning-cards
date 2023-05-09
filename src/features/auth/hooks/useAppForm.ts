@@ -26,7 +26,8 @@ export const useAppForm = (validateFields: ValidateFieldsType[]) => {
         formState: { errors }
     } = useForm<FormInputValues>({
         resolver: yupResolver(validateSchema),
-        mode: 'onTouched'
+        mode: 'onTouched',
+        defaultValues: {}
     })
 
     return {
