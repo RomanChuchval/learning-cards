@@ -15,8 +15,8 @@ export const PacksTable = () => {
 
     const tableBodySX = {
         wordWrap: 'break-word',
-        minWidth: '50px',
-        maxWidth: '50px'
+        minWidth: '150px',
+        maxWidth: '200px'
     }
     return (
         <Grid item md={12}>
@@ -24,28 +24,30 @@ export const PacksTable = () => {
                          sort={sort}
                          sortHandler={sortHandler}
                          tableCellForHeader={['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']}>
-                { isLoading ? <TableSkeleton defaultCell={5} defaultRow={params.pageCount || '4'} />
-                : packs.cardPacks?.map(textBody => {
+                {isLoading ? <TableSkeleton defaultCell={5} defaultRow={params.pageCount || '4'} />
+                    : packs.cardPacks?.map(textBody => {
                         return (
                             <TableRow key={textBody._id}>
-                                <TableCell sx={{ ...tableBodySX, paddingLeft: '40px', maxWidth: '200px' }}
-                                >
+                                <TableCell sx={{ ...tableBodySX, paddingLeft: '40px' }}>
                                     {textBody.name}
                                 </TableCell>
-                                <TableCell sx={{ ...tableBodySX, maxWidth: '200px' }}>
+                                <TableCell sx={tableBodySX}>
                                     {textBody.cardsCount}
                                 </TableCell>
-                                <TableCell sx={tableBodySX}>{textBody.updated}</TableCell>
-                                <TableCell sx={tableBodySX}>{textBody.user_name}</TableCell>
                                 <TableCell sx={tableBodySX}>
+                                    {textBody.updated.slice(0, 10)}
+                                </TableCell>
+                                <TableCell sx={tableBodySX}>
+                                    {textBody.user_name}
+                                </TableCell>
+                                <TableCell>
                                     <TableActions packName={textBody.name}
                                                   myCards={userId === textBody.user_id}
-                                                  packId={textBody._id}
-                                    />
+                                                  packId={textBody._id} />
                                 </TableCell>
                             </TableRow>
                         )
-                    }) }
+                    })}
             </CustomTable>
         </Grid>
     )
