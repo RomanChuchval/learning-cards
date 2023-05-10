@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useValidators, ValidatorsType } from 'features/auth/hooks/useValidators'
 
-export const useAppForm = (validateFields: ValidateFieldsType[]) => {
+export const useAppForm = (validateFields: ValidateFieldsType[], defaultInput?: string) => {
     const { validators } = useValidators()
 
     const getValidateSchema = (
@@ -27,7 +27,9 @@ export const useAppForm = (validateFields: ValidateFieldsType[]) => {
     } = useForm<FormInputValues>({
         resolver: yupResolver(validateSchema),
         mode: 'onTouched',
-        defaultValues: {}
+        defaultValues: {
+            textInput: defaultInput || ''
+        }
     })
 
     return {
