@@ -15,11 +15,11 @@ export const TableActions: FC<TableActionsPropsType> =
     ({ packId, myCards, packName }) => {
 
         return (
-            <Box>
+            <Box display={'flex'}>
                 <IconButton size={'small'}>
                     <SchoolIcon />
                 </IconButton>
-                {myCards && <UpdatePack packId={packId}/>}
+                {myCards && <UpdatePack packName={packName} packId={packId}/>}
                 {myCards && <RemovePack packName={packName} packId={packId}/>}
             </Box>
         )
