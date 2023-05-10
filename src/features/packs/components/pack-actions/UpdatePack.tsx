@@ -7,8 +7,9 @@ import { useEditorModals } from 'features/packs/hooks/useEditorModals'
 
 type UpdatePackPropsType = {
     packId: string
+    packName: string
 }
-export const UpdatePack: React.FC<UpdatePackPropsType> = ({ packId }) => {
+export const UpdatePack: React.FC<UpdatePackPropsType> = ({ packId, packName }) => {
     const {open, handleOpen, handleClose} = useAppModals()
     const {updatePack} = useEditorModals(handleClose, packId)
 
@@ -16,6 +17,7 @@ export const UpdatePack: React.FC<UpdatePackPropsType> = ({ packId }) => {
         <>
             <EditorModal title={'Update Pack'}
                          open={open}
+                         packName={packName}
                          handleClose={handleClose}
                          onEditor={updatePack}>
                 <IconButton size={'small'}
