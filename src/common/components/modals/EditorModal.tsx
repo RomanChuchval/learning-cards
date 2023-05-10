@@ -22,6 +22,7 @@ const style = {
 
 type PacksModalPropsType = {
     title: string
+    packName?: string
     onEditor: (data: FormInputValues) => void
     children: React.ReactNode
     open: boolean
@@ -29,8 +30,8 @@ type PacksModalPropsType = {
 }
 
 export const EditorModal: React.FC<PacksModalPropsType> = (
-    { children, open, handleClose, title, onEditor }) => {
-    const {error, register, handleSubmit, editorHandler} = useModalsForm(onEditor)
+    { children, open, handleClose, title, onEditor, packName }) => {
+    const {error, register, handleSubmit, editorHandler} = useModalsForm(onEditor, packName)
     return (
         <div>
             {children}
