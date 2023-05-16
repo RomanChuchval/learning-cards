@@ -24,7 +24,7 @@ export const EditorModalForm: React.FC<EditorModalFormPropsType> =
                                      width={'130'}
                                      type={'button'}
                                      callback={handleClose} />
-                        <SuperButton name={'Save'} rounded={true} width={'130'} />
+                        <SuperButton name={'Save'} rounded={true} width={'130'} textColor={'white'}/>
                     </Box>
                 </FormGroup>
             </form>
