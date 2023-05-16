@@ -6,12 +6,12 @@ import TableCell from '@mui/material/TableCell/TableCell'
 import React from 'react'
 import { TableActions } from 'features/packs/components/pack-actions/TableActions'
 import { TableSkeleton } from 'common/components/table-skeleton/TableSkeleton'
-import { useAppSelector } from 'app/hooks/useAppSelector'
-import { isLoadingPacksSelector } from 'features/packs/packs.selectors'
+
+import { useApp } from 'app/hooks/useApp'
 
 export const PacksTable = () => {
     const { packs, params, userId, sort, setSort, sortHandler } = usePacksParamsFilter()
-    const isLoading = useAppSelector(isLoadingPacksSelector)
+    const { isLoading } = useApp()
 
     const tableBodySX = {
         wordWrap: 'break-word',
@@ -20,7 +20,8 @@ export const PacksTable = () => {
     }
     return (
         <Grid item md={12}>
-            <CustomTable setSort={setSort}
+            <CustomTable disabled={isLoading}
+                         setSort={setSort}
                          sort={sort}
                          sortHandler={sortHandler}
                          tableCellForHeader={['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']}>
