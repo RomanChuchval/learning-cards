@@ -3,8 +3,10 @@ import { CustomTable } from 'common/components/table/CustomTable'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
 import { CardsRating } from 'common/components/rating/CardsRating'
+import { useCards } from 'features/cards/hooks/useCards'
 
 export const CardsTable = () => {
+    const { cards } = useCards()
     const tableBodySX = {
         wordWrap: 'break-word',
         minWidth: '150px',
@@ -19,14 +21,16 @@ export const CardsTable = () => {
                 setSort={() => {}}
                 sort={true}
             >
-                <TableRow>
-                    <TableCell sx={{ ...tableBodySX }}>1</TableCell>
-                    <TableCell sx={tableBodySX}>2</TableCell>
-                    <TableCell sx={tableBodySX}>3</TableCell>
-                    <TableCell sx={tableBodySX}>
-                        <CardsRating defaultValue={4} />
-                    </TableCell>
-                </TableRow>
+                {cards?.map(card => (
+                    <TableRow key={card._id}>
+                        <TableCell sx={{ ...tableBodySX }}>{card.question}</TableCell>
+                        <TableCell sx={tableBodySX}>{card.answer}</TableCell>
+                        <TableCell sx={tableBodySX}>{card.updated.slice(0, 10)}</TableCell>
+                        <TableCell sx={tableBodySX}>
+                            <CardsRating defaultValue={card.grade} />
+                        </TableCell>
+                    </TableRow>
+                ))}
             </CustomTable>
         </div>
     )

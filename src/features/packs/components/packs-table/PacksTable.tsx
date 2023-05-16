@@ -9,7 +9,7 @@ import { TableSkeleton } from 'common/components/table-skeleton/TableSkeleton'
 import { paths } from 'common/constants/paths'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
-import { cardsThunks } from 'features/cards/cards.slice'
+import { cardsActions, cardsThunks } from 'features/cards/cards.slice'
 
 import { useApp } from 'app/hooks/useApp'
 
@@ -22,23 +22,28 @@ export const PacksTable = () => {
     const tableBodySX = {
         wordWrap: 'break-word',
         minWidth: '150px',
-        maxWidth: '200px'
+        maxWidth: '200px',
     }
 
     const toCards = (id: string) => {
-        dispatch(cardsThunks.getCards(id))
+        dispatch(cardsActions.setSelectedCardsPackId(id))
         navigate(paths.CARDS, { state: id })
+        dispatch(cardsThunks.getCards())
     }
 
     return (
         <Grid item md={12}>
-            <CustomTable disabled={isLoading}
-                         setSort={setSort}
-                         sort={sort}
-                         sortHandler={sortHandler}
-                         tableCellForHeader={['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']}>
-                {isLoading ? <TableSkeleton defaultCell={5} defaultRow={params.pageCount || '4'} />
-                    : packs.cardPacks?.map(textBody => {
+            <CustomTable
+                disabled={isLoading}
+                setSort={setSort}
+                sort={sort}
+                sortHandler={sortHandler}
+                tableCellForHeader={['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']}
+            >
+                {isLoading ? (
+                    <TableSkeleton defaultCell={5} defaultRow={params.pageCount || '4'} />
+                ) : (
+                    packs.cardPacks?.map(textBody => {
                         return (
                             <TableRow key={textBody._id}>
                                 <TableCell
@@ -47,7 +52,7 @@ export const PacksTable = () => {
                                         ...tableBodySX,
                                         paddingLeft: '40px',
                                         cursor: 'pointer',
-                                        ':hover': { backgroundColor: 'rgb(245, 245, 245)' }
+                                        ':hover': { backgroundColor: 'rgb(245, 245, 245)' },
                                     }}
                                 >
                                     {textBody.name}
@@ -58,13 +63,16 @@ export const PacksTable = () => {
                                 </TableCell>
                                 <TableCell sx={tableBodySX}>{textBody.user_name}</TableCell>
                                 <TableCell>
-                                    <TableActions packName={textBody.name}
-                                                  myCards={userId === textBody.user_id}
-                                                  packId={textBody._id} />
+                                    <TableActions
+                                        packName={textBody.name}
+                                        myCards={userId === textBody.user_id}
+                                        packId={textBody._id}
+                                    />
                                 </TableCell>
                             </TableRow>
                         )
-                    })}
+                    })
+                )}
             </CustomTable>
         </Grid>
     )
