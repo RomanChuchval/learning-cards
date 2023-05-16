@@ -20,8 +20,8 @@ export const cardsApi = {
 
 //TYPES
 export type GetCardsParamsType = {
-    cardAnswer?: 'english'
-    cardQuestion?: 'english'
+    cardAnswer?: string
+    cardQuestion?: string
     cardsPack_id: string
     min?: string
     max?: string

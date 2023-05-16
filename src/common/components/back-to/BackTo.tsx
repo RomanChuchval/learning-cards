@@ -17,10 +17,9 @@ export const BackTo: FC<BackToPropsType> = ({ text, link }) => {
                     component={'span'}
                     sx={{
                         display: 'flex',
-                        justifyContent: 'space-between',
+                        gap: '10px',
                         minWidth: '200px',
                         mt: '25px',
-                        pl: '25px',
                     }}
                 >
                     <KeyboardBackspaceIcon />
