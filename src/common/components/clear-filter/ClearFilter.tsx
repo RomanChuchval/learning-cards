@@ -4,9 +4,10 @@ import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 import IconButton from '@mui/material/IconButton'
 
 type ClearFilterPropsType = {
+    disabled?: boolean
     clearFiltersHandler: () => void
 }
-export const ClearFilter: React.FC<ClearFilterPropsType> = ({ clearFiltersHandler }) => {
+export const ClearFilter: React.FC<ClearFilterPropsType> = ({ clearFiltersHandler, disabled }) => {
     const boxSx = {
         width: '36px',
         height: '36px',
@@ -28,7 +29,7 @@ export const ClearFilter: React.FC<ClearFilterPropsType> = ({ clearFiltersHandle
 
     return (
         <Box sx={boxSx}>
-            <IconButton sx={{ width: '50px' }} onClick={onClickHandler}>
+            <IconButton sx={{ width: '50px' }} onClick={onClickHandler} disabled={disabled}>
                 <FilterAltOffIcon />
             </IconButton>
         </Box>
