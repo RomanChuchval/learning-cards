@@ -5,12 +5,13 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 
 type ShowPacksCardsPropsType = {
+    disabled?: boolean
     onClick: () => void
     onMy: boolean
     setOnMy: (value: boolean) => void
 }
 
-export const ShowPacksCards: React.FC<ShowPacksCardsPropsType> = ({onClick, onMy, setOnMy}) => {
+export const ShowPacksCards: React.FC<ShowPacksCardsPropsType> = ({onClick, onMy, setOnMy, disabled}) => {
 
     const onClickMy = () => {
         setOnMy(!onMy)
@@ -34,8 +35,8 @@ export const ShowPacksCards: React.FC<ShowPacksCardsPropsType> = ({onClick, onMy
                 Show packs cards
             </Typography>
             <ButtonGroup variant='outlined'>
-                <Button onClick={onClickMy} disabled={!onMy}>My</Button>
-                <Button onClick={onClickAll} disabled={onMy}>All</Button>
+                <Button onClick={onClickMy} disabled={disabled || !onMy}>My</Button>
+                <Button onClick={onClickAll} disabled={disabled || onMy}>All</Button>
             </ButtonGroup>
         </Box>
     )
