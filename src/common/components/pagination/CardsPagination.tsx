@@ -7,64 +7,63 @@ import Select from '@mui/material/Select'
 import { SelectChangeEvent } from '@mui/material/Select/SelectInput'
 
 export type CardsPaginationPropsType = {
+    disabled?: boolean
     page: number
     pageCount: number
     totalCount: number
     onChange: (page: string, count: string) => void
 }
 
-export const CardsPagination: React.FC<CardsPaginationPropsType> = ({
-                                                                        page,
-                                                                        pageCount,
-                                                                        totalCount,
-                                                                        onChange
-                                                                    }) => {
-    const lastPage = Math.ceil(totalCount / +pageCount) || 0
+export const CardsPagination: React.FC<CardsPaginationPropsType> =
+    ({ page, pageCount, totalCount, onChange, disabled }) => {
 
-    const styleForContainer = {
-        display: 'flex',
-        alignItems: 'center',
-        width: '100%',
-        flexWrap: 'wrap',
-        gap: '20px'
-    }
-    const styleForFormControl = {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: '10px'
-    }
+        const lastPage = Math.ceil(totalCount / +pageCount) || 0
 
-    const handleSelectorChange = (event: SelectChangeEvent) => {
-        onChange(page + '', event.target.value)
-    }
-    const handlePaginationChange = (event: React.ChangeEvent<unknown>, page: number) => {
-        onChange(page + '', pageCount + '')
-    }
+        const styleForContainer = {
+            display: 'flex',
+            alignItems: 'center',
+            width: '100%',
+            flexWrap: 'wrap',
+            gap: '20px'
+        }
+        const styleForFormControl = {
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: '10px'
+        }
 
-    return (
-        <Box sx={styleForContainer}>
-            <Pagination
-                count={lastPage}
-                page={+page || 1}
-                color='primary'
-                shape='rounded'
-                onChange={handlePaginationChange}
-            />
-            <FormControl sx={styleForFormControl}>
-                <Box component={'span'}>Show</Box>
-                <Select
-                    autoWidth={true}
-                    sx={{ width: '70px', height: '36px' }}
-                    value={`${pageCount || 4}`}
-                    onChange={handleSelectorChange}
-                >
-                    <MenuItem value={'4'}>4</MenuItem>
-                    <MenuItem value={'7'}>7</MenuItem>
-                    <MenuItem value={'10'}>10</MenuItem>
-                </Select>
-                <Box component={'span'}>Cards per Page</Box>
-            </FormControl>
-        </Box>
-    )
-}
+        const handleSelectorChange = (event: SelectChangeEvent) => {
+            onChange(page + '', event.target.value)
+        }
+        const handlePaginationChange = (event: React.ChangeEvent<unknown>, page: number) => {
+            onChange(page + '', pageCount + '')
+        }
+
+        return (
+            <Box sx={styleForContainer}>
+                <Pagination
+                    disabled={disabled}
+                    count={lastPage}
+                    page={+page || 1}
+                    color='primary'
+                    shape='rounded'
+                    onChange={handlePaginationChange}
+                />
+                <FormControl sx={styleForFormControl}>
+                    <Box component={'span'}>Show</Box>
+                    <Select disabled={disabled}
+                            autoWidth={true}
+                            sx={{ width: '70px', height: '36px' }}
+                            value={`${pageCount || 4}`}
+                            onChange={handleSelectorChange}
+                    >
+                        <MenuItem value={'4'}>4</MenuItem>
+                        <MenuItem value={'7'}>7</MenuItem>
+                        <MenuItem value={'10'}>10</MenuItem>
+                    </Select>
+                    <Box component={'span'}>Cards per Page</Box>
+                </FormControl>
+            </Box>
+        )
+    }
