@@ -11,6 +11,7 @@ export const Packs = () => {
     const { searchParams } = usePacksParamsFilter()
     const dispatch = useAppDispatch()
     const paramsSearch = Object.fromEntries(searchParams)
+
     useEffect(() => {
         dispatch(packsAction.setQueryParams({ params: { ...paramsSearch } }))
         dispatch(packsThunks.getPacks())
