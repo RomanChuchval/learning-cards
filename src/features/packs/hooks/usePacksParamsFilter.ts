@@ -39,13 +39,13 @@ export const usePacksParamsFilter = () => {
         onDispatchParams({ page, pageCount })
     }
     const onChangeSlider = (min: string, max: string) => {
-        onDispatchParams({ min, max })
+        onDispatchParams({ min, max, page: '1' })
     }
     const onClickShowPacksCards = () => {
         if (onMy) {
-            onDispatchParams({ user_id: userId })
+            onDispatchParams({ user_id: userId, page: '1' })
         } else {
-            onDispatchParams({ user_id: '' })
+            onDispatchParams({ user_id: '', page: '1' })
         }
     }
     const onChangeText = (value: string) => {
@@ -54,7 +54,7 @@ export const usePacksParamsFilter = () => {
     }
     const searchHandler = (value: string) => {
         clearTimeout(timoutId)
-        const newTimeoutId = setTimeout(() => onDispatchParams({ packName: value }), 700)
+        const newTimeoutId = setTimeout(() => onDispatchParams({ packName: value, page: '1' }), 700)
         setTimeoutId(+newTimeoutId)
     }
     const clearFiltersHandler = () => {
@@ -73,6 +73,7 @@ export const usePacksParamsFilter = () => {
     const sortHandler = () => {
         onDispatchParams({
             sortPacks: sort ? '1updated' : '0updated',
+            page: '1'
         })
     }
 
