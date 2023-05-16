@@ -2,12 +2,18 @@ import { useAppSelector } from 'app/hooks/useAppSelector'
 import { errorSelector, infoMessageSelector } from 'app/app.selectors'
 import { toast } from 'react-toastify'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
-import { appActions } from 'app/app.slice'
+import { packsErrorSelector, packsInfoMessageSelector } from 'features/packs/packs.selectors'
+import { clearNotifyStateAction } from 'common/utils/clearNotifyStateAction'
 
 export const useAppNotify = () => {
-    const error = useAppSelector(errorSelector)
-    const infoMessage = useAppSelector(infoMessageSelector)
+    const appError = useAppSelector(errorSelector)
+    const appInfoMessage = useAppSelector(infoMessageSelector)
+    const packsError = useAppSelector(packsErrorSelector)
+    const packsInfoMessage = useAppSelector(packsInfoMessageSelector)
     const dispatch = useAppDispatch()
+
+    const error = appError || packsError
+    const infoMessage = appInfoMessage || packsInfoMessage
 
     if (infoMessage) {
         toast.success(infoMessage, {
@@ -23,7 +29,7 @@ export const useAppNotify = () => {
                 backgroundColor: '#366EFF',
             },
         })
-        dispatch(appActions.resetAppInfo())
+        dispatch(clearNotifyStateAction())
     }
 
     if (error) {
@@ -37,6 +43,6 @@ export const useAppNotify = () => {
             progress: undefined,
             theme: 'colored',
         })
-        dispatch(appActions.resetAppInfo())
+        dispatch(clearNotifyStateAction())
     }
 }
