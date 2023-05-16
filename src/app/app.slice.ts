@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { fulfilled, fulfilledWithInfo, initializePending, loginFulfilled, pending, rejected } from 'app/constants'
+import { clearNotifyStateAction } from 'common/utils/clearNotifyStateAction'
 
 const slice = createSlice({
     name: 'app',
@@ -13,16 +14,16 @@ const slice = createSlice({
         setIsLoading: (state, action: PayloadAction<{ isLoading: boolean }>) => {
             state.isLoading = action.payload.isLoading
         },
-        resetAppInfo: state => {
-            state.error = null
-            state.infoMessage = null
-        },
         setAppInitialize: state => {
             state.isAppInitialized = false
         },
     },
     extraReducers: builder => {
         builder
+            .addCase(clearNotifyStateAction, state => {
+                state.error = null
+                state.infoMessage = null
+            })
             .addMatcher(initializePending, state => {
                 state.isAppInitialized = true
             })
