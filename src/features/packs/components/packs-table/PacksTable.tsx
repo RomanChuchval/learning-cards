@@ -6,11 +6,17 @@ import TableCell from '@mui/material/TableCell/TableCell'
 import React from 'react'
 import { TableActions } from 'features/packs/components/pack-actions/TableActions'
 import { TableSkeleton } from 'common/components/table-skeleton/TableSkeleton'
+import { paths } from 'common/constants/paths'
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from 'app/hooks/useAppDispatch'
+import { cardsThunks } from 'features/cards/cards.slice'
 
 import { useApp } from 'app/hooks/useApp'
 
 export const PacksTable = () => {
     const { packs, params, userId, sort, setSort, sortHandler } = usePacksParamsFilter()
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
     const { isLoading } = useApp()
 
     const tableBodySX = {
@@ -18,6 +24,12 @@ export const PacksTable = () => {
         minWidth: '150px',
         maxWidth: '200px'
     }
+
+    const toCards = (id: string) => {
+        dispatch(cardsThunks.getCards(id))
+        navigate(paths.CARDS, { state: id })
+    }
+
     return (
         <Grid item md={12}>
             <CustomTable disabled={isLoading}
@@ -29,18 +41,22 @@ export const PacksTable = () => {
                     : packs.cardPacks?.map(textBody => {
                         return (
                             <TableRow key={textBody._id}>
-                                <TableCell sx={{ ...tableBodySX, paddingLeft: '40px' }}>
+                                <TableCell
+                                    onClick={() => toCards(textBody._id)}
+                                    sx={{
+                                        ...tableBodySX,
+                                        paddingLeft: '40px',
+                                        cursor: 'pointer',
+                                        ':hover': { backgroundColor: 'rgb(245, 245, 245)' }
+                                    }}
+                                >
                                     {textBody.name}
                                 </TableCell>
-                                <TableCell sx={tableBodySX}>
-                                    {textBody.cardsCount}
-                                </TableCell>
+                                <TableCell sx={tableBodySX}>{textBody.cardsCount}</TableCell>
                                 <TableCell sx={tableBodySX}>
                                     {textBody.updated.slice(0, 10)}
                                 </TableCell>
-                                <TableCell sx={tableBodySX}>
-                                    {textBody.user_name}
-                                </TableCell>
+                                <TableCell sx={tableBodySX}>{textBody.user_name}</TableCell>
                                 <TableCell>
                                     <TableActions packName={textBody.name}
                                                   myCards={userId === textBody.user_id}
