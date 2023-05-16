@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from 'react'
+import React, { ChangeEvent, FC } from 'react'
 import Box from '@mui/material/Box'
 import SearchIcon from '@mui/icons-material/Search'
 import TextField from '@mui/material/TextField'
@@ -6,12 +6,13 @@ import InputAdornment from '@mui/material/InputAdornment'
 import Typography from '@mui/material/Typography'
 
 type SearchBarPropsType = {
+    disabled?: boolean
     fullWidth?: boolean
     onChange: (value: string) => void
     value: string
 }
 
-export const SearchBar: FC<SearchBarPropsType> = ({ fullWidth, value, onChange }) => {
+export const SearchBar: FC<SearchBarPropsType> = ({ fullWidth, value, onChange, disabled }) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         onChange(e.currentTarget.value)
@@ -23,6 +24,7 @@ export const SearchBar: FC<SearchBarPropsType> = ({ fullWidth, value, onChange }
                 Search
             </Typography>
             <TextField
+                disabled={disabled}
                 onChange={onChangeHandler}
                 value={value}
                 fullWidth={fullWidth ?? false}
