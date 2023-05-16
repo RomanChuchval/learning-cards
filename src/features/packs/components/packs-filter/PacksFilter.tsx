@@ -6,6 +6,7 @@ import { ShowPacksCards } from 'common/components/show-packs-cards/ShowPacksCard
 import { CardsCountSlider } from 'common/components/number-of-cards-slider/CardsCountSlider'
 import { ClearFilter } from 'common/components/clear-filter/ClearFilter'
 import { CardsPagination } from 'common/components/pagination/CardsPagination'
+import { useApp } from 'app/hooks/useApp'
 
 type PacksFilterPropsType = {
     children: React.ReactNode
@@ -24,29 +25,39 @@ export const PacksFilter: React.FC<PacksFilterPropsType> = ({ children }) => {
         clearFiltersHandler,
         onClickShowPacksCards
     } = usePacksParamsFilter()
+    const { isLoading } = useApp()
 
     return (
         <>
             <Grid item md={4}>
-                <SearchBar fullWidth={true} onChange={onChangeText} value={search} />
+                <SearchBar fullWidth={true}
+                           onChange={onChangeText}
+                           value={search}
+                           disabled={isLoading} />
             </Grid>
             <Grid item md={3} display={'flex'} justifyContent={'center'}>
-                <ShowPacksCards onClick={onClickShowPacksCards} onMy={onMy} setOnMy={setOnMy}/>
+                <ShowPacksCards onClick={onClickShowPacksCards}
+                                onMy={onMy}
+                                setOnMy={setOnMy}
+                                disabled={isLoading} />
             </Grid>
             <Grid item md={4} display={'flex'} justifyContent={'center'}>
-                <CardsCountSlider onChange={onChangeSlider} minMax={valueSlider} setMinMax={setValueSlider}/>
+                <CardsCountSlider onChange={onChangeSlider}
+                                  minMax={valueSlider}
+                                  setMinMax={setValueSlider}
+                                  disabled={isLoading} />
             </Grid>
             <Grid item md={1} display={'flex'} justifyContent={'flex-end'}>
-                <ClearFilter clearFiltersHandler={clearFiltersHandler} />
+                <ClearFilter clearFiltersHandler={clearFiltersHandler}
+                             disabled={isLoading} />
             </Grid>
             {children}
             <Grid item md={12}>
-                <CardsPagination
-                    page={packs.page}
-                    pageCount={packs.pageCount}
-                    totalCount={packs.cardPacksTotalCount}
-                    onChange={onChangePagination}
-                />
+                <CardsPagination page={packs.page}
+                                 pageCount={packs.pageCount}
+                                 totalCount={packs.cardPacksTotalCount}
+                                 onChange={onChangePagination}
+                                 disabled={isLoading} />
             </Grid>
         </>
     )
