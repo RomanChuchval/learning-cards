@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { cardsApi, GetCardsParamsType, GetCardsResponseType } from 'features/cards/cards.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { thunkErrorHandler } from 'common/utils/thunkErrorHandler'
+import { GetParamsType } from 'features/cards/hooks/useCards'
 
 const slice = createSlice({
     name: 'cards',
@@ -17,9 +18,17 @@ const slice = createSlice({
             page: '1',
             pageCount: '4',
         } as GetCardsParamsType,
+        selectedCardsPackId: '' as string,
         isLoading: false as boolean,
     },
-    reducers: {},
+    reducers: {
+        setCardsParams: (state, action: PayloadAction<{ params: GetParamsType }>) => {
+            state.params = { ...state.params, ...action.payload.params }
+        },
+        setSelectedCardsPackId: (state, action: PayloadAction<string>) => {
+            state.selectedCardsPackId = action.payload
+        },
+    },
     extraReducers: builder => {
         builder.addCase(getCards.fulfilled, (state, action) => {
             state.cards = action.payload.cards
@@ -27,10 +36,13 @@ const slice = createSlice({
     },
 })
 
-const getCards = createAppAsyncThunk<{ cards: GetCardsResponseType }, string>(
+const getCards = createAppAsyncThunk<{ cards: GetCardsResponseType }>(
     'cards/getCards',
     async (id, { rejectWithValue, getState }) => {
-        const params = { ...getState().cards.params, cardsPack_id: id }
+        const params = {
+            ...getState().cards.params,
+            cardsPack_id: getState().cards.selectedCardsPackId,
+        }
         try {
             const res = await cardsApi.getCards(params)
             return { cards: res.data }
@@ -42,4 +54,5 @@ const getCards = createAppAsyncThunk<{ cards: GetCardsResponseType }, string>(
 )
 
 export const cardsReducer = slice.reducer
+export const cardsActions = slice.actions
 export const cardsThunks = { getCards }
