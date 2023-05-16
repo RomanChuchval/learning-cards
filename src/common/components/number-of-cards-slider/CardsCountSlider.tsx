@@ -4,12 +4,14 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 
 type CardsCountSliderPropsType = {
+    disabled?: boolean
     onChange: (minCardsCount: string, maxCardsCount: string) => void
     minMax: number[]
     setMinMax: (value: number[]) => void
 }
 
-export const CardsCountSlider: React.FC<CardsCountSliderPropsType> = ({ onChange, minMax, setMinMax }) => {
+export const CardsCountSlider: React.FC<CardsCountSliderPropsType> =
+    ({ onChange, minMax, setMinMax, disabled }) => {
 
 
     const handleMouseUp = () => {
@@ -45,7 +47,11 @@ export const CardsCountSlider: React.FC<CardsCountSliderPropsType> = ({ onChange
                 <Box sx={boxSx}>
                     <Typography sx={typographySx}>{minMax[0]}</Typography>
                 </Box>
-                <Slider value={minMax} onMouseUp={handleMouseUp} onChange={handleChange} sx={{ m: '0 20px' }} />
+                <Slider value={minMax}
+                        onMouseUp={handleMouseUp}
+                        onChange={handleChange}
+                        sx={{ m: '0 20px' }}
+                        disabled={disabled}/>
                 <Box sx={boxSx}>
                     <Typography sx={typographySx}>{minMax[1]}</Typography>
                 </Box>
