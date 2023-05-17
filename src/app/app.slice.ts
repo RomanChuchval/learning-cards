@@ -1,5 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { fulfilled, fulfilledWithInfo, initializePending, loginFulfilled, pending, rejected } from 'app/constants'
+import {
+    fulfilled,
+    fulfilledWithInfo,
+    initializePending,
+    loginFulfilled,
+    pending,
+    rejected,
+} from 'app/constants'
 import { clearNotifyStateAction } from 'common/utils/clearNotifyStateAction'
 
 const slice = createSlice({

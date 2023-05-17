@@ -12,10 +12,9 @@ import { PopoverCardsPack } from 'common/components/popover/PopoverCardsPack'
 import { CreateCard } from 'features/cards/components/cards/CreateCard'
 
 export const CardsHeader = () => {
-    const { packUserId } = useCards()
+    const { packUserId, selectedPack } = useCards()
     const { authorizedUserId } = useAuth()
     const { anchorEl, handleClose, handleClick } = usePopover()
-
     const isMyPack = packUserId === authorizedUserId
 
     return (
@@ -23,13 +22,13 @@ export const CardsHeader = () => {
             <Grid item md={6}>
                 {isMyPack ? (
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                        <PageTitle title={'My Packs'} />
+                        <PageTitle title={selectedPack.name} />
                         <IconButton onClick={handleClick} sx={{ height: '32px', p: '0' }}>
                             <PendingIcon color={'primary'} />
                         </IconButton>
                     </Box>
                 ) : (
-                    <PageTitle title={'Friends Packs'} />
+                    <PageTitle title={selectedPack.name} />
                 )}
             </Grid>
             <Grid item md={6} display={'flex'} justifyContent={'flex-end'}>

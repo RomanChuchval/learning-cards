@@ -12,6 +12,7 @@ import { useAppDispatch } from 'app/hooks/useAppDispatch'
 import { cardsActions, cardsThunks } from 'features/cards/cards.slice'
 
 import { useApp } from 'app/hooks/useApp'
+import { packsAction } from 'features/packs/packs.slice'
 
 export const PacksTable = () => {
     const { packs, params, userId, sort, setSort, sortHandler } = usePacksParamsFilter()
@@ -27,6 +28,7 @@ export const PacksTable = () => {
 
     const toCards = (id: string) => {
         dispatch(cardsActions.setSelectedCardsPackId(id))
+        dispatch(packsAction.setSelectedPack({ id }))
         navigate(paths.CARDS, { state: id })
         dispatch(cardsThunks.getCards())
     }

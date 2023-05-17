@@ -1,10 +1,18 @@
-import { createSlice, isFulfilled, isPending, isRejected, isRejectedWithValue, PayloadAction } from '@reduxjs/toolkit'
+import {
+    createSlice,
+    isFulfilled,
+    isPending,
+    isRejected,
+    isRejectedWithValue,
+    PayloadAction,
+} from '@reduxjs/toolkit'
 import {
     CreatePackModelType,
     GetPacksParamsType,
     packsApi,
     PacksResponseType,
-    UpdatePackModelType
+    PackType,
+    UpdatePackModelType,
 } from 'features/packs/packs.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { thunkErrorHandler } from 'common/utils/thunkErrorHandler'
@@ -20,16 +28,21 @@ const slice = createSlice({
             min: '0',
             max: '100',
             user_id: '',
-            packName: ''
+            packName: '',
         } as GetPacksParamsType,
         isLoading: false,
         error: null as string | null,
-        infoMessage: null as string | null
+        infoMessage: null as string | null,
+        selectedPack: {} as PackType,
     },
     reducers: {
         setQueryParams: (state, actions: PayloadAction<{ params: GetPacksParamsType }>) => {
             state.params = { ...state.params, ...actions.payload.params }
-        }
+        },
+        setSelectedPack: (state, action: PayloadAction<{ id: string }>) => {
+            const pack = state.packs.cardPacks.find(pack => pack._id === action.payload.id)
+            if (pack) state.selectedPack = pack
+        },
     },
     extraReducers: builder => {
         builder
@@ -55,7 +68,7 @@ const slice = createSlice({
             .addMatcher(rejectedWithValuePacks, (state, action) => {
                 state.error = action.payload
             })
-    }
+    },
 })
 
 const getPacks = createAppAsyncThunk<{ packs: PacksResponseType }>(
@@ -116,29 +129,10 @@ const updatePack = createAppAsyncThunk<{ infoMessage: string }, UpdatePackModelT
 )
 
 const fulfilledPacks = isFulfilled(getPacks)
-const fulfilledEditor = isFulfilled(
-    createPack,
-    removePack,
-    updatePack
-)
-const rejectedPacks = isRejected(
-    getPacks,
-    createPack,
-    removePack,
-    updatePack
-)
-const pendingPacks = isPending(
-    getPacks,
-    createPack,
-    removePack,
-    updatePack
-)
-const rejectedWithValuePacks = isRejectedWithValue(
-    getPacks,
-    createPack,
-    removePack,
-    updatePack
-)
+const fulfilledEditor = isFulfilled(createPack, removePack, updatePack)
+const rejectedPacks = isRejected(getPacks, createPack, removePack, updatePack)
+const pendingPacks = isPending(getPacks, createPack, removePack, updatePack)
+const rejectedWithValuePacks = isRejectedWithValue(getPacks, createPack, removePack, updatePack)
 
 export const packsReducer = slice.reducer
 export const packsAction = slice.actions

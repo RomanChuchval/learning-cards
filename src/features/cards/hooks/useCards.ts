@@ -10,6 +10,7 @@ import {
 import { cardsActions, cardsThunks } from 'features/cards/cards.slice'
 import { GetCardsParamsType } from 'features/cards/cards.api'
 import { useState } from 'react'
+import { selectedPackSelector } from 'features/packs/packs.selectors'
 
 export const useCards = () => {
     const dispatch = useAppDispatch()
@@ -19,6 +20,7 @@ export const useCards = () => {
     const cardsPage = useAppSelector(cardsPageSelector)
     const cardsPageCount = useAppSelector(cardsPageCountSelector)
     const packUserId = useAppSelector(packUserIdSelector)
+    const selectedPack = useAppSelector(selectedPackSelector)
 
     const [searchValue, setSearchValue] = useState<string>('')
     const [timeoutId, setTimeoutId] = useState<number>()
@@ -52,6 +54,7 @@ export const useCards = () => {
         debouncedSearch,
         searchValue,
         packUserId,
+        selectedPack,
     }
 }
 

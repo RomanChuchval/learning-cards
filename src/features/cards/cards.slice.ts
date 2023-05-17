@@ -4,6 +4,7 @@ import {
     CreateCardRequestType,
     GetCardsParamsType,
     GetCardsResponseType,
+    UpdateCardRequestType,
 } from 'features/cards/cards.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { thunkErrorHandler } from 'common/utils/thunkErrorHandler'
@@ -70,7 +71,31 @@ const createCard = createAppAsyncThunk<void, CreateCardRequestType>(
         }
     }
 )
+const updateCard = createAppAsyncThunk<void, UpdateCardRequestType>(
+    'cards/updateCard',
+    async (data, { rejectWithValue, dispatch }) => {
+        try {
+            await cardsApi.updateCard(data)
+            dispatch(getCards())
+        } catch (e) {
+            const error = thunkErrorHandler(e)
+            return rejectWithValue(error)
+        }
+    }
+)
+const removeCard = createAppAsyncThunk<void, string>(
+    'cards/removeCard',
+    async (id, { rejectWithValue, dispatch }) => {
+        try {
+            await cardsApi.removeCard(id)
+            dispatch(getCards())
+        } catch (e) {
+            const error = thunkErrorHandler(e)
+            return rejectWithValue(error)
+        }
+    }
+)
 
 export const cardsReducer = slice.reducer
 export const cardsActions = slice.actions
-export const cardsThunks = { getCards, createCard }
+export const cardsThunks = { getCards, createCard, updateCard, removeCard }

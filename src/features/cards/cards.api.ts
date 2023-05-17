@@ -11,7 +11,7 @@ export const cardsApi = {
         return instance.delete<CommonCardResponseType>(`cards/card?id=${id}`)
     },
     updateCard: (data: UpdateCardRequestType) => {
-        return instance.put<CommonCardResponseType>('cards/card', { card: data })
+        return instance.put<CommonCardResponseType>('cards/card', { card: { ...data } })
     },
     updateCardGrade: (data: UpdateCardGradeRequestType) => {
         return instance.put<UpdatedGradeType>('cards/grade', data)

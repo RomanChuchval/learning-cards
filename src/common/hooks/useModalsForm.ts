@@ -22,7 +22,7 @@ import {
  * */
 export const useModalsForm = (
     callback: (data: FormInputValues) => void,
-    defaultInputValues?: DefaultFieldsValues,
+    defaultInputValues: DefaultFieldsValues = {},
     validateFields?: ValidateFieldsType[]
 ) => {
     const { register, errors, reset, handleSubmit } = useAppForm(validateFields, defaultInputValues)

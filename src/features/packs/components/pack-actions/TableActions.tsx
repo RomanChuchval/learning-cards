@@ -11,17 +11,14 @@ type TableActionsPropsType = {
     packId: string
 }
 
-export const TableActions: FC<TableActionsPropsType> =
-    ({ packId, myCards, packName }) => {
-
-        return (
-            <Box display={'flex'}>
-                <IconButton size={'small'}>
-                    <SchoolIcon />
-                </IconButton>
-                {myCards && <UpdatePack packName={packName} packId={packId}/>}
-                {myCards && <RemovePack packName={packName} packId={packId}/>}
-            </Box>
-        )
-    }
-
+export const TableActions: FC<TableActionsPropsType> = ({ packId, myCards, packName }) => {
+    return (
+        <Box display={'flex'}>
+            <IconButton size={'small'}>
+                <SchoolIcon />
+            </IconButton>
+            {myCards && <UpdatePack packName={packName} packId={packId} />}
+            {myCards && <RemovePack packName={packName} packId={packId} />}
+        </Box>
+    )
+}

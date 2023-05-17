@@ -16,7 +16,6 @@ export const useAppForm = (
     defaultInputValues: DefaultFieldsValues = {}
 ) => {
     const { validators } = useValidators()
-
     const getValidateSchema = (
         validators: ValidatorsType,
         validateFields: ValidateFieldsType[]
@@ -67,8 +66,8 @@ export type FormInputValues = {
     rememberMe: boolean
     textInput: string
     private: boolean
-    questionInput: string
-    answerInput: string
+    question: string
+    answer: string
 }
 
 export type DefaultFieldsValues = Partial<FormInputValues>
