@@ -4,6 +4,7 @@ import {
     redirectPathSelector,
     profileSelector,
     checkEmailMessageSelector,
+    userIdSelector,
 } from 'features/auth/auth.selectors'
 import { LoginFieldsType } from 'features/auth/components/login/Login'
 import {
@@ -20,6 +21,7 @@ export const useAuth = () => {
     const profile = useAppSelector(profileSelector)
     const redirectPath = useAppSelector(redirectPathSelector)
     const emailAddress = useAppSelector(checkEmailMessageSelector)
+    const authorizedUserId = useAppSelector(userIdSelector)
 
     const isProfileDefine = () => Boolean(profile)
     const isUserAuth = isProfileDefine()
@@ -67,5 +69,6 @@ export const useAuth = () => {
         isUserAuth,
         redirectPath,
         emailAddress,
+        authorizedUserId,
     }
 }
