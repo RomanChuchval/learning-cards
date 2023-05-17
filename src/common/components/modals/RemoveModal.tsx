@@ -44,10 +44,11 @@ export const RemoveModal: React.FC<PacksModalPropsType> = (
                             <CloseIcon />
                         </IconButton>
                     </Box>
-                    <Typography variant='h6' component='div' sx={{ p: '30px 40px', fontWeight: '400' }}>
-                        Do you really want to remove <b style={{color: 'red'}}>{entityName}</b>? {removedTitle} will be deleted
+                    <Typography variant='h6' component='div' sx={{ p: '30px 20px', fontSize: '14px', fontWeight: '400' }}>
+                        Do you really want to remove <b style={{color: 'red'}}>{entityName}</b>?
+                        <br/>{removedTitle} will be deleted
                     </Typography>
-                    <Box display={'flex'} justifyContent='space-between' sx={{ p: '30px 40px' }}>
+                    <Box display={'flex'} justifyContent='space-between' sx={{ p: '0 24px 36px' }}>
                         <SuperButton name={'Cancel'}
                                      color={'secondary'}
                                      rounded={true}
@@ -55,6 +56,7 @@ export const RemoveModal: React.FC<PacksModalPropsType> = (
                                      type={'button'}
                                      callback={handleClose} />
                         <SuperButton name={'Remove'}
+                                     textColor={'white'}
                                      color={'error'}
                                      rounded={true}
                                      width={'130'}
