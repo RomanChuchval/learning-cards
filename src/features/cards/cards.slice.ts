@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { cardsApi, GetCardsParamsType, GetCardsResponseType } from 'features/cards/cards.api'
+import {
+    cardsApi,
+    CreateCardRequestType,
+    GetCardsParamsType,
+    GetCardsResponseType,
+} from 'features/cards/cards.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { thunkErrorHandler } from 'common/utils/thunkErrorHandler'
 import { GetParamsType } from 'features/cards/hooks/useCards'
@@ -53,6 +58,19 @@ const getCards = createAppAsyncThunk<{ cards: GetCardsResponseType }>(
     }
 )
 
+const createCard = createAppAsyncThunk<void, CreateCardRequestType>(
+    'cards/createCard',
+    async (data, { rejectWithValue, dispatch }) => {
+        try {
+            await cardsApi.createCard(data)
+            dispatch(getCards())
+        } catch (e) {
+            const error = thunkErrorHandler(e)
+            return rejectWithValue(error)
+        }
+    }
+)
+
 export const cardsReducer = slice.reducer
 export const cardsActions = slice.actions
-export const cardsThunks = { getCards }
+export const cardsThunks = { getCards, createCard }

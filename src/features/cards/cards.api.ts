@@ -5,16 +5,16 @@ export const cardsApi = {
         return instance.get<GetCardsResponseType>('cards/card', { params: params })
     },
     createCard: (data: CreateCardRequestType) => {
-        return instance.post<CommonCardResponseType>('cards/card', data)
+        return instance.post<CommonCardResponseType>('cards/card', { card: { ...data } })
     },
     removeCard: (id: string) => {
         return instance.delete<CommonCardResponseType>(`cards/card?id=${id}`)
     },
     updateCard: (data: UpdateCardRequestType) => {
-        return instance.put<CommonCardResponseType>('cards/card', data)
+        return instance.put<CommonCardResponseType>('cards/card', { card: data })
     },
     updateCardGrade: (data: UpdateCardGradeRequestType) => {
-        return instance.put<UpdatedGradeType>('cards/card', data)
+        return instance.put<UpdatedGradeType>('cards/grade', data)
     },
 }
 
@@ -74,10 +74,8 @@ export type CardRequestType = {
     answer?: string
     grade?: '0' | '1' | '2' | '3' | '4' | '5'
     shots?: number
-    answerImg: string
-    questionImg: string
-    questionVideo: string
-    answerVideo: string
+    answerImg?: string
+    questionImg?: string
 }
 export type CommonCardResponseType = {
     _id: string

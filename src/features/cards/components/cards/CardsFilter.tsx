@@ -8,11 +8,18 @@ type CardsFilterPropsType = {
     children: React.ReactNode
 }
 export const CardsFilter: FC<CardsFilterPropsType> = ({ children }) => {
-    const { cardsTotalCount, cardsPageCount, cardsPage, onChangePagination } = useCards()
+    const {
+        cardsTotalCount,
+        cardsPageCount,
+        cardsPage,
+        onChangePagination,
+        debouncedSearch,
+        searchValue,
+    } = useCards()
     return (
         <>
             <Grid item md={12}>
-                <SearchBar onChange={() => {}} value={''} fullWidth={true} />
+                <SearchBar onChange={debouncedSearch} value={searchValue} fullWidth={true} />
             </Grid>
             <Grid item md={12}>
                 {children}

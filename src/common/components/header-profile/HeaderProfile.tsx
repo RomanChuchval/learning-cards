@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import { CustomPopover } from 'common/components/popover/CustomPopover'
 import { PopoverProfileList } from 'common/components/popover/PopoverProfileList'
+import { usePopover } from 'common/hooks/usePopover'
 
 type HeaderProfilePropsType = {
     userName: string
@@ -12,14 +13,7 @@ type HeaderProfilePropsType = {
 }
 
 export const HeaderProfile: FC<HeaderProfilePropsType> = ({ userName, avatar }) => {
-    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
-
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget)
-    }
-    const handleClose = () => {
-        setAnchorEl(null)
-    }
+    const { anchorEl, handleClose, handleClick } = usePopover()
 
     return (
         <Box

@@ -3,7 +3,18 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useValidators, ValidatorsType } from 'features/auth/hooks/useValidators'
 
-export const useAppForm = (validateFields: ValidateFieldsType[], defaultInput?: string) => {
+/** Кастомный хук для управления и валидации форм в приложении
+ * @param {ValidateFieldsType[]} [validateFields] - Необязательный массив c названиями полей которые нужно провалидировать.
+ * Имена полей должны совпадать с функциями валидаторами в хук useValidators.
+ * Если валидация не требуется, параметр можно не передавать.
+ * @param {DefaultFieldsValues} [defaultInputValues] - Необязательное значение по умолчанию для полей формы.
+ * Если значение по умолчанию не требуются, передайте пустой объект.
+ * Иначе передавать объект с полями и значениями согласно типизации
+ */
+export const useAppForm = (
+    validateFields: ValidateFieldsType[] = [],
+    defaultInputValues: DefaultFieldsValues = {}
+) => {
     const { validators } = useValidators()
 
     const getValidateSchema = (
@@ -23,20 +34,18 @@ export const useAppForm = (validateFields: ValidateFieldsType[], defaultInput?: 
         handleSubmit,
         register,
         reset,
-        formState: { errors }
+        formState: { errors },
     } = useForm<FormInputValues>({
         resolver: yupResolver(validateSchema),
         mode: 'onTouched',
-        defaultValues: {
-            textInput: defaultInput || ''
-        }
+        defaultValues: defaultInputValues,
     })
 
     return {
         handleSubmit,
         register,
         errors,
-        reset
+        reset,
     }
 }
 
@@ -58,4 +67,8 @@ export type FormInputValues = {
     rememberMe: boolean
     textInput: string
     private: boolean
+    questionInput: string
+    answerInput: string
 }
+
+export type DefaultFieldsValues = Partial<FormInputValues>
