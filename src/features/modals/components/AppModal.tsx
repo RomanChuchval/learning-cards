@@ -4,9 +4,11 @@ import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
-import { EditorModalForm } from './EditorModalForm'
+import { ModalForm } from 'common/components/modals/ModalForm'
 import { UseFormHandleSubmit } from 'react-hook-form'
 import { FormInputValues } from 'features/auth/hooks/useAppForm'
+import { EditorPacksModal } from 'features/packs/components/modals/EditorPacksModal'
+import { useModalsForm } from 'common/hooks/useModalsForm'
 
 const style = {
     position: 'absolute',
@@ -16,25 +18,22 @@ const style = {
     width: 400,
     background: '#fff',
     borderRadius: '2px',
-    boxShadow: 24,
+    boxShadow: 24
 }
 type EditorModalPropsType = {
     title: string
-    packName?: string
     open: boolean
     children: React.ReactNode
     handleClose: () => void
-    handleSubmit: UseFormHandleSubmit<FormInputValues>
-    callbackHandler: (data: FormInputValues) => void
 }
-export const EditorModal: React.FC<EditorModalPropsType> = ({
-    title,
-    open,
-    handleClose,
-    children,
-    handleSubmit,
-    callbackHandler,
-}) => {
+export const AppModal: React.FC<EditorModalPropsType> = (
+    {
+        title,
+        open,
+        handleClose,
+        children
+    }) => {
+
     return (
         <Modal open={open} onClose={handleClose}>
             <Box sx={style}>
@@ -50,14 +49,36 @@ export const EditorModal: React.FC<EditorModalPropsType> = ({
                         <CloseIcon />
                     </IconButton>
                 </Box>
-                <EditorModalForm
-                    handleSubmit={handleSubmit}
-                    callbackHandler={callbackHandler}
-                    handleClose={handleClose}
-                >
-                    {children}
-                </EditorModalForm>
+                {children}
             </Box>
         </Modal>
+    )
+}
+
+type PacksModalFormPropsType = {
+    onSubmit: (data: FormInputValues) => void
+    handleClose: () => void
+}
+
+export const PacksModalForm: React.FC<PacksModalFormPropsType> = ({onSubmit, handleClose}) => {
+    const {
+        defaultValues,
+        errors,
+        register,
+        handleSubmit,
+        onSubmitHandler
+    } = useModalsForm(onSubmit, ['textInput'])
+
+    return (
+        <>
+            <ModalForm
+                handleSubmit={handleSubmit}
+                onSubmit={onSubmitHandler}
+                handleClose={handleClose}>
+                <EditorPacksModal errors={errors}
+                                  register={register}
+                                  packName={defaultValues.packName}/>
+            </ModalForm>
+        </>
     )
 }

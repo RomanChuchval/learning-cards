@@ -10,8 +10,8 @@ type RemovePackPropsType = {
     packId: string
 }
 export const RemovePack: React.FC<RemovePackPropsType> = ({ packName, packId }) => {
-    const { open, handleOpen, handleClose } = useAppModals()
-    const { removePack } = useEditorPack(handleClose, packId)
+    const { showRemoveModal, openRemoveModal, handleClose, selectedPackId } = useAppModals(packId, packName)
+    const { removePack } = useEditorPack()
 
     return (
         <>
@@ -19,11 +19,11 @@ export const RemovePack: React.FC<RemovePackPropsType> = ({ packName, packId }) 
                 removedTitle={'All cards'}
                 entityName={packName}
                 title={'Delete Card'}
-                open={open}
+                open={selectedPackId === packId && showRemoveModal}
                 handleClose={handleClose}
                 onRemove={removePack}
             >
-                <IconButton size={'small'} onClick={handleOpen}>
+                <IconButton size={'small'} onClick={openRemoveModal}>
                     <DeleteForeverIcon />
                 </IconButton>
             </RemoveModal>

@@ -9,16 +9,18 @@ type EditorModalFormPropsType = {
     children: React.ReactNode
     handleClose: () => void
     handleSubmit: UseFormHandleSubmit<FormInputValues>
-    callbackHandler: (data: FormInputValues) => void
+    onSubmit: (data: FormInputValues) => void
 }
-export const EditorModalForm: React.FC<EditorModalFormPropsType> = ({
-    children,
-    handleSubmit,
-    handleClose,
-    callbackHandler,
-}) => {
+export const ModalForm: React.FC<EditorModalFormPropsType> = (
+    {
+        children,
+        handleSubmit,
+        handleClose,
+        onSubmit
+    }
+) => {
     return (
-        <form onSubmit={handleSubmit(callbackHandler)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <FormGroup sx={{ p: '15px 40px' }}>
                 {children}
                 <Box display={'flex'} justifyContent='space-between'>

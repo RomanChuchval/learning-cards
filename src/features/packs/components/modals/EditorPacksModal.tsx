@@ -7,13 +7,14 @@ import { FormInputValues } from 'features/auth/hooks/useAppForm'
 import { FieldErrors } from 'react-hook-form'
 
 type EditorPacksModalPropsType = {
+    packName: string
     errors: FieldErrors<FormInputValues>
     register: UseFormRegister<FormInputValues>
 }
-export const EditorPacksModal: React.FC<EditorPacksModalPropsType> = ({ register, errors }) => {
+export const EditorPacksModal: React.FC<EditorPacksModalPropsType> = ({ register, errors, packName }) => {
     return (
         <>
-            <TextField
+            <TextField defaultValue={packName}
                 variant='standard'
                 label='Name Pack'
                 margin='normal'

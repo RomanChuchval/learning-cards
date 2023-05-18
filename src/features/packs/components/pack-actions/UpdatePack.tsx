@@ -1,39 +1,35 @@
 import React from 'react'
 import IconButton from '@mui/material/IconButton'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
-import { useAppModals } from 'common/hooks/useAppModals'
 import { useEditorPack } from 'features/packs/hooks/useEditorPack'
-import { EditorPacksModal } from 'features/packs/components/modals/EditorPacksModal'
-import { EditorModal } from 'common/components/modals/EditorModal'
-import { useModalsForm } from 'common/hooks/useModalsForm'
+import { AppModal, PacksModalForm } from 'features/modals/components/AppModal'
+import { useAppModals } from 'common/hooks/useAppModals'
 
 type UpdatePackPropsType = {
     packId: string
     packName: string
 }
 export const UpdatePack: React.FC<UpdatePackPropsType> = ({ packId, packName }) => {
-    const { open, handleOpen, handleClose } = useAppModals()
-    const { updatePack } = useEditorPack(handleClose, packId)
-    const { errors, register, handleSubmit, callbackHandler } = useModalsForm(
-        updatePack,
-        { textInput: packName },
-        ['textInput']
-    )
+    const {
+        openUpdateModal,
+        handleClose,
+        selectedPackId,
+        showUpdateModal
+    } = useAppModals(packId, packName)
+
+    const { updatePack } = useEditorPack()
 
     return (
         <>
-            <IconButton size={'small'} onClick={handleOpen}>
+            <IconButton size={'small'} onClick={openUpdateModal}>
                 <BorderColorIcon />
             </IconButton>
-            <EditorModal
-                title={'Update Pack'}
-                handleSubmit={handleSubmit}
-                callbackHandler={callbackHandler}
-                open={open}
-                handleClose={handleClose}
-            >
-                <EditorPacksModal errors={errors} register={register} />
-            </EditorModal>
+            <AppModal title={'Update Pack'}
+                      open={packId === selectedPackId && showUpdateModal}
+                      handleClose={handleClose}>
+                <PacksModalForm onSubmit={updatePack}
+                                handleClose={handleClose}/>
+            </AppModal>
         </>
     )
 }
