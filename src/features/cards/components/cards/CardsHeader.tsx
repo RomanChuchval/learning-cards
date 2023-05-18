@@ -16,7 +16,6 @@ export const CardsHeader = () => {
     const { authorizedUserId } = useAuth()
     const { anchorEl, handleClose, handleClick } = usePopover()
     const isMyPack = packUserId === authorizedUserId
-
     return (
         <>
             <Grid item md={6}>
@@ -32,10 +31,10 @@ export const CardsHeader = () => {
                 )}
             </Grid>
             <Grid item md={6} display={'flex'} justifyContent={'flex-end'}>
-                <CreateCard packUserId={packUserId} />
+                {isMyPack && <CreateCard />}
             </Grid>
             <CustomPopover anchorEl={anchorEl} handleClose={handleClose}>
-                <PopoverCardsPack />
+                <PopoverCardsPack packId={selectedPack._id} packName={selectedPack.name} />
             </CustomPopover>
         </>
     )

@@ -8,15 +8,22 @@ import ListItemText from '@mui/material/ListItemText'
 import SchoolIcon from '@mui/icons-material/School'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import { UpdatePack } from 'features/packs/components/pack-actions/UpdatePack'
 
-export const PopoverCardsPack = () => {
+type PopoverCardsPackPropsType = {
+    packId: string
+    packName: string
+}
+
+export const PopoverCardsPack: React.FC<PopoverCardsPackPropsType> = ({ packId, packName }) => {
     return (
         <List>
             <ListItem disablePadding>
                 <ListItemButton onClick={() => {}}>
-                    <ListItemIcon>
-                        <BorderColorIcon />
-                    </ListItemIcon>
+                    {/*<ListItemIcon>*/}
+                    {/*<BorderColorIcon />*/}
+                    <UpdatePack packId={packId} packName={packName} />
+                    {/*</ListItemIcon>*/}
                     <ListItemText primary='Edit' />
                 </ListItemButton>
             </ListItem>
