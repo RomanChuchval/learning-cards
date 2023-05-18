@@ -37,7 +37,6 @@ export const useAppForm = (
     } = useForm<FormInputValues>({
         resolver: yupResolver(validateSchema),
         mode: 'onTouched',
-        defaultValues: defaultInputValues,
     })
 
     return {

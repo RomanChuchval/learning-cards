@@ -4,6 +4,8 @@ import {
     useAppForm,
     ValidateFieldsType,
 } from 'features/auth/hooks/useAppForm'
+import { useAppSelector } from 'app/hooks/useAppSelector'
+import { defaultValuesSelector } from 'features/modals/modals.selector'
 /**
  * Кастомный хук для управления формой модального окна.
  * @param {function(data: FormInputValues): void} callback - Функция обратного вызова, которая будет вызвана
@@ -22,20 +24,21 @@ import {
  * */
 export const useModalsForm = (
     callback: (data: FormInputValues) => void,
-    defaultInputValues: DefaultFieldsValues = {},
     validateFields?: ValidateFieldsType[]
 ) => {
-    const { register, errors, reset, handleSubmit } = useAppForm(validateFields, defaultInputValues)
+    const defaultValues = useAppSelector(defaultValuesSelector)
+    const { register, errors, reset, handleSubmit } = useAppForm(validateFields)
 
-    const callbackHandler = (data: FormInputValues) => {
+    const onSubmitHandler = (data: FormInputValues) => {
         callback(data)
         reset()
     }
 
     return {
+        defaultValues,
         register,
         errors,
         handleSubmit,
-        callbackHandler,
+        onSubmitHandler,
     }
 }

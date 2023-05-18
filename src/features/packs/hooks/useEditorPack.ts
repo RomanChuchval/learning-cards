@@ -2,9 +2,13 @@ import { FormInputValues } from 'features/auth/hooks/useAppForm'
 import { CreatePackModelType, UpdatePackModelType } from 'features/packs/packs.api'
 import { packsThunks } from 'features/packs/packs.slice'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
+import { modalsAction } from 'features/modals/modals.slice'
+import { useAppSelector } from 'app/hooks/useAppSelector'
+import { packIdModalsSelector } from 'features/modals/modals.selector'
 
-export const useEditorPack = (handleClose: () => void, packId?: string) => {
+export const useEditorPack = () => {
     const dispatch = useAppDispatch()
+    const packId = useAppSelector(packIdModalsSelector)
 
     const createPack = (data: FormInputValues) => {
         const payload: CreatePackModelType = {
@@ -12,11 +16,11 @@ export const useEditorPack = (handleClose: () => void, packId?: string) => {
             private: data.private,
         }
         dispatch(packsThunks.createPack(payload))
-        handleClose()
+        dispatch(modalsAction.closeModal())
     }
     const removePack = () => {
         if (packId) dispatch(packsThunks.removePack(packId))
-        handleClose()
+        dispatch(modalsAction.closeModal())
     }
     const updatePack = (data: FormInputValues) => {
         const payload: UpdatePackModelType = {
@@ -25,7 +29,7 @@ export const useEditorPack = (handleClose: () => void, packId?: string) => {
             private: data.private,
         }
         dispatch(packsThunks.updatePack(payload))
-        handleClose()
+        dispatch(modalsAction.closeModal())
     }
     return { createPack, removePack, updatePack }
 }
