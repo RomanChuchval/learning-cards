@@ -7,10 +7,7 @@ import { useModalsForm } from 'common/hooks/useModalsForm'
 import { EditorCardsModal } from 'features/cards/components/cards/EditorCardsModal'
 import { useEditorCards } from 'features/cards/hooks/useEditorCards'
 
-export type CreateCardPropsType = {
-    packUserId: string
-}
-export const CreateCard: React.FC<CreateCardPropsType> = ({ packUserId }) => {
+export const CreateCard = () => {
     const { open, handleClose, handleOpen } = useAppModals()
     const { createCard } = useEditorCards(handleClose)
     const { register, handleSubmit, callbackHandler } = useModalsForm(createCard)
