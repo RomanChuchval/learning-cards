@@ -58,4 +58,5 @@ export type FormInputValues = {
     rememberMe: boolean
     textInput: string
     private: boolean
+    radio: string
 }
