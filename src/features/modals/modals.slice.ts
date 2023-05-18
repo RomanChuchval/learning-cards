@@ -35,17 +35,14 @@ const slice = createSlice({
 export const modalsReducer = slice.reducer
 export const modalsAction = slice.actions
 
-
 //types
 type defaultValuesArgType = Partial<defaultValuesType>
-
 type defaultValuesType = {
     packId: string
     packName: string
     question: string
     answer: string
 }
-
 type initialStateType = {
     showCreateModal: boolean
     showUpdateModal: boolean

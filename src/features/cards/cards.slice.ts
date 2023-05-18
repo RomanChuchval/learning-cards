@@ -9,6 +9,7 @@ import {
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { thunkErrorHandler } from 'common/utils/thunkErrorHandler'
 import { GetParamsType } from 'features/cards/hooks/useCards'
+import { packsAction } from 'features/packs/packs.slice'
 
 const slice = createSlice({
     name: 'cards',
@@ -44,7 +45,7 @@ const slice = createSlice({
 
 const getCards = createAppAsyncThunk<{ cards: GetCardsResponseType }>(
     'cards/getCards',
-    async (id, { rejectWithValue, getState }) => {
+    async (id, { rejectWithValue, getState, dispatch }) => {
         const params = {
             ...getState().cards.params,
             cardsPack_id: getState().cards.selectedCardsPackId,

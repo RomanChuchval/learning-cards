@@ -53,6 +53,9 @@ const slice = createSlice({
             .addCase(getPacks.fulfilled, (state, action) => {
                 state.packs = action.payload.packs
             })
+            .addCase(updatePack.fulfilled, (state, action) => {
+                state.selectedPack = action.payload.updatedCardsPack
+            })
             .addMatcher(pendingPacks, state => {
                 state.isLoading = true
             })
@@ -113,20 +116,24 @@ const removePack = createAppAsyncThunk<{ infoMessage: string }, string>(
         }
     }
 )
-const updatePack = createAppAsyncThunk<{ infoMessage: string }, UpdatePackModelType>(
-    'packs/updatePack',
-    async (data, thunkAPI) => {
-        const { dispatch, rejectWithValue } = thunkAPI
-        try {
-            const res = await packsApi.updatePack(data)
-            dispatch(packsThunks.getPacks())
-            return { infoMessage: `${res.data.updatedCardsPack.name} pack updated` }
-        } catch (e) {
-            const error = thunkErrorHandler(e)
-            return rejectWithValue(error)
+const updatePack = createAppAsyncThunk<
+    { infoMessage: string; updatedCardsPack: PackType },
+    UpdatePackModelType
+>('packs/updatePack', async (data, thunkAPI) => {
+    const { dispatch, rejectWithValue } = thunkAPI
+    try {
+        const res = await packsApi.updatePack(data)
+        debugger
+        dispatch(packsThunks.getPacks())
+        return {
+            infoMessage: `${res.data.updatedCardsPack.name} pack updated`,
+            updatedCardsPack: res.data.updatedCardsPack,
         }
+    } catch (e) {
+        const error = thunkErrorHandler(e)
+        return rejectWithValue(error)
     }
-)
+})
 
 const fulfilledPacks = isFulfilled(getPacks)
 const fulfilledEditor = isFulfilled(createPack, removePack, updatePack)
