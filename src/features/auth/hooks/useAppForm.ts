@@ -33,7 +33,7 @@ export const useAppForm = (
         handleSubmit,
         register,
         reset,
-        formState: { errors },
+        formState: { errors }
     } = useForm<FormInputValues>({
         resolver: yupResolver(validateSchema),
         mode: 'onTouched',
@@ -44,7 +44,7 @@ export const useAppForm = (
         handleSubmit,
         register,
         errors,
-        reset,
+        reset
     }
 }
 
@@ -68,6 +68,7 @@ export type FormInputValues = {
     private: boolean
     question: string
     answer: string
+    radio: string
 }
 
 export type DefaultFieldsValues = Partial<FormInputValues>

@@ -6,7 +6,6 @@ import { paths } from 'common'
 import { Cards } from 'features/cards/components/cards/Cards'
 import { Packs } from 'features/packs/components/packs/Packs'
 import { Profile } from 'features/auth/components/profile/Profile'
-import { Learn } from 'features/cards/components/learn/Learn'
 import { CheckEmail } from 'features/auth/components/check-email/CheckEmail'
 import { ForgotPassword } from 'features/auth/components/forgot-password/ForgotPassword'
 import { Login } from 'features/auth/components/login/Login'
@@ -15,6 +14,7 @@ import { NewPassword } from 'features/auth/components/new-password/NewPassword'
 import { Sandbox } from 'common/components/_test-component/Sandbox'
 import { RequireAuth } from 'common/hoc/RequireAuth'
 import { Auth } from 'common/hoc/Auth'
+import { Learn } from 'features/learn/components/learn/Learn'
 
 export const router = createHashRouter([
     {
