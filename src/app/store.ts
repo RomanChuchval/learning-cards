@@ -4,6 +4,7 @@ import { authReducer } from 'features/auth/auth.slice'
 import { packsReducer } from 'features/packs/packs.slice'
 import { cardsReducer } from 'features/cards/cards.slice'
 import { modalsReducer } from 'features/modals/modals.slice'
+import { learnReducer } from 'features/learn/learn.slice'
 
 export const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
         packs: packsReducer,
         cards: cardsReducer,
         modals: modalsReducer,
+        learn: learnReducer
     },
 })
 
