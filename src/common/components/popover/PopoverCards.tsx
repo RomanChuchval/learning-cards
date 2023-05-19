@@ -6,26 +6,20 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import SchoolIcon from '@mui/icons-material/School'
-import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import { UpdatePack } from 'features/packs/components/pack-actions/UpdatePack'
+import { UpdatePackTitle } from 'features/cards/components/modals/UpdatePackTitle'
 
 type PopoverCardsPackPropsType = {
     packId: string
     packName: string
+    handleClose: () => void
 }
 
-export const PopoverCardsPack: React.FC<PopoverCardsPackPropsType> = ({ packId, packName }) => {
+export const PopoverCards: React.FC<PopoverCardsPackPropsType> = ({ packId, packName }) => {
     return (
         <List>
             <ListItem disablePadding>
-                <ListItemButton onClick={() => {}}>
-                    {/*<ListItemIcon>*/}
-                    {/*<BorderColorIcon />*/}
-                    <UpdatePack packId={packId} packName={packName} />
-                    {/*</ListItemIcon>*/}
-                    <ListItemText primary='Edit' />
-                </ListItemButton>
+                <UpdatePackTitle packName={packName} packId={packId} />
             </ListItem>
             <Divider />
             <ListItem disablePadding>

@@ -8,13 +8,13 @@ import PendingIcon from '@mui/icons-material/Pending'
 import IconButton from '@mui/material/IconButton'
 import { usePopover } from 'common/hooks/usePopover'
 import { CustomPopover } from 'common/components/popover/CustomPopover'
-import { PopoverCardsPack } from 'common/components/popover/PopoverCardsPack'
+import { PopoverCards } from 'common/components/popover/PopoverCards'
 import { CreateCard } from 'features/cards/components/cards/CreateCard'
 
 export const CardsHeader = () => {
     const { packUserId, selectedPack } = useCards()
     const { authorizedUserId } = useAuth()
-    const { anchorEl, handleClose, handleClick } = usePopover()
+    const { anchorEl, closePopover, handleClick } = usePopover()
     const isMyPack = packUserId === authorizedUserId
     return (
         <>
@@ -33,8 +33,12 @@ export const CardsHeader = () => {
             <Grid item md={6} display={'flex'} justifyContent={'flex-end'}>
                 {isMyPack && <CreateCard />}
             </Grid>
-            <CustomPopover anchorEl={anchorEl} handleClose={handleClose}>
-                <PopoverCardsPack packId={selectedPack._id} packName={selectedPack.name} />
+            <CustomPopover anchorEl={anchorEl} closePopover={closePopover}>
+                <PopoverCards
+                    packId={selectedPack._id}
+                    packName={selectedPack.name}
+                    handleClose={closePopover}
+                />
             </CustomPopover>
         </>
     )

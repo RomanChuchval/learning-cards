@@ -6,6 +6,7 @@ import { CardsRating } from 'common/components/rating/CardsRating'
 import { useCards } from 'features/cards/hooks/useCards'
 import { CardsTableActions } from 'features/cards/components/cards/CardsTableActions'
 import { useAuth } from 'features/auth/hooks/useAuth'
+import Box from '@mui/material/Box'
 
 export const CardsTable = () => {
     const { cards, packUserId } = useCards()
@@ -27,18 +28,22 @@ export const CardsTable = () => {
             >
                 {cards?.map(card => (
                     <TableRow key={card._id}>
-                        <TableCell sx={tableBodySX}>{card.question}</TableCell>
+                        <TableCell sx={{ ...tableBodySX, paddingLeft: '40px' }}>
+                            {card.question}
+                        </TableCell>
                         <TableCell sx={tableBodySX}>{card.answer}</TableCell>
                         <TableCell sx={tableBodySX}>{card.updated.slice(0, 10)}</TableCell>
-                        <TableCell sx={{ ...tableBodySX, display: 'flex', alignItems: 'center' }}>
-                            <CardsRating defaultValue={card.grade} />
-                            {isMyPack && (
-                                <CardsTableActions
-                                    cardId={card._id}
-                                    question={card.question}
-                                    answer={card.answer}
-                                />
-                            )}
+                        <TableCell sx={tableBodySX}>
+                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                <CardsRating defaultValue={card.grade} />
+                                {isMyPack && (
+                                    <CardsTableActions
+                                        cardId={card._id}
+                                        question={card.question}
+                                        answer={card.answer}
+                                    />
+                                )}
+                            </Box>
                         </TableCell>
                     </TableRow>
                 ))}

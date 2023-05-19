@@ -1,15 +1,17 @@
 import { RootState } from 'app/store'
 
-const defaultValuesSelector = (state: RootState) => state.modals.defaultValues
-const packIdModalsSelector = (state: RootState) => state.modals.defaultValues.packId
+const modalStateSelector = (state: RootState) => state.modals.modalState
+const packIdSelector = (state: RootState) => state.modals.modalState.packId
+const cardIdsSelector = (state: RootState) => state.modals.modalState.cardId
 const showCreateModalSelector = (state: RootState) => state.modals.showCreateModal
 const showUpdateModalSelector = (state: RootState) => state.modals.showUpdateModal
 const showRemoveModalSelector = (state: RootState) => state.modals.showRemoveModal
 
 export {
-    packIdModalsSelector,
+    modalStateSelector,
     showCreateModalSelector,
     showUpdateModalSelector,
     showRemoveModalSelector,
-    defaultValuesSelector
+    packIdSelector,
+    cardIdsSelector,
 }

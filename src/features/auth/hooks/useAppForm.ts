@@ -33,17 +33,18 @@ export const useAppForm = (
         handleSubmit,
         register,
         reset,
-        formState: { errors }
+        formState: { errors },
     } = useForm<FormInputValues>({
         resolver: yupResolver(validateSchema),
         mode: 'onTouched',
+        defaultValues: defaultInputValues,
     })
 
     return {
         handleSubmit,
         register,
         errors,
-        reset
+        reset,
     }
 }
 

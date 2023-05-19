@@ -11,14 +11,12 @@ type EditorModalFormPropsType = {
     handleSubmit: UseFormHandleSubmit<FormInputValues>
     onSubmit: (data: FormInputValues) => void
 }
-export const ModalForm: React.FC<EditorModalFormPropsType> = (
-    {
-        children,
-        handleSubmit,
-        handleClose,
-        onSubmit
-    }
-) => {
+export const ModalForm: React.FC<EditorModalFormPropsType> = ({
+    children,
+    handleSubmit,
+    handleClose,
+    onSubmit,
+}) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <FormGroup sx={{ p: '15px 40px' }}>

@@ -1,51 +1,53 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-const initialState: initialStateType = {
+const initialState: InitialStateType = {
     showCreateModal: false,
     showUpdateModal: false,
     showRemoveModal: false,
-    defaultValues: {
+    modalState: {
         packId: '',
+        cardId: '',
         packName: '',
         question: '',
         answer: '',
-    }
+    },
 }
 
 const slice = createSlice({
     name: 'modals',
     initialState: initialState,
     reducers: {
-        showCreateModal: (state, action: PayloadAction<defaultValuesArgType>) => {
+        showCreateModal: (state, action: PayloadAction<ModalStateArgsType>) => {
             state.showCreateModal = true
-            state.defaultValues = {...state.defaultValues, ...action.payload}
+            state.modalState = { ...state.modalState, ...action.payload }
         },
-        showUpdateModal: (state, action: PayloadAction<defaultValuesArgType>) => {
+        showUpdateModal: (state, action: PayloadAction<ModalStateArgsType>) => {
             state.showUpdateModal = true
-            state.defaultValues = {...state.defaultValues, ...action.payload}
+            state.modalState = { ...state.modalState, ...action.payload }
         },
-        showRemoveModal: (state, action:  PayloadAction<defaultValuesArgType>) => {
+        showRemoveModal: (state, action: PayloadAction<ModalStateArgsType>) => {
             state.showRemoveModal = true
-            state.defaultValues = {...state.defaultValues, ...action.payload}
+            state.modalState = { ...state.modalState, ...action.payload }
         },
-        closeModal: () => initialState
-    }
+        closeModal: () => initialState,
+    },
 })
 
 export const modalsReducer = slice.reducer
 export const modalsAction = slice.actions
 
 //types
-type defaultValuesArgType = Partial<defaultValuesType>
-type defaultValuesType = {
+export type ModalStateArgsType = Partial<ModalStateType>
+type ModalStateType = {
     packId: string
+    cardId: string
     packName: string
     question: string
     answer: string
 }
-type initialStateType = {
+type InitialStateType = {
     showCreateModal: boolean
     showUpdateModal: boolean
     showRemoveModal: boolean
-    defaultValues: defaultValuesType
+    modalState: ModalStateType
 }

@@ -4,11 +4,11 @@ import { packsThunks } from 'features/packs/packs.slice'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
 import { modalsAction } from 'features/modals/modals.slice'
 import { useAppSelector } from 'app/hooks/useAppSelector'
-import { packIdModalsSelector } from 'features/modals/modals.selector'
+import { packIdSelector } from 'features/modals/modals.selector'
 
 export const useEditorPack = () => {
     const dispatch = useAppDispatch()
-    const packId = useAppSelector(packIdModalsSelector)
+    const packId = useAppSelector(packIdSelector)
 
     const createPack = (data: FormInputValues) => {
         const payload: CreatePackModelType = {

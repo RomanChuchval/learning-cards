@@ -4,10 +4,13 @@ import { CreateCardRequestType, UpdateCardRequestType } from 'features/cards/car
 import { FormInputValues } from 'features/auth/hooks/useAppForm'
 import { useAppSelector } from 'app/hooks/useAppSelector'
 import { selectedCardsPackIdSelector } from 'features/cards/cards.selectors'
+import { cardIdsSelector } from 'features/modals/modals.selector'
+import { modalsAction } from 'features/modals/modals.slice'
 
-export const useEditorCards = (handleClose: () => void, cardId: string = '') => {
+export const useEditorCards = () => {
     const dispatch = useAppDispatch()
     const selectedPackId = useAppSelector(selectedCardsPackIdSelector)
+    const cardId = useAppSelector(cardIdsSelector)
 
     const createCard = (data: FormInputValues) => {
         const requestData: CreateCardRequestType = {
@@ -16,7 +19,7 @@ export const useEditorCards = (handleClose: () => void, cardId: string = '') => 
             answer: data.answer,
         }
         dispatch(cardsThunks.createCard(requestData))
-        handleClose()
+        dispatch(modalsAction.closeModal())
     }
 
     const updateCard = (data: FormInputValues) => {
@@ -26,12 +29,12 @@ export const useEditorCards = (handleClose: () => void, cardId: string = '') => 
             answer: data.answer,
         }
         dispatch(cardsThunks.updateCard(requestData))
-        handleClose()
+        dispatch(modalsAction.closeModal())
     }
 
     const removeCard = () => {
         dispatch(cardsThunks.removeCard(cardId))
-        handleClose()
+        dispatch(modalsAction.closeModal())
     }
 
     return { createCard, updateCard, removeCard }

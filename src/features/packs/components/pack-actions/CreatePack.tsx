@@ -1,9 +1,10 @@
 import { SuperButton } from 'common'
 import React from 'react'
-import { AppModal, PacksModalForm } from 'features/modals/components/AppModal'
+import { AppModal } from 'features/modals/components/AppModal'
 import { useAppModals } from 'common/hooks/useAppModals'
 import { useEditorPack } from 'features/packs/hooks/useEditorPack'
 import { useApp } from 'app/hooks/useApp'
+import { PacksModalForm } from 'features/packs/components/modals/PacksModalForm'
 
 export const CreatePack = () => {
     const { openCreateModal, showCreateModal, handleClose } = useAppModals()
@@ -19,11 +20,8 @@ export const CreatePack = () => {
                 textColor={'white'}
                 disable={isLoading}
             />
-            <AppModal title={'Create Pack'}
-                      open={showCreateModal}
-                      handleClose={handleClose}>
-                <PacksModalForm onSubmit={createPack}
-                                handleClose={handleClose} />
+            <AppModal title={'Create Pack'} open={showCreateModal} handleClose={handleClose}>
+                <PacksModalForm onSubmit={createPack} handleClose={handleClose} />
             </AppModal>
         </>
     )

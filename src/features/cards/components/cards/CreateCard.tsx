@@ -3,37 +3,26 @@ import { SuperButton } from 'common'
 import { useAppModals } from 'common/hooks/useAppModals'
 import { useApp } from 'app/hooks/useApp'
 import { AppModal } from 'features/modals/components/AppModal'
-import { useModalsForm } from 'common/hooks/useModalsForm'
-import { EditorCardsModal } from 'features/cards/components/cards/EditorCardsModal'
 import { useEditorCards } from 'features/cards/hooks/useEditorCards'
+import { CardsModalForm } from 'features/cards/components/modals/CardsModalForm'
 
-export type CreateCardPropsType = {
-    packUserId: string
-}
-export const CreateCard: React.FC<CreateCardPropsType> = ({ packUserId }) => {
-    // const { open, handleClose, handleOpen } = useAppModals()
-    // const { createCard } = useEditorCards(handleClose)
-    // const { register, handleSubmit, onSubmitHandler } = useModalsForm(createCard)
+export const CreateCard = () => {
+    const { openCreateModal, showCreateModal, handleClose } = useAppModals()
+    const { createCard } = useEditorCards()
     const { isLoading } = useApp()
 
     return (
         <>
-            {/*<SuperButton*/}
-            {/*    name={'Add new card'}*/}
-            {/*    callback={handleOpen}*/}
-            {/*    rounded={true}*/}
-            {/*    textColor={'white'}*/}
-            {/*    disable={isLoading}*/}
-            {/*/>*/}
-            {/*<AppModal*/}
-            {/*    title={'Add new card'}*/}
-            {/*    open={open}*/}
-            {/*    handleClose={handleClose}*/}
-            {/*    handleSubmit={handleSubmit}*/}
-            {/*    callbackHandler={callbackHandler}*/}
-            {/*>*/}
-            {/*    <EditorCardsModal register={register} />*/}
-            {/*</AppModal>*/}
+            <SuperButton
+                name={'Add new card'}
+                callback={openCreateModal}
+                rounded={true}
+                textColor={'white'}
+                disable={isLoading}
+            />
+            <AppModal title={'Create Card'} open={showCreateModal} handleClose={handleClose}>
+                <CardsModalForm onSubmit={createCard} handleClose={handleClose} />
+            </AppModal>
         </>
     )
 }

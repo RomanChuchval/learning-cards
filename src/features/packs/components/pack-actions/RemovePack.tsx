@@ -10,7 +10,10 @@ type RemovePackPropsType = {
     packId: string
 }
 export const RemovePack: React.FC<RemovePackPropsType> = ({ packName, packId }) => {
-    const { showRemoveModal, openRemoveModal, handleClose, selectedPackId } = useAppModals(packId, packName)
+    const { showRemoveModal, openRemoveModal, handleClose, selectedPackId } = useAppModals({
+        packId,
+        packName,
+    })
     const { removePack } = useEditorPack()
 
     return (

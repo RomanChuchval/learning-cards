@@ -123,7 +123,6 @@ const updatePack = createAppAsyncThunk<
     const { dispatch, rejectWithValue } = thunkAPI
     try {
         const res = await packsApi.updatePack(data)
-        debugger
         dispatch(packsThunks.getPacks())
         return {
             infoMessage: `${res.data.updatedCardsPack.name} pack updated`,

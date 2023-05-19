@@ -9,7 +9,6 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 
-
 type CustomTablePropsType = {
     disabled?: boolean
     tableCellForHeader: string[]
@@ -19,40 +18,45 @@ type CustomTablePropsType = {
     sort: boolean
 }
 
-export const CustomTable: React.FC<CustomTablePropsType> =
-    ({ children, sort, setSort, sortHandler, tableCellForHeader, disabled }) => {
-        const tableHeaderSX = {
-            fontWeight: 700,
-            '&:first-of-type': { paddingLeft: '40px' },
-            '&:last-of-type': { paddingRight: '54px' }
-        }
-
-        return (
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }}>
-                    <TableHead>
-                        <TableRow sx={{ background: '#EFEFEF' }}>
-                            {tableCellForHeader.map(textHead => (
-                                <TableCell sx={tableHeaderSX} key={textHead}>
-                                    {textHead}
-                                    {textHead === 'Last Updated' && (
-                                        <IconButton disabled={disabled}
-                                                    onClick={() => {
-                                                        sortHandler()
-                                                        setSort(!sort)
-                                                    }}>
-                                            <ArrowDropDownIcon />
-                                        </IconButton>
-                                    )}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {children}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        )
+export const CustomTable: React.FC<CustomTablePropsType> = ({
+    children,
+    sort,
+    setSort,
+    sortHandler,
+    tableCellForHeader,
+    disabled,
+}) => {
+    const tableHeaderSX = {
+        fontWeight: 700,
+        '&:first-of-type': { paddingLeft: '40px' },
+        '&:last-of-type': { paddingRight: '54px' },
     }
 
+    return (
+        <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }}>
+                <TableHead>
+                    <TableRow sx={{ background: '#EFEFEF' }}>
+                        {tableCellForHeader.map(textHead => (
+                            <TableCell sx={tableHeaderSX} key={textHead}>
+                                {textHead}
+                                {textHead === 'Last Updated' && (
+                                    <IconButton
+                                        disabled={disabled}
+                                        onClick={() => {
+                                            sortHandler()
+                                            setSort(!sort)
+                                        }}
+                                    >
+                                        <ArrowDropDownIcon />
+                                    </IconButton>
+                                )}
+                            </TableCell>
+                        ))}
+                    </TableRow>
+                </TableHead>
+                <TableBody>{children}</TableBody>
+            </Table>
+        </TableContainer>
+    )
+}

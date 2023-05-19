@@ -6,13 +6,13 @@ export const usePopover = () => {
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget)
     }
-    const handleClose = () => {
+    const closePopover = () => {
         setAnchorEl(null)
     }
 
     return {
         anchorEl,
         handleClick,
-        handleClose,
+        closePopover,
     }
 }
