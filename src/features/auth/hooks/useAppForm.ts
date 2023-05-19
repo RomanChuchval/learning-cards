@@ -68,7 +68,7 @@ export type FormInputValues = {
     private: boolean
     question: string
     answer: string
-    radio: string
+    radio: '0' | '1' | '2' | '3' | '4' | '5'
 }
 
 export type DefaultFieldsValues = Partial<FormInputValues>
