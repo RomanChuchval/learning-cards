@@ -7,7 +7,7 @@ import { RemovePack } from 'features/packs/components/pack-actions/RemovePack'
 import { useNavigate } from 'react-router-dom'
 import { paths } from 'common'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
-import { cardsActions } from 'features/cards/cards.slice'
+import { learnThunks } from 'features/learn/learn.slice'
 
 type TableActionsPropsType = {
     packName: string
@@ -22,7 +22,7 @@ export const TableActions: FC<TableActionsPropsType> =
     const navigate = useNavigate()
     const learnHandler = () => {
         navigate(paths.LEARN)
-        dispatch(cardsActions.setSelectedCardsPackId(packId))
+        dispatch(learnThunks.getSortCard(packId))
     }
 
         return (
