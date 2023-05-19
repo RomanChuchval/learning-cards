@@ -7,19 +7,29 @@ import Radio from '@mui/material/Radio'
 import { SuperButton } from 'common'
 import React from 'react'
 import { FormInputValues, useAppForm } from 'features/auth/hooks/useAppForm'
+import { useAppDispatch } from 'app/hooks/useAppDispatch'
+import { learnThunks } from 'features/learn/learn.slice'
 
-export const LearnFormRadio = () => {
+
+type LearnFormRadioPropsType = {
+    cardId: string
+    answer: string
+    closeAnswer: () => void
+}
+export const LearnFormRadio: React.FC<LearnFormRadioPropsType> = ({answer, cardId, closeAnswer}) => {
 
     const {handleSubmit, register} = useAppForm([])
 
+    const dispatch = useAppDispatch()
     const onSubmit = (data: FormInputValues) => {
-        console.log(data.radio)
+        dispatch(learnThunks.updateCardGrade({card_id: cardId, grade: data.radio}))
+        closeAnswer()
     }
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl>
                 <Typography variant='subtitle1' component='div' sx={{ marginBottom: '20px' }}>
-                    <b>Answer:</b> This is how "This" works in JavaScript
+                    <b>Answer:</b> {answer}
                 </Typography>
                 <FormLabel>Rate yourself:</FormLabel>
                 <RadioGroup defaultValue='1' name='radio-buttons-group' sx={{ marginBottom: '20px' }}>
