@@ -30,6 +30,9 @@ export const useAppModals = (modalState: ModalStateArgsType = {}) => {
         dispatch(modalsAction.closeModal())
     }
 
+    const isSelectedCard = selectedCardId === modalState.cardId
+    const isSelectedPack = selectedPackId === modalState.packId
+
     return {
         openUpdateModal,
         openCreateModal,
@@ -40,5 +43,7 @@ export const useAppModals = (modalState: ModalStateArgsType = {}) => {
         handleClose,
         selectedPackId,
         selectedCardId,
+        isSelectedCard,
+        isSelectedPack,
     }
 }

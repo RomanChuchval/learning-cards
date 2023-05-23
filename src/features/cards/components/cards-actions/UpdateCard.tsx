@@ -11,12 +11,22 @@ type UpdateCardActionsPropsType = {
     question: string
     answer: string
     cardId: string
+    answerImg?: string
+    questionImg?: string
 }
-export const UpdateCard: React.FC<UpdateCardActionsPropsType> = ({ question, answer, cardId }) => {
-    const { openUpdateModal, showUpdateModal, handleClose, selectedCardId } = useAppModals({
+export const UpdateCard: React.FC<UpdateCardActionsPropsType> = ({
+    question,
+    answer,
+    cardId,
+    answerImg,
+    questionImg,
+}) => {
+    const { openUpdateModal, showUpdateModal, handleClose, isSelectedCard } = useAppModals({
         question,
         answer,
         cardId,
+        answerImg,
+        questionImg,
     })
     const { updateCard } = useEditorCards()
     const { isLoading } = useApp()
@@ -26,8 +36,8 @@ export const UpdateCard: React.FC<UpdateCardActionsPropsType> = ({ question, ans
                 <BorderColorIcon sx={{ fontSize: '18px' }} />
             </IconButton>
             <AppModal
-                title={'Create Card'}
-                open={selectedCardId === cardId && showUpdateModal}
+                title={'Update Card'}
+                open={isSelectedCard && showUpdateModal}
                 handleClose={handleClose}
             >
                 <CardsModalForm onSubmit={updateCard} handleClose={handleClose} />

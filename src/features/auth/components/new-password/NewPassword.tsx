@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, InfoMessage, PasswordInput } from 'common'
 import { useParams } from 'react-router-dom'
-import { useAppForm } from 'features/auth/hooks/useAppForm'
+import { useAppForm } from 'common/hooks/useAppForm'
 import { useAuth } from 'features/auth/hooks/useAuth'
 import { useRedirect } from 'features/auth/hooks/useRedirect'
 

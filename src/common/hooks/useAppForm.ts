@@ -34,6 +34,7 @@ export const useAppForm = (
         register,
         reset,
         formState: { errors },
+        control,
     } = useForm<FormInputValues>({
         resolver: yupResolver(validateSchema),
         mode: 'onTouched',
@@ -45,6 +46,7 @@ export const useAppForm = (
         register,
         errors,
         reset,
+        control,
     }
 }
 
@@ -69,6 +71,8 @@ export type FormInputValues = {
     question: string
     answer: string
     radio: '0' | '1' | '2' | '3' | '4' | '5'
+    answerImg: FileList
+    questionImg: FileList
 }
 
 export type DefaultFieldsValues = Partial<FormInputValues>

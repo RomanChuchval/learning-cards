@@ -1,4 +1,4 @@
-import { FormInputValues } from 'features/auth/hooks/useAppForm'
+import { FormInputValues } from 'common/hooks/useAppForm'
 import { CreatePackModelType, UpdatePackModelType } from 'features/packs/packs.api'
 import { packsThunks } from 'features/packs/packs.slice'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'

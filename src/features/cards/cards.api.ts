@@ -35,6 +35,10 @@ export type GetCardsResponseType = {
     maxGrade: number
     minGrade: number
     page: number
+    packUpdated: string
+    packCreated: string
+    packDeckCover: string | null
+    packPrivate: boolean
     pageCount: number
     packUserId: string
 }
@@ -48,6 +52,11 @@ export type CardType = {
     created: string
     updated: string
     _id: string
+    answerImg?: string
+    questionImg?: string
+    type: string
+    rating: number
+    comments: string
 }
 export type CreateCardRequestType = CardRequestType & {
     cardsPack_id: string
@@ -92,4 +101,6 @@ export type CommonCardResponseType = {
     created: string
     updated: string
     __v: number
+    answerImg: string
+    questionImg: string
 }

@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton'
 import { usePopover } from 'common/hooks/usePopover'
 import { CustomPopover } from 'common/components/popover/CustomPopover'
 import { PopoverCards } from 'common/components/popover/PopoverCards'
-import { CreateCard } from 'features/cards/components/cards/CreateCard'
+import { CreateCard } from 'features/cards/components/cards-actions/CreateCard'
 
 export const CardsHeader = () => {
     const { packUserId, selectedPack } = useCards()

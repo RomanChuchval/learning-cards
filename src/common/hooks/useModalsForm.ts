@@ -1,16 +1,16 @@
-import { FormInputValues, useAppForm, ValidateFieldsType } from 'features/auth/hooks/useAppForm'
+import { FormInputValues, useAppForm, ValidateFieldsType } from 'common/hooks/useAppForm'
 import { useAppSelector } from 'app/hooks/useAppSelector'
 import { modalStateSelector } from 'features/modals/modals.selector'
 
 export const useModalsForm = (
-    callback: (data: FormInputValues) => void,
+    onSubmit: (data: FormInputValues) => void,
     validateFields?: ValidateFieldsType[]
 ) => {
     const modalState = useAppSelector(modalStateSelector)
-    const { register, errors, reset, handleSubmit } = useAppForm(validateFields)
+    const { register, errors, reset, handleSubmit, control } = useAppForm(validateFields)
 
     const onSubmitHandler = (data: FormInputValues) => {
-        callback(data)
+        onSubmit(data)
         reset()
     }
 
@@ -20,5 +20,6 @@ export const useModalsForm = (
         errors,
         handleSubmit,
         onSubmitHandler,
+        control,
     }
 }

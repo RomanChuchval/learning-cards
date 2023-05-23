@@ -13,7 +13,7 @@ import { useUploadImage } from 'features/auth/hooks/useUploadImage'
 
 export const ProfileCard = () => {
     const { logout, profile } = useAuth()
-    const uploadUserAvatar = useUploadImage()
+    const { uploadUserAvatar } = useUploadImage()
     const handleFileSelect = (event: ChangeEvent<HTMLInputElement>) => {
         uploadUserAvatar(event)
     }

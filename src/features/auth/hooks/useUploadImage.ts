@@ -1,21 +1,25 @@
 import { ChangeEvent } from 'react'
 import { authThunks } from 'features/auth/auth.slice'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
+import { convertFileToBase64 } from 'common/utils/toBase64'
 
 export const useUploadImage = () => {
     const dispatch = useAppDispatch()
-    return (event: ChangeEvent<HTMLInputElement>) => {
-        let file
-        if (!event.target.files) {
-            return
-        }
-        file = event.target.files[0]
 
-        const reader = new FileReader()
-        reader.readAsDataURL(file)
-        reader.onload = () => {
-            const avatar = reader.result as string
-            dispatch(authThunks.updateProfile({ avatar }))
+    const uploadUserAvatar = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length) {
+            const file = e.target.files[0]
+            if (file.size < 4000000) {
+                convertFileToBase64(file, (avatar: string) => {
+                    dispatch(authThunks.updateProfile({ avatar }))
+                })
+            } else {
+                console.error('Error: ', 'the file is too large!')
+            }
         }
+    }
+
+    return {
+        uploadUserAvatar,
     }
 }

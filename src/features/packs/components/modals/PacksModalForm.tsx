@@ -1,4 +1,4 @@
-import { FormInputValues } from 'features/auth/hooks/useAppForm'
+import { FormInputValues } from 'common/hooks/useAppForm'
 import React from 'react'
 import { useModalsForm } from 'common/hooks/useModalsForm'
 import { ModalForm } from 'common/components/modals/ModalForm'

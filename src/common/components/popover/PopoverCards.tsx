@@ -7,7 +7,7 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import SchoolIcon from '@mui/icons-material/School'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import { UpdatePackTitle } from 'features/cards/components/modals/UpdatePackTitle'
+import { UpdatePackTitle } from 'features/cards/components/cards-actions/UpdatePackTitle'
 
 type PopoverCardsPackPropsType = {
     packId: string

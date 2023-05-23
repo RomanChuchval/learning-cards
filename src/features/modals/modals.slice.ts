@@ -10,6 +10,8 @@ const initialState: InitialStateType = {
         packName: '',
         question: '',
         answer: '',
+        questionImg: '',
+        answerImg: '',
     },
 }
 
@@ -44,6 +46,8 @@ type ModalStateType = {
     packName: string
     question: string
     answer: string
+    questionImg: string
+    answerImg: string
 }
 type InitialStateType = {
     showCreateModal: boolean

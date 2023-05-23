@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import { FieldErrors, UseFormRegister } from 'react-hook-form'
-import { FormInputValues } from 'features/auth/hooks/useAppForm'
+import { FormInputValues } from 'common/hooks/useAppForm'
 
 type EmailInputType = {
     label: string

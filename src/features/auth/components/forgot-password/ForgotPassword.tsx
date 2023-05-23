@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from '@mui/material/Box'
 import { EmailInput, Form, InfoMessage, paths } from 'common'
-import { useAppForm } from 'features/auth/hooks/useAppForm'
+import { useAppForm } from 'common/hooks/useAppForm'
 import { useRedirect } from 'features/auth/hooks/useRedirect'
 import { useAuth } from 'features/auth/hooks/useAuth'
 

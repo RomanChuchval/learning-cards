@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import { AppLink, EmailInput, Form, PasswordInput, paths } from 'common'
 import { useAuth } from 'features/auth/hooks/useAuth'
-import { useAppForm } from 'features/auth/hooks/useAppForm'
+import { useAppForm } from 'common/hooks/useAppForm'
 
 export type LoginFieldsType = {
     loginEmail: string
     loginPassword: string
     rememberMe: boolean
 }
+
 export const Login: FC<any> = () => {
     const { errors, handleSubmit, register } = useAppForm(['loginEmail', 'loginPassword'])
     const { login } = useAuth()

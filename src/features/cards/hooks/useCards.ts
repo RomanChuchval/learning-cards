@@ -11,6 +11,7 @@ import { cardsActions, cardsThunks } from 'features/cards/cards.slice'
 import { GetCardsParamsType } from 'features/cards/cards.api'
 import { useState } from 'react'
 import { selectedPackSelector } from 'features/packs/packs.selectors'
+import { cardIdsSelector } from 'features/modals/modals.selector'
 
 export const useCards = () => {
     const dispatch = useAppDispatch()
@@ -21,6 +22,7 @@ export const useCards = () => {
     const cardsPageCount = useAppSelector(cardsPageCountSelector)
     const packUserId = useAppSelector(packUserIdSelector)
     const selectedPack = useAppSelector(selectedPackSelector)
+    const selectedCardId = useAppSelector(cardIdsSelector)
 
     const [searchValue, setSearchValue] = useState<string>('')
     const [timeoutId, setTimeoutId] = useState<number>()
@@ -44,6 +46,11 @@ export const useCards = () => {
     const onChangePagination = (page: string, pageCount: string) => {
         getCardsWithParams({ page, pageCount })
     }
+    // const findAnswerImg = () => {
+    //     const card = cards.find(card => card._id === selectedCardId)
+    //     if (card) return card.answerImg
+    // }
+    // const answerImg = findAnswerImg()
 
     return {
         cards,
@@ -55,6 +62,7 @@ export const useCards = () => {
         searchValue,
         packUserId,
         selectedPack,
+        selectedCardId,
     }
 }
 

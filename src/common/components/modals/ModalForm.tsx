@@ -3,7 +3,7 @@ import FormGroup from '@mui/material/FormGroup/FormGroup'
 import Box from '@mui/material/Box'
 import { SuperButton } from 'common'
 import { UseFormHandleSubmit } from 'react-hook-form'
-import { FormInputValues } from 'features/auth/hooks/useAppForm'
+import { FormInputValues } from 'common/hooks/useAppForm'
 
 type EditorModalFormPropsType = {
     children: React.ReactNode

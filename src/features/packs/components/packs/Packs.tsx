@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import Grid from '@mui/material/Grid'
 import { usePacksParamsFilter } from 'features/packs/hooks/usePacksParamsFilter'
-import { PacksHeader } from 'features/packs/components/packs-header/PacksHeader'
-import { PacksFilter } from 'features/packs/components/packs-filter/PacksFilter'
-import { PacksTable } from 'features/packs/components/packs-table/PacksTable'
+import { PacksHeader } from 'features/packs/components/packs/PacksHeader'
+import { PacksFilter } from 'features/packs/components/packs/PacksFilter'
+import { PacksTable } from 'features/packs/components/packs/PacksTable'
 import { packsAction, packsThunks } from 'features/packs/packs.slice'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
 
