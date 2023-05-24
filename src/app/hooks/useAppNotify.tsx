@@ -4,12 +4,15 @@ import { toast } from 'react-toastify'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
 import { packsErrorSelector, packsInfoMessageSelector } from 'features/packs/packs.selectors'
 import { clearNotifyStateAction } from 'common/utils/clearNotifyStateAction'
+import { cardQuestionsSelector } from 'features/cards/cards.selectors'
+import { CustomToast } from 'common/components/custom-toast/CustomToast'
 
 export const useAppNotify = () => {
     const appError = useAppSelector(errorSelector)
     const appInfoMessage = useAppSelector(infoMessageSelector)
     const packsError = useAppSelector(packsErrorSelector)
     const packsInfoMessage = useAppSelector(packsInfoMessageSelector)
+    const cardsInfoMessage = useAppSelector(cardQuestionsSelector)
     const dispatch = useAppDispatch()
 
     const error = appError || packsError
@@ -43,6 +46,21 @@ export const useAppNotify = () => {
             progress: undefined,
             theme: 'colored',
         })
+        dispatch(clearNotifyStateAction())
+    }
+
+    if (cardsInfoMessage.question !== '' || cardsInfoMessage.questionImg !== '') {
+        toast.success(
+            <CustomToast
+                message={cardsInfoMessage.question}
+                image={cardsInfoMessage.questionImg}
+            />,
+            {
+                style: {
+                    backgroundColor: '#366EFF',
+                },
+            }
+        )
         dispatch(clearNotifyStateAction())
     }
 }

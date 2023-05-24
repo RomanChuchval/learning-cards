@@ -11,17 +11,24 @@ type TableSkeletonPropsType = {
 export const TableSkeleton: React.FC<TableSkeletonPropsType> = ({ defaultCell, defaultRow }) => {
     let cell = []
     const row = []
-    for(let i = 0; i < defaultCell; i++) {
+    for (let i = 0; i < defaultCell; i++) {
         cell.push(i)
     }
-    for(let i = 0; i < +defaultRow; i++) {
+    for (let i = 0; i < +defaultRow; i++) {
         row.push(i)
     }
 
-    const tableCell = cell.map((c, i) => <TableCell key={i}>
-        <Skeleton variant='rounded' width={'100%'} height={30} />
-    </TableCell>)
+    const tableCell = cell.map((c, i) => (
+        <TableCell key={i}>
+            <Skeleton variant='rounded' width={'100%'} height={30} />
+        </TableCell>
+    ))
 
-    return <>{row.map((r, i) => (<TableRow key={i}>{tableCell}</TableRow>))}</>
-
+    return (
+        <>
+            {row.map((r, i) => (
+                <TableRow key={i}>{tableCell}</TableRow>
+            ))}
+        </>
+    )
 }

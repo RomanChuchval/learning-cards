@@ -4,6 +4,7 @@ import { RemoveModal } from 'common/components/modals/RemoveModal'
 import IconButton from '@mui/material/IconButton'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { useEditorCards } from 'features/cards/hooks/useEditorCards'
+import { useApp } from 'app/hooks/useApp'
 
 type RemoveCardPropsType = {
     cardId: string

@@ -32,6 +32,11 @@ export const CustomTable: React.FC<CustomTablePropsType> = ({
         '&:last-of-type': { paddingRight: '54px' },
     }
 
+    const onClickHandler = () => {
+        sortHandler()
+        setSort(!sort)
+    }
+
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }}>
@@ -41,13 +46,7 @@ export const CustomTable: React.FC<CustomTablePropsType> = ({
                             <TableCell sx={tableHeaderSX} key={textHead}>
                                 {textHead}
                                 {textHead === 'Last Updated' && (
-                                    <IconButton
-                                        disabled={disabled}
-                                        onClick={() => {
-                                            sortHandler()
-                                            setSort(!sort)
-                                        }}
-                                    >
+                                    <IconButton disabled={disabled} onClick={onClickHandler}>
                                         <ArrowDropDownIcon />
                                     </IconButton>
                                 )}

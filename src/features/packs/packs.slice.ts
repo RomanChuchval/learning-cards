@@ -52,15 +52,13 @@ const slice = createSlice({
             })
             .addCase(getPacks.fulfilled, (state, action) => {
                 state.packs = action.payload.packs
+                state.isLoading = false
             })
             .addCase(updatePack.fulfilled, (state, action) => {
                 state.selectedPack = action.payload.updatedCardsPack
             })
             .addMatcher(pendingPacks, state => {
                 state.isLoading = true
-            })
-            .addMatcher(fulfilledPacks, state => {
-                state.isLoading = false
             })
             .addMatcher(fulfilledEditor, (state, action) => {
                 state.infoMessage = action.payload.infoMessage
@@ -134,7 +132,6 @@ const updatePack = createAppAsyncThunk<
     }
 })
 
-const fulfilledPacks = isFulfilled(getPacks)
 const fulfilledEditor = isFulfilled(createPack, removePack, updatePack)
 const rejectedPacks = isRejected(getPacks, createPack, removePack, updatePack)
 const pendingPacks = isPending(getPacks, createPack, removePack, updatePack)

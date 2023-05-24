@@ -1,10 +1,12 @@
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
 import { useAppSelector } from 'app/hooks/useAppSelector'
 import {
+    cardsPageCountParamsSelector,
     cardsPageCountSelector,
     cardsPageSelector,
     cardsSelector,
     cardsTotalCountSelector,
+    isCardsLoadingSelector,
     packUserIdSelector,
 } from 'features/cards/cards.selectors'
 import { cardsActions, cardsThunks } from 'features/cards/cards.slice'
@@ -23,6 +25,7 @@ export const useCards = () => {
     const packUserId = useAppSelector(packUserIdSelector)
     const selectedPack = useAppSelector(selectedPackSelector)
     const selectedCardId = useAppSelector(cardIdsSelector)
+    const cardsPageCountParams = useAppSelector(cardsPageCountParamsSelector)
 
     const [searchValue, setSearchValue] = useState<string>('')
     const [timeoutId, setTimeoutId] = useState<number>()
@@ -46,11 +49,6 @@ export const useCards = () => {
     const onChangePagination = (page: string, pageCount: string) => {
         getCardsWithParams({ page, pageCount })
     }
-    // const findAnswerImg = () => {
-    //     const card = cards.find(card => card._id === selectedCardId)
-    //     if (card) return card.answerImg
-    // }
-    // const answerImg = findAnswerImg()
 
     return {
         cards,
@@ -63,6 +61,7 @@ export const useCards = () => {
         packUserId,
         selectedPack,
         selectedCardId,
+        cardsPageCountParams,
     }
 }
 

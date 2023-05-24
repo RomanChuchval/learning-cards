@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, isFulfilled, isPending, PayloadAction } from '@reduxjs/toolkit'
 import {
     cardsApi,
     CreateCardRequestType,
@@ -9,6 +9,7 @@ import {
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { thunkErrorHandler } from 'common/utils/thunkErrorHandler'
 import { GetParamsType } from 'features/cards/hooks/useCards'
+import { clearNotifyStateAction } from 'common/utils/clearNotifyStateAction'
 
 const slice = createSlice({
     name: 'cards',
@@ -26,6 +27,11 @@ const slice = createSlice({
         } as GetCardsParamsType,
         selectedCardsPackId: '' as string,
         isLoading: false as boolean,
+        infoMessage: '' as string,
+        updateCardQuestions: {
+            question: '',
+            questionImg: '',
+        } as CardQuestionType,
     },
     reducers: {
         setCardsParams: (state, action: PayloadAction<{ params: GetParamsType }>) => {
@@ -36,9 +42,20 @@ const slice = createSlice({
         },
     },
     extraReducers: builder => {
-        builder.addCase(getCards.fulfilled, (state, action) => {
-            state.cards = action.payload.cards
-        })
+        builder
+            .addCase(getCards.fulfilled, (state, action) => {
+                state.cards = action.payload.cards
+                state.isLoading = false
+            })
+            .addCase(clearNotifyStateAction, state => {
+                state.updateCardQuestions = { questionImg: '', question: '' }
+            })
+            .addMatcher(cardsPending, state => {
+                state.isLoading = true
+            })
+            .addMatcher(cardsActionsFulfilled, (state, action) => {
+                state.updateCardQuestions = { ...action.payload.updateCardQuestions }
+            })
     },
 })
 
@@ -59,30 +76,42 @@ const getCards = createAppAsyncThunk<{ cards: GetCardsResponseType }>(
     }
 )
 
-const createCard = createAppAsyncThunk<void, CreateCardRequestType>(
-    'cards/createCard',
-    async (data, { rejectWithValue, dispatch }) => {
-        try {
-            await cardsApi.createCard(data)
-            dispatch(getCards())
-        } catch (e) {
-            const error = thunkErrorHandler(e)
-            return rejectWithValue(error)
+const createCard = createAppAsyncThunk<
+    { updateCardQuestions: CardQuestionType },
+    CreateCardRequestType
+>('cards/createCard', async (data, { rejectWithValue, dispatch }) => {
+    try {
+        const res = await cardsApi.createCard(data)
+        dispatch(getCards())
+        return {
+            updateCardQuestions: {
+                question: res.data.newCard.question,
+                questionImg: res.data.newCard.questionImg,
+            },
         }
+    } catch (e) {
+        const error = thunkErrorHandler(e)
+        return rejectWithValue(error)
     }
-)
-const updateCard = createAppAsyncThunk<void, UpdateCardRequestType>(
-    'cards/updateCard',
-    async (data, { rejectWithValue, dispatch }) => {
-        try {
-            await cardsApi.updateCard(data)
-            dispatch(getCards())
-        } catch (e) {
-            const error = thunkErrorHandler(e)
-            return rejectWithValue(error)
+})
+const updateCard = createAppAsyncThunk<
+    { updateCardQuestions: CardQuestionType },
+    UpdateCardRequestType
+>('cards/updateCard', async (data, { rejectWithValue, dispatch }) => {
+    try {
+        const res = await cardsApi.updateCard(data)
+        dispatch(getCards())
+        return {
+            updateCardQuestions: {
+                question: res.data.updatedCard.question,
+                questionImg: res.data.updatedCard.questionImg,
+            },
         }
+    } catch (e) {
+        const error = thunkErrorHandler(e)
+        return rejectWithValue(error)
     }
-)
+})
 const removeCard = createAppAsyncThunk<void, string>(
     'cards/removeCard',
     async (id, { rejectWithValue, dispatch }) => {
@@ -96,6 +125,15 @@ const removeCard = createAppAsyncThunk<void, string>(
     }
 )
 
+const cardsPending = isPending(getCards)
+const cardsActionsFulfilled = isFulfilled(updateCard, createCard)
+
 export const cardsReducer = slice.reducer
 export const cardsActions = slice.actions
 export const cardsThunks = { getCards, createCard, updateCard, removeCard }
+
+//TYPES
+export type CardQuestionType = {
+    question: string
+    questionImg: string
+}
