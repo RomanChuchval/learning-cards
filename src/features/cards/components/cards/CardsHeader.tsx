@@ -31,26 +31,36 @@ export const CardsHeader = () => {
                     : isMyPack
                         ? <Box sx={{
                             display: 'flex',
-                            alignItems: 'center',
-                            gap: '5px'
+                            flexDirection: 'column',
+                            gap: '15px'
                         }}>
-                            <PageTitle title={selectedPack.name} />
-                            <IconButton onClick={handleClick} sx={{ height: '32px', p: '0' }}>
-                                <PendingIcon color={'primary'} />
-                            </IconButton>
+                            <Box sx={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
+                                <PageTitle title={selectedPack.name} />
+                                <IconButton onClick={handleClick} sx={{ height: '32px', p: '0' }}>
+                                    <PendingIcon color={'primary'} />
+                                </IconButton>
+                            </Box>
+                            <div style={{
+                                width: '170px',
+                                height: '110px',
+                                background: `url(${selectedPack.deckCover}) no-repeat left/contain`
+                            }} />
                         </Box>
                         : <PageTitle title={selectedPack.name} />}
             </Grid>
             <Grid item md={6} display={'flex'} justifyContent={'flex-end'}>
-                {isMyPack ? <CreateCard /> :
-                    <SuperButton name={'Learn Pack'}
-                                 rounded={true}
-                                 textColor={'white'}
-                                 callback={learnHandler}
-                                 disable={cards.length === 0} />}
+                <Box>
+                    {isMyPack
+                        ? <CreateCard />
+                        : <SuperButton name={'Learn Pack'}
+                                     rounded={true}
+                                     textColor={'white'}
+                                     callback={learnHandler}
+                                     disable={cards?.length === 0} />}
+                </Box>
             </Grid>
             <CustomPopover anchorEl={anchorEl} closePopover={closePopover}>
-                <PopoverCards cards={cards.length}
+                <PopoverCards cards={cards?.length}
                               packId={selectedPack._id}
                               packName={selectedPack.name}
                               handleClose={closePopover}
