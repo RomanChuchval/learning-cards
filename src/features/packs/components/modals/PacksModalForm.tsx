@@ -7,27 +7,32 @@ import { EditorPacksModal } from 'features/packs/components/modals/EditorPacksMo
 type PacksModalFormPropsType = {
     onSubmit: (data: FormInputValues) => void
     handleClose: () => void
+    img: string
+    setImg: (img: string) => void
+    defaultImg?: string
 }
 
-export const PacksModalForm: React.FC<PacksModalFormPropsType> = ({ onSubmit, handleClose }) => {
-    const { modalState, errors, register, handleSubmit, onSubmitHandler } = useModalsForm(
-        onSubmit,
-        ['textInput']
-    )
+export const PacksModalForm: React.FC<PacksModalFormPropsType> =
+    ({ onSubmit, handleClose, img, setImg, defaultImg }) => {
+        const { modalState, errors, register, handleSubmit, onSubmitHandler } = useModalsForm(
+            onSubmit,
+            ['textInput']
+        )
 
-    return (
-        <>
-            <ModalForm
-                handleSubmit={handleSubmit}
-                onSubmit={onSubmitHandler}
-                handleClose={handleClose}
-            >
-                <EditorPacksModal
-                    errors={errors}
-                    register={register}
-                    packName={modalState.packName}
-                />
-            </ModalForm>
-        </>
-    )
-}
+        return (
+            <>
+                <ModalForm
+                    handleSubmit={handleSubmit}
+                    onSubmit={onSubmitHandler}
+                    handleClose={handleClose}>
+                    <EditorPacksModal
+                        img={img}
+                        setImg={setImg}
+                        defaultImg={defaultImg}
+                        errors={errors}
+                        register={register}
+                        packName={modalState.packName} />
+                </ModalForm>
+            </>
+        )
+    }
