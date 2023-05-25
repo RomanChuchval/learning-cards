@@ -9,7 +9,7 @@ import { CardsModalForm } from 'features/cards/components/modals/CardsModalForm'
 export const CreateCard = () => {
     const { openCreateModal, showCreateModal, handleClose } = useAppModals()
     const { createCard } = useEditorCards()
-    const { isLoading } = useApp()
+    const { isLoadingApp } = useApp()
 
     return (
         <>
@@ -18,7 +18,7 @@ export const CreateCard = () => {
                 callback={openCreateModal}
                 rounded={true}
                 textColor={'white'}
-                disable={isLoading}
+                disable={isLoadingApp}
             />
             <AppModal title={'Create Card'} open={showCreateModal} handleClose={handleClose}>
                 <CardsModalForm onSubmit={createCard} handleClose={handleClose} />

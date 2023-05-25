@@ -1,5 +1,6 @@
 import { isFulfilled, isPending, isRejectedWithValue } from '@reduxjs/toolkit'
 import { authThunks } from 'features/auth/auth.slice'
+import { learnThunks } from 'features/learn/learn.slice'
 
 const rejected = isRejectedWithValue(
     authThunks.login,
@@ -21,7 +22,8 @@ const fulfilled = isFulfilled(
     authThunks.logout,
     authThunks.updateProfile,
     authThunks.register,
-    authThunks.setNewPassword
+    authThunks.setNewPassword,
+    learnThunks.getSortCard
 )
 const pending = isPending(
     authThunks.login,
@@ -30,6 +32,7 @@ const pending = isPending(
     authThunks.updateProfile,
     authThunks.register,
     authThunks.setNewPassword,
+    learnThunks.getSortCard
 )
 const initializePending = isPending(authThunks.authMe)
 

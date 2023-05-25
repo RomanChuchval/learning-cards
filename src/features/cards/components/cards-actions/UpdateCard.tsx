@@ -4,6 +4,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor'
 import { AppModal } from 'features/modals/components/AppModal'
 import { useAppModals } from 'common/hooks/useAppModals'
 import { useEditorCards } from 'features/cards/hooks/useEditorCards'
+import { useApp } from 'app/hooks/useApp'
 import { CardsModalForm } from 'features/cards/components/modals/CardsModalForm'
 
 type UpdateCardActionsPropsType = {
@@ -28,9 +29,10 @@ export const UpdateCard: React.FC<UpdateCardActionsPropsType> = ({
         questionImg,
     })
     const { updateCard } = useEditorCards()
+    const { isLoadingApp } = useApp()
     return (
         <>
-            <IconButton size={'small'} onClick={openUpdateModal}>
+            <IconButton size={'small'} onClick={openUpdateModal} disabled={isLoadingApp}>
                 <BorderColorIcon sx={{ fontSize: '18px' }} />
             </IconButton>
             <AppModal

@@ -6,16 +6,18 @@ import { packsErrorSelector, packsInfoMessageSelector } from 'features/packs/pac
 import { clearNotifyStateAction } from 'common/utils/clearNotifyStateAction'
 import { cardQuestionsSelector } from 'features/cards/cards.selectors'
 import { CustomToast } from 'common/components/custom-toast/CustomToast'
+import { errorLearnSelector } from 'features/learn/learn.selector'
 
 export const useAppNotify = () => {
     const appError = useAppSelector(errorSelector)
     const appInfoMessage = useAppSelector(infoMessageSelector)
     const packsError = useAppSelector(packsErrorSelector)
     const packsInfoMessage = useAppSelector(packsInfoMessageSelector)
+    const learnError = useAppSelector(errorLearnSelector)
     const cardsInfoMessage = useAppSelector(cardQuestionsSelector)
     const dispatch = useAppDispatch()
 
-    const error = appError || packsError
+    const error = appError || packsError || learnError
     const infoMessage = appInfoMessage || packsInfoMessage
 
     if (infoMessage) {

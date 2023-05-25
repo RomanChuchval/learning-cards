@@ -9,7 +9,7 @@ import { PacksModalForm } from 'features/packs/components/modals/PacksModalForm'
 export const CreatePack = () => {
     const { openCreateModal, showCreateModal, handleClose } = useAppModals()
     const { createPack } = useEditorPack()
-    const { isLoading } = useApp()
+    const { isLoadingApp } = useApp()
 
     return (
         <>
@@ -18,7 +18,7 @@ export const CreatePack = () => {
                 callback={openCreateModal}
                 rounded={true}
                 textColor={'white'}
-                disable={isLoading}
+                disable={isLoadingApp}
             />
             <AppModal title={'Create Pack'} open={showCreateModal} handleClose={handleClose}>
                 <PacksModalForm onSubmit={createPack} handleClose={handleClose} />

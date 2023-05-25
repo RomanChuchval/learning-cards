@@ -25,7 +25,7 @@ export const PacksFilter: React.FC<PacksFilterPropsType> = ({ children }) => {
         clearFiltersHandler,
         onClickShowPacksCards
     } = usePacksParamsFilter()
-    const { isLoading } = useApp()
+    const { isLoadingApp } = useApp()
 
     return (
         <>
@@ -33,23 +33,23 @@ export const PacksFilter: React.FC<PacksFilterPropsType> = ({ children }) => {
                 <SearchBar fullWidth={true}
                            onChange={onChangeText}
                            value={search}
-                           disabled={isLoading} />
+                           disabled={isLoadingApp} />
             </Grid>
             <Grid item md={3} display={'flex'} justifyContent={'center'}>
                 <ShowPacksCards onClick={onClickShowPacksCards}
                                 onMy={onMy}
                                 setOnMy={setOnMy}
-                                disabled={isLoading} />
+                                disabled={isLoadingApp} />
             </Grid>
             <Grid item md={4} display={'flex'} justifyContent={'center'}>
                 <CardsCountSlider onChange={onChangeSlider}
                                   minMax={valueSlider}
                                   setMinMax={setValueSlider}
-                                  disabled={isLoading} />
+                                  disabled={isLoadingApp} />
             </Grid>
             <Grid item md={1} display={'flex'} justifyContent={'flex-end'}>
                 <ClearFilter clearFiltersHandler={clearFiltersHandler}
-                             disabled={isLoading} />
+                             disabled={isLoadingApp} />
             </Grid>
             {children}
             <Grid item md={12}>
@@ -57,7 +57,7 @@ export const PacksFilter: React.FC<PacksFilterPropsType> = ({ children }) => {
                                  pageCount={packs.pageCount}
                                  totalCount={packs.cardPacksTotalCount}
                                  onChange={onChangePagination}
-                                 disabled={isLoading} />
+                                 disabled={isLoadingApp} />
             </Grid>
         </>
     )

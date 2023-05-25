@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useValidators, ValidatorsType } from 'features/auth/hooks/useValidators'
+import { GradeType } from 'features/learn/hooks/useLearn'
 
 /** Кастомный хук для управления и валидации форм в приложении
  * @param {ValidateFieldsType[]} [validateFields] - Необязательный массив c названиями полей которые нужно провалидировать.
@@ -70,7 +71,7 @@ export type FormInputValues = {
     private: boolean
     question: string
     answer: string
-    radio: '0' | '1' | '2' | '3' | '4' | '5'
+    radio: GradeType
     answerImg: FileList
     questionImg: FileList
 }
