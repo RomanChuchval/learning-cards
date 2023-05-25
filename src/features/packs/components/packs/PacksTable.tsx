@@ -13,6 +13,7 @@ import { cardsActions, cardsThunks } from 'features/cards/cards.slice'
 
 import { useApp } from 'app/hooks/useApp'
 import { packsAction } from 'features/packs/packs.slice'
+import Box from '@mui/material/Box/Box'
 
 export const PacksTable = () => {
     const { packs, params, userId, sort, setSort, sortHandler } = usePacksParamsFilter()
@@ -23,7 +24,7 @@ export const PacksTable = () => {
     const tableBodySX = {
         wordWrap: 'break-word',
         minWidth: '150px',
-        maxWidth: '200px',
+        maxWidth: '200px'
     }
 
     const toCards = (id: string) => {
@@ -45,31 +46,43 @@ export const PacksTable = () => {
                 {isLoadingApp ? (
                     <TableSkeleton defaultCell={5} defaultRow={params.pageCount || '4'} />
                 ) : (
-                    packs.cardPacks?.map(textBody => {
+                    packs.cardPacks?.map(pack => {
                         return (
-                            <TableRow key={textBody._id}>
+                            <TableRow key={pack._id} sx={{ ':hover': { backgroundColor: 'rgb(245, 245, 245)' } }}>
                                 <TableCell
-                                    onClick={() => toCards(textBody._id)}
+                                    onClick={() => toCards(pack._id)}
                                     sx={{
                                         ...tableBodySX,
                                         paddingLeft: '40px',
+                                        maxWidth: '500px',
                                         cursor: 'pointer',
-                                        ':hover': { backgroundColor: 'rgb(245, 245, 245)' },
-                                    }}
-                                >
-                                    {textBody.name}
+                                        verticalAlign: 'center',
+                                        ':hover': { textDecoration: 'underline' }
+                                    }}>
+                                    <Box sx={{display: 'flex', alignItems: 'center',}}>
+                                        {pack.deckCover && <div style={{
+                                            marginLeft: '-12px',
+                                            width: '60px',
+                                            height: '35px',
+                                            display: 'inline-block',
+                                            background: `url(${pack.deckCover}) no-repeat center/contain`
+                                        }} />}
+                                        {pack.name}
+                                    </Box>
                                 </TableCell>
-                                <TableCell sx={tableBodySX}>{textBody.cardsCount}</TableCell>
                                 <TableCell sx={tableBodySX}>
-                                    {textBody.updated.slice(0, 10)}
+                                    {pack.cardsCount}
                                 </TableCell>
-                                <TableCell sx={tableBodySX}>{textBody.user_name}</TableCell>
+                                <TableCell sx={tableBodySX}>
+                                    {pack.updated.slice(0, 10)}
+                                </TableCell>
+                                <TableCell sx={tableBodySX}>{pack.user_name}</TableCell>
                                 <TableCell>
-                                    <TableActions
-                                        packName={textBody.name}
-                                        myCards={userId === textBody.user_id}
-                                        packId={textBody._id}
-                                    />
+                                    <TableActions packName={pack.name}
+                                                  myCards={userId === pack.user_id}
+                                                  packId={pack._id}
+                                                  defaultImg={pack.deckCover}
+                                                  isCards={pack.cardsCount === 0} />
                                 </TableCell>
                             </TableRow>
                         )
