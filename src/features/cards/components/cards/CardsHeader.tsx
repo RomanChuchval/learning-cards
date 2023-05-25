@@ -40,13 +40,14 @@ export const CardsHeader = () => {
                                     <PendingIcon color={'primary'} />
                                 </IconButton>
                             </Box>
-                            <div style={{
-                                width: '170px',
-                                height: '110px',
-                                background: `url(${selectedPack.deckCover}) no-repeat left/contain`
-                            }} />
                         </Box>
                         : <PageTitle title={selectedPack.name} />}
+                {selectedPack.deckCover && <div style={{
+                    marginTop: '20px',
+                    width: '170px',
+                    height: '110px',
+                    background: `url(${selectedPack.deckCover}) no-repeat left/contain`
+                }} />}
             </Grid>
             <Grid item md={6} display={'flex'} justifyContent={'flex-end'}>
                 <Box>
