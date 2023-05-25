@@ -10,20 +10,22 @@ type TableActionsPropsType = {
     packName: string
     myCards: boolean
     packId: string
+    defaultImg?: string
+    isCards: boolean
 }
 
 export const TableActions: FC<TableActionsPropsType> =
-    ({ packId, myCards, packName }) => {
+    ({ packId, myCards, packName, isCards, defaultImg }) => {
 
     const {learnHandler} = useLearn(packId)
 
         return (
             <Box display={'flex'}>
-                <IconButton size={'small'} onClick={learnHandler}>
+                <IconButton size={'small'} onClick={learnHandler} disabled={isCards}>
                     <SchoolIcon />
                 </IconButton>
-                {myCards && <UpdatePack packName={packName} packId={packId}/>}
-                {myCards && <RemovePack packName={packName} packId={packId}/>}
+                {myCards && <UpdatePack packName={packName} packId={packId} defaultImg={defaultImg}/>}
+                {myCards && <RemovePack packName={packName} packId={packId} />}
             </Box>
         )
     }
