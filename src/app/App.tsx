@@ -12,7 +12,7 @@ import { useApp } from 'app/hooks/useApp'
 
 export const App = () => {
     const dispatch = useAppDispatch()
-    const {isInitialize, isLoading} = useApp()
+    const {isInitialize, isLoadingApp} = useApp()
     useAppNotify()
 
     useEffect(() => {
@@ -22,7 +22,7 @@ export const App = () => {
     return (
         <>
             <AppHeader />
-            {isLoading && <LinearProgress />}
+            {isLoadingApp && <LinearProgress />}
             <Container fixed>{isInitialize ? <AppPreloader /> : <Outlet />}</Container>
             <AppNotify />
         </>
