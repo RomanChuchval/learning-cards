@@ -72,6 +72,7 @@ export type FormInputValues = {
     question: string
     answer: string
     radio: GradeType
+    packImg: FileList
     answerImg: FileList
     questionImg: FileList
 }
