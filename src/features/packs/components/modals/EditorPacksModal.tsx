@@ -1,37 +1,62 @@
 import * as React from 'react'
+import { ChangeEvent } from 'react'
 import TextField from '@mui/material/TextField/TextField'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
 import { UseFormRegister } from 'react-hook-form/dist/types/form'
 import { FormInputValues } from 'common/hooks/useAppForm'
 import { FieldErrors } from 'react-hook-form'
+import { convertFileToBase64 } from 'common/utils/toBase64'
+import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload'
+import Box from '@mui/material/Box'
+import noFile from 'assets/img/no-file.svg'
 
 type EditorPacksModalPropsType = {
     packName: string
     errors: FieldErrors<FormInputValues>
     register: UseFormRegister<FormInputValues>
+    img: string
+    setImg: (img: string) => void
+    defaultImg?: string
 }
-export const EditorPacksModal: React.FC<EditorPacksModalPropsType> = ({
-    register,
-    errors,
-    packName,
-}) => {
-    return (
-        <>
-            <TextField
-                defaultValue={packName}
-                variant='standard'
-                label='Name Pack'
-                margin='normal'
-                error={!!errors.textInput}
-                helperText={`${errors.textInput ? errors.textInput.message : ''}`}
-                {...register('textInput')}
-            />
-            <FormControlLabel
-                sx={{ p: '30px 0' }}
-                label={'Private pack'}
-                control={<Checkbox value={true} {...register('private')} />}
-            />
-        </>
-    )
-}
+export const EditorPacksModal: React.FC<EditorPacksModalPropsType> =
+    ({ register, errors, packName, img, setImg, defaultImg }) => {
+
+        const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+            if (e.currentTarget.files)
+                convertFileToBase64(e.currentTarget.files[0], setImg)
+        }
+
+        return (
+            <>
+                <TextField
+                    defaultValue={packName}
+                    variant='standard'
+                    label='Name Pack'
+                    margin='normal'
+                    error={!!errors.textInput}
+                    helperText={`${errors.textInput ? errors.textInput.message : ''}`}
+                    {...register('textInput')}
+                />
+                <Box component={'label'} sx={{ cursor: 'pointer', margin: '10px 0'  }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between'}}>
+                        Pack images:
+                        <DriveFolderUploadIcon />
+                        <input type={'file'} hidden {...register('packImg', {
+                            onChange: onChange
+                        })} />
+                    </Box>
+                    <div style={{
+                        margin: '16px 0',
+                        height: '100px',
+                        background: `url(${img || defaultImg || noFile}) no-repeat center/contain`,
+                    }} />
+                </Box>
+                <FormControlLabel
+                    sx={{ p: '30px 0' }}
+                    label={'Private pack'}
+                    control={<Checkbox value={true} {...register('private')} />}
+                />
+            </>
+        )
+    }
