@@ -4,15 +4,22 @@ import { counterLearnSelector, learnSelector } from 'features/learn/learn.select
 import { selectedPackSelector } from 'features/packs/packs.selectors'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
 import { learnThunks } from 'features/learn/learn.slice'
+import { useNavigate } from 'react-router-dom'
+import { paths } from 'common'
 
 
-export const useLearn = () => {
+export const useLearn = (packId: string = '') => {
     const dispatch = useAppDispatch()
-
     const [showAnswer, setShowAnswer] = useState(false)
     const cards = useAppSelector(learnSelector)
     const counter = useAppSelector(counterLearnSelector)
     const selectedPack = useAppSelector(selectedPackSelector)
+    const navigate = useNavigate()
+
+    const learnHandler = () => {
+        navigate(paths.LEARN)
+        dispatch(learnThunks.getSortCard(packId))
+    }
 
     const card = cards[counter] || []
 
@@ -28,6 +35,7 @@ export const useLearn = () => {
         updateCardGrade,
         onShowAnswer,
         closeAnswer,
+        learnHandler,
         showAnswer,
         selectedPack,
         card,
