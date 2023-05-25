@@ -17,7 +17,7 @@ export const UpdatePackTitle: React.FC<UpdatePackTitlePropsType> = ({ packId, pa
         packId,
         packName,
     })
-    const { updatePack } = useEditorPack()
+    const { updatePack, img, setImg } = useEditorPack()
     return (
         <>
             <ListItemButton onClick={openUpdateModal}>
@@ -31,7 +31,7 @@ export const UpdatePackTitle: React.FC<UpdatePackTitlePropsType> = ({ packId, pa
                 open={selectedPackId === packId && showUpdateModal}
                 handleClose={handleClose}
             >
-                <PacksModalForm onSubmit={updatePack} handleClose={handleClose} />
+                <PacksModalForm onSubmit={updatePack} handleClose={handleClose} img={img} setImg={setImg}/>
             </AppModal>
         </>
     )
