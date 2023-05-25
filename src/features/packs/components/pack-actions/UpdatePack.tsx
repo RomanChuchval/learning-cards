@@ -9,13 +9,14 @@ import { PacksModalForm } from 'features/packs/components/modals/PacksModalForm'
 type UpdatePackPropsType = {
     packId: string
     packName: string
+    defaultImg?: string
 }
-export const UpdatePack: React.FC<UpdatePackPropsType> = ({ packId, packName }) => {
+export const UpdatePack: React.FC<UpdatePackPropsType> = ({ packId, packName, defaultImg }) => {
     const { openUpdateModal, handleClose, selectedPackId, showUpdateModal } = useAppModals({
         packId,
         packName,
     })
-    const { updatePack } = useEditorPack()
+    const { updatePack, img, setImg } = useEditorPack()
     return (
         <>
             <IconButton size={'small'} onClick={openUpdateModal}>
@@ -26,7 +27,11 @@ export const UpdatePack: React.FC<UpdatePackPropsType> = ({ packId, packName }) 
                 open={packId === selectedPackId && showUpdateModal}
                 handleClose={handleClose}
             >
-                <PacksModalForm onSubmit={updatePack} handleClose={handleClose} />
+                <PacksModalForm onSubmit={updatePack}
+                                handleClose={handleClose}
+                                img={img}
+                                setImg={setImg}
+                                defaultImg={defaultImg} />
             </AppModal>
         </>
     )
