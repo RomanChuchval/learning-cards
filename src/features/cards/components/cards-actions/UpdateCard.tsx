@@ -29,10 +29,10 @@ export const UpdateCard: React.FC<UpdateCardActionsPropsType> = ({
         questionImg,
     })
     const { updateCard } = useEditorCards()
-    const { isLoading } = useApp()
+    const { isLoadingApp } = useApp()
     return (
         <>
-            <IconButton size={'small'} onClick={openUpdateModal} disabled={isLoading}>
+            <IconButton size={'small'} onClick={openUpdateModal} disabled={isLoadingApp}>
                 <BorderColorIcon sx={{ fontSize: '18px' }} />
             </IconButton>
             <AppModal
