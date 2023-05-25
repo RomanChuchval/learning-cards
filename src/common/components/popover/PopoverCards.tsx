@@ -8,14 +8,17 @@ import ListItemText from '@mui/material/ListItemText'
 import SchoolIcon from '@mui/icons-material/School'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { UpdatePackTitle } from 'features/cards/components/cards-actions/UpdatePackTitle'
+import { useLearn } from 'features/learn/hooks/useLearn'
 
 type PopoverCardsPackPropsType = {
     packId: string
+    cards: number
     packName: string
     handleClose: () => void
 }
 
-export const PopoverCards: React.FC<PopoverCardsPackPropsType> = ({ packId, packName }) => {
+export const PopoverCards: React.FC<PopoverCardsPackPropsType> = ({ packId, packName, cards }) => {
+    const { learnHandler } = useLearn(packId)
     return (
         <List>
             <ListItem disablePadding>
@@ -32,7 +35,7 @@ export const PopoverCards: React.FC<PopoverCardsPackPropsType> = ({ packId, pack
             </ListItem>
             <Divider />
             <ListItem disablePadding>
-                <ListItemButton onClick={() => {}}>
+                <ListItemButton onClick={learnHandler} disabled={cards === 0}>
                     <ListItemIcon>
                         <SchoolIcon />
                     </ListItemIcon>
