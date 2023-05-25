@@ -18,7 +18,7 @@ export const PacksTable = () => {
     const { packs, params, userId, sort, setSort, sortHandler } = usePacksParamsFilter()
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
-    const { isLoading } = useApp()
+    const { isLoadingApp } = useApp()
 
     const tableBodySX = {
         wordWrap: 'break-word',
@@ -36,13 +36,13 @@ export const PacksTable = () => {
     return (
         <Grid item md={12}>
             <CustomTable
-                disabled={isLoading}
+                disabled={isLoadingApp}
                 setSort={setSort}
                 sort={sort}
                 sortHandler={sortHandler}
                 tableCellForHeader={['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']}
             >
-                {isLoading ? (
+                {isLoadingApp ? (
                     <TableSkeleton defaultCell={5} defaultRow={params.pageCount || '4'} />
                 ) : (
                     packs.cardPacks?.map(textBody => {
