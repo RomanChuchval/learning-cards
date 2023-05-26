@@ -100,20 +100,22 @@ const createPack = createAppAsyncThunk<{ infoMessage: string }, CreatePackModelT
         }
     }
 )
-const removePack = createAppAsyncThunk<{ infoMessage: string }, string>(
-    'packs/removePack',
-    async (data, thunkAPI) => {
-        const { dispatch, rejectWithValue } = thunkAPI
-        try {
-            const res = await packsApi.removePack(data)
+const removePack = createAppAsyncThunk<
+    { infoMessage: string },
+    { packId: string; withRedirect: boolean }
+>('packs/removePack', async (data, thunkAPI) => {
+    const { dispatch, rejectWithValue } = thunkAPI
+    try {
+        const res = await packsApi.removePack(data.packId)
+        if (!data.withRedirect) {
             dispatch(packsThunks.getPacks())
-            return { infoMessage: `${res.data.deletedCardsPack.name} pack removed` }
-        } catch (e) {
-            const error = thunkErrorHandler(e)
-            return rejectWithValue(error)
         }
+        return { infoMessage: `${res.data.deletedCardsPack.name} pack removed` }
+    } catch (e) {
+        const error = thunkErrorHandler(e)
+        return rejectWithValue(error)
     }
-)
+})
 const updatePack = createAppAsyncThunk<
     { infoMessage: string; updatedCardsPack: PackType },
     UpdatePackModelType
