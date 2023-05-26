@@ -11,30 +11,23 @@ export const CheckEmail = () => {
 
     return (
         <Box>
-            <Form
-                title={'Check Email'}
-                btnName={'Back to login'}
-                onClick={() => navigate(paths.LOGIN)}
-            >
-                <Box
-                    display={'flex'}
-                    flexDirection={'column'}
-                    justifyContent={'center'}
-                    alignItems={'center'}
-                >
-                    <Box
-                        component={'img'}
-                        sx={{
-                            width: '150px',
-                            mb: '20px',
-                            mt: '20px',
-                        }}
-                        src={email}
-                        alt='check-email'
-                    />
+            <Form title={'Check Email'}
+                  btnName={'Back to login'}
+                  onClick={() => navigate(paths.LOGIN)}>
+                <Box display={'flex'}
+                     flexDirection={'column'}
+                     justifyContent={'center'}
+                     alignItems={'center'}>
+                    <Box component={'img'}
+                         sx={{
+                             width: '150px',
+                             mb: '20px',
+                             mt: '20px'
+                         }}
+                         src={email}
+                         alt='check-email' />
                     <InfoMessage
-                        text={`We’ve sent an Email with instructions to ${emailAddress}`}
-                    />
+                        text={`We’ve sent an Email with instructions to ${emailAddress}`} />
                 </Box>
             </Form>
         </Box>
