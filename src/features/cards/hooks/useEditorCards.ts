@@ -1,16 +1,14 @@
-import { useAppDispatch } from 'app/hooks/useAppDispatch'
+import { useAppDispatch, useAppSelector } from 'app'
 import { cardsThunks } from 'features/cards/cards.slice'
 import {
     CardRequestType,
     CreateCardRequestType,
-    UpdateCardRequestType,
+    UpdateCardRequestType
 } from 'features/cards/cards.api'
-import { FormInputValues } from 'common/hooks/useAppForm'
-import { useAppSelector } from 'app/hooks/useAppSelector'
+import { FormInputValues, convertFileToBase64 } from 'common'
 import { selectedCardsPackIdSelector } from 'features/cards/cards.selectors'
 import { cardIdsSelector } from 'features/modals/modals.selector'
 import { modalsAction } from 'features/modals/modals.slice'
-import { convertFileToBase64 } from 'common/utils/toBase64'
 
 export const useEditorCards = () => {
     const dispatch = useAppDispatch()
@@ -21,7 +19,7 @@ export const useEditorCards = () => {
         const requestData: CreateCardRequestType = {
             cardsPack_id: selectedPackId,
             question: data.question,
-            answer: data.answer,
+            answer: data.answer
         }
         superFunc<CreateCardRequestType>(data, requestData, cardsThunks.createCard)
     }
@@ -32,7 +30,7 @@ export const useEditorCards = () => {
             question: data.question,
             answer: data.answer,
             questionImg: '',
-            answerImg: '',
+            answerImg: ''
         }
         superFunc<UpdateCardRequestType>(data, requestData, cardsThunks.updateCard)
     }
