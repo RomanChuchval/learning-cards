@@ -16,7 +16,7 @@ export const UpdatePack: React.FC<UpdatePackPropsType> = ({ packId, packName, de
         packId,
         packName,
     })
-    const { updatePack, img, setImg } = useEditorPack()
+    const { updatePack, img, setImg } = useEditorPack(defaultImg)
     return (
         <>
             <IconButton size={'small'} onClick={openUpdateModal}>
