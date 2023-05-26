@@ -38,11 +38,13 @@ export const EditorPacksModal: React.FC<EditorPacksModalPropsType> =
                     helperText={`${errors.textInput ? errors.textInput.message : ''}`}
                     {...register('textInput')}
                 />
-                <Box component={'label'} sx={{ cursor: 'pointer', margin: '10px 0'  }}>
+                <Box component={'label'} sx={{ cursor: 'pointer', margin: '10px 0' }}>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between'}}>
                         Pack images:
                         <DriveFolderUploadIcon />
-                        <input type={'file'} hidden {...register('packImg', {
+                        <input type={'file'}
+                               accept={'image/*'}
+                               hidden {...register('packImg', {
                             onChange: onChange
                         })} />
                     </Box>
