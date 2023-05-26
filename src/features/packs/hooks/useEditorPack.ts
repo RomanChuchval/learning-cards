@@ -6,17 +6,13 @@ import { modalsAction } from 'features/modals/modals.slice'
 import { useAppSelector } from 'app/hooks/useAppSelector'
 import { packIdSelector } from 'features/modals/modals.selector'
 import { useState } from 'react'
-import { convertFileToBase64 } from 'common/utils/toBase64'
 
-export const useEditorPack = () => {
+export const useEditorPack = (defaultImg: string = '') => {
     const dispatch = useAppDispatch()
     const packId = useAppSelector(packIdSelector)
-    const [img, setImg] = useState('')
+    const [img, setImg] = useState(defaultImg)
 
     const createPack = (data: FormInputValues) => {
-        if (data.packImg[0]) {
-            convertFileToBase64(data.packImg[0], setImg)
-        }
         const payload: CreatePackModelType = {
             name: data.textInput,
             deckCover: img,
@@ -24,15 +20,13 @@ export const useEditorPack = () => {
         }
         dispatch(packsThunks.createPack(payload))
         dispatch(modalsAction.closeModal())
+        setImg('')
     }
     const removePack = () => {
         if (packId) dispatch(packsThunks.removePack(packId))
         dispatch(modalsAction.closeModal())
     }
     const updatePack = (data: FormInputValues) => {
-        if (data.packImg[0]) {
-            convertFileToBase64(data.packImg[0], setImg)
-        }
         const payload: UpdatePackModelType = {
             _id: packId || '',
             name: data.textInput,
@@ -42,6 +36,7 @@ export const useEditorPack = () => {
         console.log(data.packImg[0])
         dispatch(packsThunks.updatePack(payload))
         dispatch(modalsAction.closeModal())
+        setImg('')
     }
     return { createPack, removePack, updatePack, setImg, img }
 }
