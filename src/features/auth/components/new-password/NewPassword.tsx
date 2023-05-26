@@ -1,7 +1,6 @@
 import React from 'react'
-import { Form, InfoMessage, PasswordInput } from 'common'
+import { Form, InfoMessage, PasswordInput, useAppForm } from 'common'
 import { useParams } from 'react-router-dom'
-import { useAppForm } from 'common/hooks/useAppForm'
 import { useAuth } from 'features/auth/hooks/useAuth'
 import { useRedirect } from 'features/auth/hooks/useRedirect'
 
@@ -21,17 +20,14 @@ export const NewPassword = () => {
             <Form
                 title={'Create new password'}
                 btnName={'Create new password'}
-                onClick={handleSubmit(onSubmit)}
-            >
+                onClick={handleSubmit(onSubmit)}>
                 <PasswordInput
                     label={'New password'}
                     name={'password'}
                     errors={errors}
-                    register={register}
-                />
+                    register={register} />
                 <InfoMessage
-                    text={'Create new password and we will send you further instructions to email'}
-                />
+                    text={'Create new password and we will send you further instructions to email'} />
             </Form>
         </div>
     )
