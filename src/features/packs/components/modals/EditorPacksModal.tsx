@@ -3,12 +3,11 @@ import { ChangeEvent } from 'react'
 import TextField from '@mui/material/TextField/TextField'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
-import { UseFormRegister } from 'react-hook-form/dist/types/form'
-import { FormInputValues } from 'common/hooks/useAppForm'
-import { FieldErrors } from 'react-hook-form'
-import { convertFileToBase64 } from 'common/utils/toBase64'
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload'
 import Box from '@mui/material/Box'
+import { UseFormRegister } from 'react-hook-form/dist/types/form'
+import { FieldErrors } from 'react-hook-form'
+import { FormInputValues, convertFileToBase64 } from 'common'
 import noFile from 'assets/img/no-file.svg'
 
 type EditorPacksModalPropsType = {
@@ -36,10 +35,9 @@ export const EditorPacksModal: React.FC<EditorPacksModalPropsType> =
                     margin='normal'
                     error={!!errors.textInput}
                     helperText={`${errors.textInput ? errors.textInput.message : ''}`}
-                    {...register('textInput')}
-                />
+                    {...register('textInput')} />
                 <Box component={'label'} sx={{ cursor: 'pointer', margin: '10px 0' }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between'}}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                         Pack images:
                         <DriveFolderUploadIcon />
                         <input type={'file'}
@@ -51,7 +49,7 @@ export const EditorPacksModal: React.FC<EditorPacksModalPropsType> =
                     <div style={{
                         margin: '16px 0',
                         height: '100px',
-                        background: `url(${img || defaultImg || noFile}) no-repeat center/contain`,
+                        background: `url(${img || defaultImg || noFile}) no-repeat center/contain`
                     }} />
                 </Box>
                 <FormControlLabel
