@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from 'assets/img/logo.svg'
+import logo from 'assets/img/logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 import AppBar from '@mui/material/AppBar/AppBar'
 import Toolbar from '@mui/material/Toolbar/Toolbar'
@@ -20,7 +20,7 @@ export const AppHeader = () => {
                     sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}
                 >
                     <Link to={paths.PACKS}>
-                        <img src={logo} alt='app-logo' />
+                        <img style={{ height: '60px' }} src={logo} alt='app-logo' />
                     </Link>
                     {profile ? (
                         <HeaderProfile userName={profile.name} avatar={profile.avatar} />
