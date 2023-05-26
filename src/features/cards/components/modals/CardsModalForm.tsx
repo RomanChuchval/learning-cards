@@ -1,7 +1,5 @@
 import React from 'react'
-import { useModalsForm } from 'common/hooks/useModalsForm'
-import { ModalForm } from 'common/components/modals/ModalForm'
-import { FormInputValues } from 'common/hooks/useAppForm'
+import { useModalsForm, ModalForm, FormInputValues } from 'common'
 import { EditorCardsModal } from 'features/cards/components/modals/EditorCardsModal'
 
 type CardsModalFormPropsType = {
@@ -16,16 +14,14 @@ export const CardsModalForm: React.FC<CardsModalFormPropsType> = ({ onSubmit, ha
             <ModalForm
                 handleSubmit={handleSubmit}
                 onSubmit={onSubmitHandler}
-                handleClose={handleClose}
-            >
+                handleClose={handleClose}>
                 <EditorCardsModal
                     register={register}
                     answer={modalState.answer}
                     question={modalState.question}
                     answerImg={modalState.answerImg}
                     questionImg={modalState.questionImg}
-                    control={control}
-                />
+                    control={control} />
             </ModalForm>
         </>
     )
