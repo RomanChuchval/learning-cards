@@ -1,19 +1,16 @@
-import { usePacksParamsFilter } from 'features/packs/hooks/usePacksParamsFilter'
+import React from 'react'
 import Grid from '@mui/material/Grid'
-import { CustomTable } from 'common/components/table/CustomTable'
 import TableRow from '@mui/material/TableRow/TableRow'
 import TableCell from '@mui/material/TableCell/TableCell'
-import React from 'react'
-import { TableActions } from 'features/packs/components/pack-actions/TableActions'
-import { TableSkeleton } from 'common/components/table/table-skeleton/TableSkeleton'
-import { paths } from 'common/constants/paths'
-import { useNavigate } from 'react-router-dom'
-import { useAppDispatch } from 'app/hooks/useAppDispatch'
-import { cardsActions, cardsThunks } from 'features/cards/cards.slice'
-
-import { useApp } from 'app/hooks/useApp'
-import { packsAction } from 'features/packs/packs.slice'
 import Box from '@mui/material/Box/Box'
+import { usePacksParamsFilter } from 'features/packs/hooks/usePacksParamsFilter'
+import { TableActions } from 'features/packs/components/pack-actions/TableActions'
+import { cardsActions, cardsThunks } from 'features/cards/cards.slice'
+import { packsAction } from 'features/packs/packs.slice'
+import { useNavigate } from 'react-router-dom'
+import { CustomTable, TableSkeleton, paths } from 'common'
+import { useAppDispatch, useApp } from 'app'
+
 
 export const PacksTable = () => {
     const { packs, params, userId, sort, setSort, sortHandler } = usePacksParamsFilter()
