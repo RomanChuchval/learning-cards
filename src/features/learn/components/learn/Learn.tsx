@@ -2,12 +2,12 @@ import React from 'react'
 import { BackTo, paths, SuperButton } from 'common'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid/Grid'
-import { LearnFormRadio } from 'features/learn/components/learn/LearnFormRadio'
 import Paper from '@mui/material/Paper/Paper'
-import { LearnData } from 'features/learn/components/learn/LearnData'
-import { useApp } from 'app/hooks/useApp'
 import Skeleton from '@mui/material/Skeleton/Skeleton'
+import { LearnFormRadio } from 'features/learn/components/learn/LearnFormRadio'
+import { LearnData } from 'features/learn/components/learn/LearnData'
 import { useLearn } from 'features/learn/hooks/useLearn'
+import { useApp } from 'app'
 
 export const Learn = () => {
     const { showAnswer, card, onShowAnswer, selectedPack, updateCardGrade } = useLearn()
