@@ -10,7 +10,7 @@ export const cardsApi = {
         })
     },
     removeCard: (id: string) => {
-        return instance.delete<CommonCardResponseType>(`cards/card?id=${id}`)
+        return instance.delete<{ deletedCard: CommonCardResponseType }>(`cards/card?id=${id}`)
     },
     updateCard: (data: UpdateCardRequestType) => {
         return instance.put<{ updatedCard: CommonCardResponseType }>('cards/card', {

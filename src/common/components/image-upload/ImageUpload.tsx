@@ -47,6 +47,7 @@ export const ImageUpload: FC<ImageUploadPropsType> = ({
                     <input
                         type={'file'}
                         hidden
+                        accept={'image/*'}
                         {...register(inputName, {
                             onChange: onChange,
                         })}

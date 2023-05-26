@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import { useAppDispatch } from 'app/hooks/useAppDispatch'
 import { packsErrorSelector, packsInfoMessageSelector } from 'features/packs/packs.selectors'
 import { clearNotifyStateAction } from 'common/utils/clearNotifyStateAction'
-import { cardQuestionsSelector } from 'features/cards/cards.selectors'
+import { cardQuestionsSelector, cardsInfoMessageSelector } from 'features/cards/cards.selectors'
 import { CustomToast } from 'common/components/custom-toast/CustomToast'
 import { errorLearnSelector } from 'features/learn/learn.selector'
 
@@ -14,7 +14,8 @@ export const useAppNotify = () => {
     const packsError = useAppSelector(packsErrorSelector)
     const packsInfoMessage = useAppSelector(packsInfoMessageSelector)
     const learnError = useAppSelector(errorLearnSelector)
-    const cardsInfoMessage = useAppSelector(cardQuestionsSelector)
+    const cardsQuestions = useAppSelector(cardQuestionsSelector)
+    const cardsInfoMessage = useAppSelector(cardsInfoMessageSelector)
     const dispatch = useAppDispatch()
 
     const error = appError || packsError || learnError
@@ -51,11 +52,12 @@ export const useAppNotify = () => {
         dispatch(clearNotifyStateAction())
     }
 
-    if (cardsInfoMessage.question !== '' || cardsInfoMessage.questionImg !== '') {
+    if (cardsQuestions.question !== '' || cardsQuestions.questionImg !== '') {
         toast.success(
             <CustomToast
-                message={cardsInfoMessage.question}
-                image={cardsInfoMessage.questionImg}
+                question={cardsQuestions.question}
+                questionImg={cardsQuestions.questionImg}
+                infoMessage={cardsInfoMessage}
             />,
             {
                 style: {

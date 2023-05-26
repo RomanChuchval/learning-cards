@@ -54,7 +54,8 @@ const slice = createSlice({
                 state.isLoading = true
             })
             .addMatcher(cardsActionsFulfilled, (state, action) => {
-                state.updateCardQuestions = { ...action.payload.updateCardQuestions }
+                state.updateCardQuestions = { ...action.payload.updatedCardQuestions }
+                state.infoMessage = action.payload.infoMessage
             })
     },
 })
@@ -77,17 +78,18 @@ const getCards = createAppAsyncThunk<{ cards: GetCardsResponseType }>(
 )
 
 const createCard = createAppAsyncThunk<
-    { updateCardQuestions: CardQuestionType },
+    { updatedCardQuestions: CardQuestionType; infoMessage: string },
     CreateCardRequestType
 >('cards/createCard', async (data, { rejectWithValue, dispatch }) => {
     try {
         const res = await cardsApi.createCard(data)
         dispatch(getCards())
         return {
-            updateCardQuestions: {
+            updatedCardQuestions: {
                 question: res.data.newCard.question,
                 questionImg: res.data.newCard.questionImg,
             },
+            infoMessage: 'Card created!',
         }
     } catch (e) {
         const error = thunkErrorHandler(e)
@@ -95,38 +97,46 @@ const createCard = createAppAsyncThunk<
     }
 })
 const updateCard = createAppAsyncThunk<
-    { updateCardQuestions: CardQuestionType },
+    { updatedCardQuestions: CardQuestionType; infoMessage: string },
     UpdateCardRequestType
 >('cards/updateCard', async (data, { rejectWithValue, dispatch }) => {
     try {
         const res = await cardsApi.updateCard(data)
         dispatch(getCards())
         return {
-            updateCardQuestions: {
+            updatedCardQuestions: {
                 question: res.data.updatedCard.question,
                 questionImg: res.data.updatedCard.questionImg,
             },
+            infoMessage: 'Card updated!',
         }
     } catch (e) {
         const error = thunkErrorHandler(e)
         return rejectWithValue(error)
     }
 })
-const removeCard = createAppAsyncThunk<void, string>(
-    'cards/removeCard',
-    async (id, { rejectWithValue, dispatch }) => {
-        try {
-            await cardsApi.removeCard(id)
-            dispatch(getCards())
-        } catch (e) {
-            const error = thunkErrorHandler(e)
-            return rejectWithValue(error)
+const removeCard = createAppAsyncThunk<
+    { updatedCardQuestions: CardQuestionType; infoMessage: string },
+    string
+>('cards/removeCard', async (id, { rejectWithValue, dispatch }) => {
+    try {
+        const res = await cardsApi.removeCard(id)
+        dispatch(getCards())
+        return {
+            updatedCardQuestions: {
+                question: res.data.deletedCard.question,
+                questionImg: res.data.deletedCard.questionImg,
+            },
+            infoMessage: 'Card removed!',
         }
+    } catch (e) {
+        const error = thunkErrorHandler(e)
+        return rejectWithValue(error)
     }
-)
+})
 
 const cardsPending = isPending(getCards)
-const cardsActionsFulfilled = isFulfilled(updateCard, createCard)
+const cardsActionsFulfilled = isFulfilled(updateCard, createCard, removeCard)
 
 export const cardsReducer = slice.reducer
 export const cardsActions = slice.actions
