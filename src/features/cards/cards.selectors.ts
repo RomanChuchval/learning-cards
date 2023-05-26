@@ -9,6 +9,7 @@ const packUserIdSelector = (state: RootState) => state.cards.cards.packUserId
 const isCardsLoadingSelector = (state: RootState) => state.cards.isLoading
 const cardsPageCountParamsSelector = (state: RootState) => state.cards.params.pageCount
 const cardQuestionsSelector = (state: RootState) => state.cards.updateCardQuestions
+const cardsInfoMessageSelector = (state: RootState) => state.cards.infoMessage
 
 export {
     cardsSelector,
@@ -20,4 +21,5 @@ export {
     isCardsLoadingSelector,
     cardsPageCountParamsSelector,
     cardQuestionsSelector,
+    cardsInfoMessageSelector,
 }

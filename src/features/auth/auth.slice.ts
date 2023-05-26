@@ -11,6 +11,7 @@ import {
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { thunkErrorHandler } from 'common/utils/thunkErrorHandler'
 import { appActions } from 'app/app.slice'
+import { clearRedirectPathAction } from 'common/utils/clearRedirectPathAction'
 
 const slice = createSlice({
     name: 'auth',
@@ -19,13 +20,12 @@ const slice = createSlice({
         redirectPath: '/' as RedirectPathType,
         checkEmailMessage: '' as string,
     },
-    reducers: {
-        clearRedirectPath: state => {
-            state.redirectPath = '/'
-        },
-    },
+    reducers: {},
     extraReducers: builder => {
         builder
+            .addCase(clearRedirectPathAction, state => {
+                state.redirectPath = '/'
+            })
             .addCase(login.fulfilled, (state, action) => {
                 state.profile = action.payload.profile
             })
@@ -160,5 +160,5 @@ export const authThunks = {
 }
 
 // TYPES
-export type RedirectPathType = '/auth/login' | '/auth/check-email' | '/'
+export type RedirectPathType = '/auth/login' | '/auth/check-email' | '/' | '/packs'
 export type InfoMessageType = { info: string }

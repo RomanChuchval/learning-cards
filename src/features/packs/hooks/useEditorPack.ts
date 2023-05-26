@@ -6,9 +6,11 @@ import { modalsAction } from 'features/modals/modals.slice'
 import { useAppSelector } from 'app/hooks/useAppSelector'
 import { packIdSelector } from 'features/modals/modals.selector'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export const useEditorPack = (defaultImg: string = '') => {
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
     const packId = useAppSelector(packIdSelector)
     const [img, setImg] = useState(defaultImg)
 
@@ -22,8 +24,11 @@ export const useEditorPack = (defaultImg: string = '') => {
         dispatch(modalsAction.closeModal())
         setImg('')
     }
-    const removePack = () => {
-        if (packId) dispatch(packsThunks.removePack(packId))
+    const removePack = (withRedirect: boolean = false) => {
+        if (packId)
+            dispatch(packsThunks.removePack({ packId, withRedirect })).then(() =>
+                withRedirect ? navigate('/packs') : ''
+            )
         dispatch(modalsAction.closeModal())
     }
     const updatePack = (data: FormInputValues) => {
@@ -31,9 +36,8 @@ export const useEditorPack = (defaultImg: string = '') => {
             _id: packId || '',
             name: data.textInput,
             private: data.private,
-            deckCover: img
+            deckCover: img,
         }
-        console.log(data.packImg[0])
         dispatch(packsThunks.updatePack(payload))
         dispatch(modalsAction.closeModal())
         setImg('')

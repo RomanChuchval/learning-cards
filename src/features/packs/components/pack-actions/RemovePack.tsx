@@ -5,7 +5,7 @@ import { useAppModals } from 'common/hooks/useAppModals'
 import { RemoveModal } from 'common/components/modals/RemoveModal'
 import { useEditorPack } from 'features/packs/hooks/useEditorPack'
 
-type RemovePackPropsType = {
+export type RemovePackPropsType = {
     packName: string
     packId: string
 }
@@ -16,6 +16,10 @@ export const RemovePack: React.FC<RemovePackPropsType> = ({ packName, packId }) 
     })
     const { removePack } = useEditorPack()
 
+    const onRemovePack = () => {
+        removePack(false)
+    }
+
     return (
         <>
             <RemoveModal
@@ -24,7 +28,7 @@ export const RemovePack: React.FC<RemovePackPropsType> = ({ packName, packId }) 
                 title={'Delete Card'}
                 open={selectedPackId === packId && showRemoveModal}
                 handleClose={handleClose}
-                onRemove={removePack}
+                onRemove={onRemovePack}
             >
                 <IconButton size={'small'} onClick={openRemoveModal}>
                     <DeleteForeverIcon />
