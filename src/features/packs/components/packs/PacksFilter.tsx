@@ -1,12 +1,8 @@
 import React from 'react'
 import { usePacksParamsFilter } from 'features/packs/hooks/usePacksParamsFilter'
 import Grid from '@mui/material/Grid'
-import { SearchBar } from 'common/components/search-bar/SearchBar'
-import { ShowPacksCards } from 'common/components/show-packs-cards/ShowPacksCards'
-import { CardsCountSlider } from 'common/components/number-of-cards-slider/CardsCountSlider'
-import { ClearFilter } from 'common/components/clear-filter/ClearFilter'
-import { CardsPagination } from 'common/components/pagination/CardsPagination'
-import { useApp } from 'app/hooks/useApp'
+import { SearchBar, CardsPagination, ShowPacksCards, CardsCountSlider, ClearFilter } from 'common'
+import { useApp } from 'app'
 
 type PacksFilterPropsType = {
     children: React.ReactNode
