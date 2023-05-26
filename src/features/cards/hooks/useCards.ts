@@ -1,12 +1,10 @@
-import { useAppDispatch } from 'app/hooks/useAppDispatch'
-import { useAppSelector } from 'app/hooks/useAppSelector'
+import { useAppDispatch, useAppSelector } from 'app'
 import {
     cardsPageCountParamsSelector,
     cardsPageCountSelector,
     cardsPageSelector,
     cardsSelector,
     cardsTotalCountSelector,
-    isCardsLoadingSelector,
     packUserIdSelector,
 } from 'features/cards/cards.selectors'
 import { cardsActions, cardsThunks } from 'features/cards/cards.slice'
