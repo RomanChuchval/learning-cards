@@ -1,20 +1,20 @@
-import { useAppSelector } from 'app/hooks/useAppSelector'
+import { useAppSelector } from 'app'
 import { authThunks } from 'features/auth/auth.slice'
 import {
     redirectPathSelector,
     profileSelector,
     checkEmailMessageSelector,
-    userIdSelector,
+    userIdSelector
 } from 'features/auth/auth.selectors'
 import { LoginFieldsType } from 'features/auth/components/login/Login'
 import {
     ForgotPassBodyType,
     RegisterBodyType,
     SetNewPassBodyType,
-    UpdateProfileBodyType,
+    UpdateProfileBodyType
 } from 'features/auth/auth.api'
 import { emailMessage } from 'features/auth/constants'
-import { useAppDispatch } from 'app/hooks/useAppDispatch'
+import { useAppDispatch } from 'app'
 
 export const useAuth = () => {
     const dispatch = useAppDispatch()
@@ -30,7 +30,7 @@ export const useAuth = () => {
         const payload = {
             email: data.loginEmail,
             password: data.loginPassword,
-            rememberMe: data.rememberMe,
+            rememberMe: data.rememberMe
         }
         dispatch(authThunks.login(payload))
     }
@@ -42,14 +42,14 @@ export const useAuth = () => {
         const payload: ForgotPassBodyType = {
             email: data.email,
             from: 'App developers ;)',
-            message: emailMessage,
+            message: emailMessage
         }
         dispatch(authThunks.forgotPassword(payload))
     }
     const setNewPassword = (password: string, token: string) => {
         const payload: SetNewPassBodyType = {
             password,
-            resetPasswordToken: token,
+            resetPasswordToken: token
         }
         dispatch(authThunks.setNewPassword(payload))
     }
@@ -69,6 +69,6 @@ export const useAuth = () => {
         isUserAuth,
         redirectPath,
         emailAddress,
-        authorizedUserId,
+        authorizedUserId
     }
 }
