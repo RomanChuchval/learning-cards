@@ -1,7 +1,6 @@
 import React from 'react'
 import Box from '@mui/material/Box'
-import { EmailInput, Form, InfoMessage, paths } from 'common'
-import { useAppForm } from 'common/hooks/useAppForm'
+import { EmailInput, Form, InfoMessage, paths, useAppForm } from 'common'
 import { useRedirect } from 'features/auth/hooks/useRedirect'
 import { useAuth } from 'features/auth/hooks/useAuth'
 
@@ -21,12 +20,10 @@ export const ForgotPassword = () => {
                 description={'Did you remember your password?'}
                 title={'Forgot your password?'}
                 btnName={'Send Instructions'}
-                onClick={handleSubmit(onSubmit)}
-            >
+                onClick={handleSubmit(onSubmit)}>
                 <EmailInput label={'Email'} errors={errors} register={register} name={'email'} />
                 <InfoMessage
-                    text={'Enter your email address and we will send you further instructions'}
-                />
+                    text={'Enter your email address and we will send you further instructions'} />
             </Form>
         </Box>
     )
