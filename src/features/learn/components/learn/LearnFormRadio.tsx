@@ -1,14 +1,13 @@
+import React from 'react'
 import FormControl from '@mui/material/FormControl/FormControl'
 import FormLabel from '@mui/material/FormLabel/FormLabel'
 import RadioGroup from '@mui/material/RadioGroup/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel/FormControlLabel'
 import Radio from '@mui/material/Radio'
-import { SuperButton } from 'common'
-import React from 'react'
-import { FormInputValues, useAppForm } from 'common/hooks/useAppForm'
+import { SuperButton, FormInputValues, useAppForm } from 'common'
 import { LearnData } from 'features/learn/components/learn/LearnData'
-import { useApp } from 'app/hooks/useApp'
 import { GradeType } from 'features/learn/hooks/useLearn'
+import { useApp } from 'app'
 
 type LearnFormRadioPropsType = {
     answer: string

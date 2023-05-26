@@ -5,7 +5,7 @@ import { PacksHeader } from 'features/packs/components/packs/PacksHeader'
 import { PacksFilter } from 'features/packs/components/packs/PacksFilter'
 import { PacksTable } from 'features/packs/components/packs/PacksTable'
 import { packsAction, packsThunks } from 'features/packs/packs.slice'
-import { useAppDispatch } from 'app/hooks/useAppDispatch'
+import { useAppDispatch } from 'app'
 
 export const Packs = () => {
     const { searchParams } = usePacksParamsFilter()

@@ -1,7 +1,7 @@
 import Skeleton from '@mui/material/Skeleton/Skeleton'
 import Typography from '@mui/material/Typography'
 import React from 'react'
-import { useApp } from 'app/hooks/useApp'
+import { useApp } from 'app'
 
 type LearnDataPropsType = {
     title: string

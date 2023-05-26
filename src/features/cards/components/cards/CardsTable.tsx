@@ -1,15 +1,12 @@
 import React from 'react'
-import { CustomTable } from 'common/components/table/CustomTable'
 import TableRow from '@mui/material/TableRow'
+import Box from '@mui/material/Box/Box'
 import TableCell from '@mui/material/TableCell'
-import { CardsRating } from 'common/components/rating/CardsRating'
+import { CustomTable, CardsRating, TableData, TableSkeleton } from 'common'
 import { useCards } from 'features/cards/hooks/useCards'
 import { CardsTableActions } from 'features/cards/components/cards-actions/CardsTableActions'
 import { useAuth } from 'features/auth/hooks/useAuth'
-import Box from '@mui/material/Box'
-import { TableData } from 'common/components/table/TableData'
-import { useApp } from 'app/hooks/useApp'
-import { TableSkeleton } from 'common/components/table/table-skeleton/TableSkeleton'
+import { useApp } from 'app'
 
 export const CardsTable = () => {
     const { cards, packUserId, cardsPageCountParams, setSort, onChangeSort, sort } = useCards()
@@ -28,8 +25,7 @@ export const CardsTable = () => {
                 tableCellForHeader={['Question', 'Answer', 'Last Updated', 'Grade']}
                 sortHandler={onChangeSort}
                 setSort={setSort}
-                sort={sort}
-            >
+                sort={sort}>
                 {isCardsLoading ? (
                     <TableSkeleton defaultCell={4} defaultRow={cardsPageCountParams ?? '4'} />
                 ) : (

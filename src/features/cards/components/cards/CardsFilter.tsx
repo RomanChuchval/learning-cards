@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
-import { SearchBar } from 'common/components/search-bar/SearchBar'
+import { SearchBar, CardsPagination } from 'common'
 import Grid from '@mui/material/Grid'
-import { CardsPagination } from 'common/components/pagination/CardsPagination'
 import { useCards } from 'features/cards/hooks/useCards'
 import { useApp } from 'app/hooks/useApp'
 

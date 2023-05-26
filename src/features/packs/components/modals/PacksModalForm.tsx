@@ -1,7 +1,5 @@
-import { FormInputValues } from 'common/hooks/useAppForm'
 import React from 'react'
-import { useModalsForm } from 'common/hooks/useModalsForm'
-import { ModalForm } from 'common/components/modals/ModalForm'
+import { useModalsForm, ModalForm, FormInputValues } from 'common'
 import { EditorPacksModal } from 'features/packs/components/modals/EditorPacksModal'
 
 type PacksModalFormPropsType = {

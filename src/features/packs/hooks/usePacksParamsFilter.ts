@@ -1,11 +1,10 @@
-import { useAppSelector } from 'app/hooks/useAppSelector'
+import { useAppSelector, useAppDispatch } from 'app'
+import { useSearchParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { userIdSelector } from 'features/auth/auth.selectors'
-import { useSearchParams } from 'react-router-dom'
 import { packsAction, packsThunks } from 'features/packs/packs.slice'
 import { packsSelector, paramsSelector } from 'features/packs/packs.selectors'
 import { GetPacksParamsType } from 'features/packs/packs.api'
-import { useAppDispatch } from 'app/hooks/useAppDispatch'
 
 export const usePacksParamsFilter = () => {
     const [search, setSearch] = useState('')

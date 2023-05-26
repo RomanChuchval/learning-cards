@@ -1,6 +1,5 @@
 import React from 'react'
-import { EmailInput, Form, PasswordInput, paths } from 'common'
-import { useAppForm } from 'common/hooks/useAppForm'
+import { EmailInput, Form, PasswordInput, useAppForm, paths } from 'common'
 import { useAuth } from 'features/auth/hooks/useAuth'
 import { useRedirect } from 'features/auth/hooks/useRedirect'
 
@@ -19,21 +18,18 @@ export const Registration = () => {
                 title={'Sign Up'}
                 btnName={'Sign Up'}
                 onClick={() => {}}
-                onSubmit={handleSubmit(onSubmit)}
-            >
+                onSubmit={handleSubmit(onSubmit)}>
                 <EmailInput label={'Email'} name={'email'} register={register} errors={errors} />
                 <PasswordInput
                     label={'Password'}
                     name={'password'}
                     register={register}
-                    errors={errors}
-                />
+                    errors={errors} />
                 <PasswordInput
                     label={'Confirm password'}
                     name={'confirmPassword'}
                     register={register}
-                    errors={errors}
-                />
+                    errors={errors} />
             </Form>
         </div>
     )

@@ -7,9 +7,8 @@ import {
     UpdateCardRequestType,
 } from 'features/cards/cards.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
-import { thunkErrorHandler } from 'common/utils/thunkErrorHandler'
+import { thunkErrorHandler, clearNotifyStateAction } from 'common'
 import { GetParamsType } from 'features/cards/hooks/useCards'
-import { clearNotifyStateAction } from 'common/utils/clearNotifyStateAction'
 
 const slice = createSlice({
     name: 'cards',

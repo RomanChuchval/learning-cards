@@ -1,10 +1,9 @@
-import { FormInputValues } from 'common/hooks/useAppForm'
 import { CreatePackModelType, UpdatePackModelType } from 'features/packs/packs.api'
 import { packsThunks } from 'features/packs/packs.slice'
-import { useAppDispatch } from 'app/hooks/useAppDispatch'
 import { modalsAction } from 'features/modals/modals.slice'
-import { useAppSelector } from 'app/hooks/useAppSelector'
 import { packIdSelector } from 'features/modals/modals.selector'
+import { FormInputValues } from 'common'
+import { useAppDispatch, useAppSelector } from 'app'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 

@@ -1,4 +1,4 @@
-import { instance } from 'common/api/api'
+import { instance } from 'common'
 import axios from 'axios'
 
 export const authApi = {

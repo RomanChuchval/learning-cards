@@ -1,10 +1,9 @@
 import React from 'react'
-import { SuperButton } from 'common'
-import { useAppModals } from 'common/hooks/useAppModals'
-import { useApp } from 'app/hooks/useApp'
+import { SuperButton, useAppModals } from 'common'
 import { AppModal } from 'features/modals/components/AppModal'
 import { useEditorCards } from 'features/cards/hooks/useEditorCards'
 import { CardsModalForm } from 'features/cards/components/modals/CardsModalForm'
+import { useApp } from 'app'
 
 export const CreateCard = () => {
     const { openCreateModal, showCreateModal, handleClose } = useAppModals()

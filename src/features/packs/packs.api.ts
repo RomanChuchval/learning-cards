@@ -1,4 +1,4 @@
-import { instance } from 'common/api/api'
+import { instance } from 'common'
 
 export const packsApi = {
     getPacks: (params: GetPacksParamsType = {}) => {

@@ -1,7 +1,7 @@
 import { createSlice, isFulfilled, isPending, isRejected, isRejectedWithValue, PayloadAction } from '@reduxjs/toolkit'
 import { cardsApi, CardType, GetCardsParamsType, UpdateCardGradeRequestType } from 'features/cards/cards.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
-import { thunkErrorHandler } from 'common/utils/thunkErrorHandler'
+import { thunkErrorHandler } from 'common'
 import { clearNotifyStateAction } from 'common/utils/clearNotifyStateAction'
 
 const slice = createSlice({

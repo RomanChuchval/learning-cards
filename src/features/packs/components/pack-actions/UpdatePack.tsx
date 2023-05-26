@@ -3,8 +3,8 @@ import IconButton from '@mui/material/IconButton'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import { useEditorPack } from 'features/packs/hooks/useEditorPack'
 import { AppModal } from 'features/modals/components/AppModal'
-import { useAppModals } from 'common/hooks/useAppModals'
 import { PacksModalForm } from 'features/packs/components/modals/PacksModalForm'
+import { useAppModals } from 'common'
 
 type UpdatePackPropsType = {
     packId: string
@@ -25,8 +25,7 @@ export const UpdatePack: React.FC<UpdatePackPropsType> = ({ packId, packName, de
             <AppModal
                 title={'Update Pack'}
                 open={packId === selectedPackId && showUpdateModal}
-                handleClose={handleClose}
-            >
+                handleClose={handleClose}>
                 <PacksModalForm onSubmit={updatePack}
                                 handleClose={handleClose}
                                 img={img}

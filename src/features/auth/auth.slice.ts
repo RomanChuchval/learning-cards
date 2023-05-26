@@ -8,8 +8,7 @@ import {
     SetNewPassBodyType,
     UpdateProfileBodyType,
 } from 'features/auth/auth.api'
-import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
-import { thunkErrorHandler } from 'common/utils/thunkErrorHandler'
+import { createAppAsyncThunk, thunkErrorHandler } from 'common'
 import { appActions } from 'app/app.slice'
 import { clearRedirectPathAction } from 'common/utils/clearRedirectPathAction'
 
