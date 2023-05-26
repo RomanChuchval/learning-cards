@@ -12,10 +12,9 @@ import { useApp } from 'app/hooks/useApp'
 import { TableSkeleton } from 'common/components/table/table-skeleton/TableSkeleton'
 
 export const CardsTable = () => {
-    const { cards, packUserId, cardsPageCountParams } = useCards()
+    const { cards, packUserId, cardsPageCountParams, setSort, onChangeSort, sort } = useCards()
     const { authorizedUserId } = useAuth()
     const { isCardsLoading } = useApp()
-
     const isMyPack = packUserId === authorizedUserId
     const tableBodySX = {
         wordWrap: 'break-word',
@@ -27,9 +26,9 @@ export const CardsTable = () => {
         <div>
             <CustomTable
                 tableCellForHeader={['Question', 'Answer', 'Last Updated', 'Grade']}
-                sortHandler={() => {}}
-                setSort={() => {}}
-                sort={true}
+                sortHandler={onChangeSort}
+                setSort={setSort}
+                sort={sort}
             >
                 {isCardsLoading ? (
                     <TableSkeleton defaultCell={4} defaultRow={cardsPageCountParams ?? '4'} />

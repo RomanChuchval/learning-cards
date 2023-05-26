@@ -6,7 +6,6 @@ import {
     cardsPageSelector,
     cardsSelector,
     cardsTotalCountSelector,
-    isCardsLoadingSelector,
     packUserIdSelector,
 } from 'features/cards/cards.selectors'
 import { cardsActions, cardsThunks } from 'features/cards/cards.slice'
@@ -29,6 +28,7 @@ export const useCards = () => {
 
     const [searchValue, setSearchValue] = useState<string>('')
     const [timeoutId, setTimeoutId] = useState<number>()
+    const [sort, setSort] = useState<boolean>(false)
 
     const getCardsWithParams = (params: GetParamsType) => {
         dispatch(cardsActions.setCardsParams({ params }))
@@ -49,6 +49,10 @@ export const useCards = () => {
     const onChangePagination = (page: string, pageCount: string) => {
         getCardsWithParams({ page, pageCount })
     }
+    const onChangeSort = () => {
+        const sortCards = sort ? '1grade' : '0grade'
+        getCardsWithParams({ sortCards })
+    }
 
     return {
         cards,
@@ -62,6 +66,9 @@ export const useCards = () => {
         selectedPack,
         selectedCardId,
         cardsPageCountParams,
+        onChangeSort,
+        setSort,
+        sort,
     }
 }
 
