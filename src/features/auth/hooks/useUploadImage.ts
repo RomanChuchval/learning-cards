@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react'
 import { authThunks } from 'features/auth/auth.slice'
-import { useAppDispatch } from 'app/hooks/useAppDispatch'
-import { convertFileToBase64 } from 'common/utils/toBase64'
+import { useAppDispatch } from 'app'
+import { convertFileToBase64 } from 'common'
 
 export const useUploadImage = () => {
     const dispatch = useAppDispatch()
@@ -20,6 +20,6 @@ export const useUploadImage = () => {
     }
 
     return {
-        uploadUserAvatar,
+        uploadUserAvatar
     }
 }
