@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import IconButton from '@mui/material/IconButton'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { useAppModals, RemoveModal } from 'common'
@@ -8,10 +8,10 @@ type RemoveCardPropsType = {
     cardId: string
     question: string
 }
-export const RemoveCard: React.FC<RemoveCardPropsType> = ({ cardId, question }) => {
-    const { showRemoveModal, openRemoveModal, handleClose, selectedCardId } = useAppModals({
+export const RemoveCard: React.FC<RemoveCardPropsType> = memo(({ cardId, question }) => {
+    const { showRemoveModal, openRemoveModal, handleClose, isSelectedCard } = useAppModals({
         cardId,
-        question
+        question,
     })
     const { removeCard } = useEditorCards()
 
@@ -21,13 +21,14 @@ export const RemoveCard: React.FC<RemoveCardPropsType> = ({ cardId, question }) 
                 removedTitle={'This card'}
                 entityName={question}
                 title={'Delete Card'}
-                open={selectedCardId === cardId && showRemoveModal}
+                open={isSelectedCard && showRemoveModal}
                 handleClose={handleClose}
-                onRemove={removeCard}>
+                onRemove={removeCard}
+            >
                 <IconButton size={'small'} onClick={openRemoveModal}>
                     <DeleteForeverIcon sx={{ fontSize: '20px' }} />
                 </IconButton>
             </RemoveModal>
         </>
     )
-}
+})

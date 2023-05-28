@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import IconButton from '@mui/material/IconButton'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import { AppModal } from 'features/modals/components/AppModal'
@@ -14,14 +14,14 @@ type UpdateCardActionsPropsType = {
     answerImg?: string
     questionImg?: string
 }
-export const UpdateCard: React.FC<UpdateCardActionsPropsType> =
+export const UpdateCard: React.FC<UpdateCardActionsPropsType> = memo(
     ({ question, answer, cardId, answerImg, questionImg }) => {
         const { openUpdateModal, showUpdateModal, handleClose, isSelectedCard } = useAppModals({
             question,
             answer,
             cardId,
             answerImg,
-            questionImg
+            questionImg,
         })
         const { updateCard } = useEditorCards()
         const { isLoadingApp } = useApp()
@@ -33,9 +33,11 @@ export const UpdateCard: React.FC<UpdateCardActionsPropsType> =
                 <AppModal
                     title={'Update Card'}
                     open={isSelectedCard && showUpdateModal}
-                    handleClose={handleClose}>
+                    handleClose={handleClose}
+                >
                     <CardsModalForm onSubmit={updateCard} handleClose={handleClose} />
                 </AppModal>
             </>
         )
     }
+)

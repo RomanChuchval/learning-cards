@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo, useCallback } from 'react'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
@@ -8,15 +8,17 @@ import { useEditorPack } from 'features/packs/hooks/useEditorPack'
 import { RemoveModal } from 'common/components/modals/RemoveModal'
 import { RemovePackPropsType } from 'features/packs/components/pack-actions/RemovePack'
 
-export const RemovePackPopover: FC<RemovePackPropsType> = ({ packId, packName }) => {
+export const RemovePackPopover: FC<RemovePackPropsType> = memo(({ packId, packName }) => {
     const { showRemoveModal, openRemoveModal, handleClose, selectedPackId } = useAppModals({
         packId,
         packName,
     })
     const { removePack } = useEditorPack()
-    const onPackRemove = () => {
+
+    const onPackRemove = useCallback(() => {
         removePack(true)
-    }
+    }, [removePack])
+
     return (
         <>
             <RemoveModal
@@ -36,4 +38,4 @@ export const RemovePackPopover: FC<RemovePackPropsType> = ({ packId, packName })
             </RemoveModal>
         </>
     )
-}
+})

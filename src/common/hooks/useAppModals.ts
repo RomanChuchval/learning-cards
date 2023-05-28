@@ -8,6 +8,7 @@ import {
     showRemoveModalSelector,
     showUpdateModalSelector,
 } from 'features/modals/modals.selector'
+import { useCallback } from 'react'
 
 export const useAppModals = (modalState: ModalStateArgsType = {}) => {
     const dispatch = useAppDispatch()
@@ -17,18 +18,21 @@ export const useAppModals = (modalState: ModalStateArgsType = {}) => {
     const selectedPackId = useAppSelector(packIdSelector)
     const selectedCardId = useAppSelector(cardIdsSelector)
 
-    const openUpdateModal = () => {
+    const openUpdateModal = useCallback(() => {
         dispatch(modalsAction.showUpdateModal(modalState))
-    }
-    const openCreateModal = () => {
+    }, [modalState])
+
+    const openCreateModal = useCallback(() => {
         dispatch(modalsAction.showCreateModal(modalState))
-    }
-    const openRemoveModal = () => {
+    }, [modalState])
+
+    const openRemoveModal = useCallback(() => {
         dispatch(modalsAction.showRemoveModal(modalState))
-    }
-    const handleClose = () => {
+    }, [modalState])
+
+    const handleClose = useCallback(() => {
         dispatch(modalsAction.closeModal())
-    }
+    }, [])
 
     const isSelectedCard = selectedCardId === modalState.cardId
     const isSelectedPack = selectedPackId === modalState.packId

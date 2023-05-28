@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { UpdateCard } from 'features/cards/components/cards-actions/UpdateCard'
 import { RemoveCard } from 'features/cards/components/cards-actions/RemoveCard'
 
@@ -9,23 +9,19 @@ type CardsTableActionsPropsType = {
     questionImg?: string
     answerImg?: string
 }
-export const CardsTableActions: React.FC<CardsTableActionsPropsType> = ({
-    question,
-    answer,
-    cardId,
-    questionImg,
-    answerImg,
-}) => {
-    return (
-        <>
-            <UpdateCard
-                question={question}
-                answer={answer}
-                cardId={cardId}
-                questionImg={questionImg}
-                answerImg={answerImg}
-            />
-            <RemoveCard cardId={cardId} question={question} />
-        </>
-    )
-}
+export const CardsTableActions: React.FC<CardsTableActionsPropsType> = memo(
+    ({ question, answer, cardId, questionImg, answerImg }) => {
+        return (
+            <>
+                <UpdateCard
+                    question={question}
+                    answer={answer}
+                    cardId={cardId}
+                    questionImg={questionImg}
+                    answerImg={answerImg}
+                />
+                <RemoveCard cardId={cardId} question={question} />
+            </>
+        )
+    }
+)

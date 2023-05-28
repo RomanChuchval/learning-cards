@@ -17,50 +17,64 @@ export const CardsHeader = () => {
     const { anchorEl, closePopover, handleClick } = usePopover()
     const { isCardsLoading } = useApp()
     const { learnHandler } = useLearn(selectedPack._id)
+
     const isMyPack = packUserId === authorizedUserId
 
     return (
         <>
             <Grid item md={6}>
-                {isCardsLoading
-                    ? <Skeleton width={'150px'} height={'50px'} />
-                    : isMyPack
-                        ? <Box sx={{
+                {isCardsLoading ? (
+                    <Skeleton width={'150px'} height={'50px'} />
+                ) : isMyPack ? (
+                    <Box
+                        sx={{
                             display: 'flex',
                             flexDirection: 'column',
-                            gap: '15px'
-                        }}>
-                            <Box sx={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
-                                <PageTitle title={selectedPack.name} />
-                                <IconButton onClick={handleClick} sx={{ height: '32px', p: '0' }}>
-                                    <PendingIcon color={'primary'} />
-                                </IconButton>
-                            </Box>
+                            gap: '15px',
+                        }}
+                    >
+                        <Box sx={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
+                            <PageTitle title={selectedPack.name} />
+                            <IconButton onClick={handleClick} sx={{ height: '32px', p: '0' }}>
+                                <PendingIcon color={'primary'} />
+                            </IconButton>
                         </Box>
-                        : <PageTitle title={selectedPack.name} />}
-                {selectedPack.deckCover && <div style={{
-                    marginTop: '20px',
-                    width: '170px',
-                    height: '110px',
-                    background: `url(${selectedPack.deckCover}) no-repeat left/contain`
-                }} />}
+                    </Box>
+                ) : (
+                    <PageTitle title={selectedPack.name} />
+                )}
+                {selectedPack.deckCover && (
+                    <div
+                        style={{
+                            marginTop: '20px',
+                            width: '170px',
+                            height: '110px',
+                            background: `url(${selectedPack.deckCover}) no-repeat left/contain`,
+                        }}
+                    />
+                )}
             </Grid>
             <Grid item md={6} display={'flex'} justifyContent={'flex-end'}>
                 <Box>
-                    {isMyPack
-                        ? <CreateCard />
-                        : <SuperButton name={'Learn Pack'}
-                                     rounded={true}
-                                     textColor={'white'}
-                                     callback={learnHandler}
-                                     disable={cards?.length === 0} />}
+                    {isMyPack ? (
+                        <CreateCard />
+                    ) : (
+                        <SuperButton
+                            name={'Learn Pack'}
+                            rounded={true}
+                            textColor={'white'}
+                            callback={learnHandler}
+                            disable={cards?.length === 0}
+                        />
+                    )}
                 </Box>
             </Grid>
             <CustomPopover anchorEl={anchorEl} closePopover={closePopover}>
-                <PopoverCards cards={cards?.length}
-                              packId={selectedPack._id}
-                              packName={selectedPack.name}
-                              handleClose={closePopover}
+                <PopoverCards
+                    cards={cards?.length}
+                    packId={selectedPack._id}
+                    packName={selectedPack.name}
+                    handleClose={closePopover}
                 />
             </CustomPopover>
         </>

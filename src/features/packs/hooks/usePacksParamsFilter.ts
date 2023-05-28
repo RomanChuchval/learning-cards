@@ -1,6 +1,6 @@
 import { useAppSelector, useAppDispatch } from 'app'
 import { useSearchParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { userIdSelector } from 'features/auth/auth.selectors'
 import { packsAction, packsThunks } from 'features/packs/packs.slice'
 import { packsSelector, paramsSelector } from 'features/packs/packs.selectors'
@@ -30,33 +30,54 @@ export const usePacksParamsFilter = () => {
         if (params.packName?.length) lastParams.packName = params.packName
         setSearchParams({ ...lastParams })
     }, [setSearchParams, params])
-    const onDispatchParams = (paramsArg: GetPacksParamsType) => {
+    const onDispatchParams = useCallback((paramsArg: GetPacksParamsType) => {
         dispatch(packsAction.setQueryParams({ params: { ...paramsArg } }))
         dispatch(packsThunks.getPacks())
-    }
-    const onChangePagination = (page: string, pageCount: string) => {
-        onDispatchParams({ page, pageCount })
-    }
-    const onChangeSlider = (min: string, max: string) => {
-        onDispatchParams({ min, max, page: '1' })
-    }
-    const onClickShowPacksCards = () => {
+    }, [])
+
+    const onChangePagination = useCallback(
+        (page: string, pageCount: string) => {
+            onDispatchParams({ page, pageCount })
+        },
+        [onDispatchParams]
+    )
+
+    const onChangeSlider = useCallback(
+        (min: string, max: string) => {
+            onDispatchParams({ min, max, page: '1' })
+        },
+        [onDispatchParams]
+    )
+
+    const onClickShowPacksCards = useCallback(() => {
         if (onMy) {
             onDispatchParams({ user_id: userId, page: '1' })
         } else {
             onDispatchParams({ user_id: '', page: '1' })
         }
-    }
-    const onChangeText = (value: string) => {
-        setSearch(value)
-        searchHandler(value)
-    }
-    const searchHandler = (value: string) => {
-        clearTimeout(timoutId)
-        const newTimeoutId = setTimeout(() => onDispatchParams({ packName: value, page: '1' }), 700)
-        setTimeoutId(+newTimeoutId)
-    }
-    const clearFiltersHandler = () => {
+    }, [onDispatchParams, onMy, userId])
+
+    const searchHandler = useCallback(
+        (value: string) => {
+            clearTimeout(timoutId)
+            const newTimeoutId = setTimeout(
+                () => onDispatchParams({ packName: value, page: '1' }),
+                700
+            )
+            setTimeoutId(+newTimeoutId)
+        },
+        [onDispatchParams, timoutId]
+    )
+
+    const onChangeText = useCallback(
+        (value: string) => {
+            setSearch(value)
+            searchHandler(value)
+        },
+        [searchHandler]
+    )
+
+    const clearFiltersHandler = useCallback(() => {
         onDispatchParams({
             page: '1',
             pageCount: '4',
@@ -68,13 +89,14 @@ export const usePacksParamsFilter = () => {
         setSearch('')
         setValueSlider([0, 100])
         setOnMy(true)
-    }
-    const sortHandler = () => {
+    }, [onDispatchParams])
+
+    const sortHandler = useCallback(() => {
         onDispatchParams({
             sortPacks: sort ? '1updated' : '0updated',
-            page: '1'
+            page: '1',
         })
-    }
+    }, [onDispatchParams, sort])
 
     return {
         packs,
@@ -88,7 +110,6 @@ export const usePacksParamsFilter = () => {
         searchParams,
         onMy,
         setOnMy,
-        filterHandler: onDispatchParams,
         sortHandler,
         onChangePagination,
         onChangeSlider,

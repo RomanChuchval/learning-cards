@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import ListItemText from '@mui/material/ListItemText'
@@ -12,10 +12,10 @@ type UpdatePackTitlePropsType = {
     packId: string
     packName: string
 }
-export const UpdatePackTitle: React.FC<UpdatePackTitlePropsType> = ({ packId, packName }) => {
-    const { showUpdateModal, openUpdateModal, handleClose, selectedPackId } = useAppModals({
+export const UpdatePackTitle: React.FC<UpdatePackTitlePropsType> = memo(({ packId, packName }) => {
+    const { showUpdateModal, openUpdateModal, handleClose, isSelectedPack } = useAppModals({
         packId,
-        packName
+        packName,
     })
     const { updatePack, img, setImg } = useEditorPack()
     return (
@@ -28,10 +28,16 @@ export const UpdatePackTitle: React.FC<UpdatePackTitlePropsType> = ({ packId, pa
             </ListItemButton>
             <AppModal
                 title={'Create Card'}
-                open={selectedPackId === packId && showUpdateModal}
-                handleClose={handleClose}>
-                <PacksModalForm onSubmit={updatePack} handleClose={handleClose} img={img} setImg={setImg} />
+                open={isSelectedPack && showUpdateModal}
+                handleClose={handleClose}
+            >
+                <PacksModalForm
+                    onSubmit={updatePack}
+                    handleClose={handleClose}
+                    img={img}
+                    setImg={setImg}
+                />
             </AppModal>
         </>
     )
-}
+})

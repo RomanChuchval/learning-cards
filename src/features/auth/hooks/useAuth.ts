@@ -6,7 +6,7 @@ import {
     checkEmailMessageSelector,
     userIdSelector,
 } from 'features/auth/auth.selectors'
-import { LoginFieldsType } from 'features/auth/components/login/Login'
+import { LoginFieldsType } from 'features/auth/components/Login'
 import {
     ForgotPassBodyType,
     RegisterBodyType,

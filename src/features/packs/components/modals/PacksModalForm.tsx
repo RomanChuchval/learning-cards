@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { useModalsForm, ModalForm, FormInputValues } from 'common'
 import { EditorPacksModal } from 'features/packs/components/modals/EditorPacksModal'
 
@@ -10,7 +10,7 @@ type PacksModalFormPropsType = {
     defaultImg?: string
 }
 
-export const PacksModalForm: React.FC<PacksModalFormPropsType> =
+export const PacksModalForm: React.FC<PacksModalFormPropsType> = memo(
     ({ onSubmit, handleClose, img, setImg, defaultImg }) => {
         const { modalState, errors, register, handleSubmit, onSubmitHandler } = useModalsForm(
             onSubmit,
@@ -22,15 +22,18 @@ export const PacksModalForm: React.FC<PacksModalFormPropsType> =
                 <ModalForm
                     handleSubmit={handleSubmit}
                     onSubmit={onSubmitHandler}
-                    handleClose={handleClose}>
+                    handleClose={handleClose}
+                >
                     <EditorPacksModal
                         img={img}
                         setImg={setImg}
                         defaultImg={defaultImg}
                         errors={errors}
                         register={register}
-                        packName={modalState.packName} />
+                        packName={modalState.packName}
+                    />
                 </ModalForm>
             </>
         )
     }
+)

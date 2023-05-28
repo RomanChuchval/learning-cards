@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import SchoolIcon from '@mui/icons-material/School'
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
@@ -14,19 +14,20 @@ type TableActionsPropsType = {
     isCards: boolean
 }
 
-export const TableActions: FC<TableActionsPropsType> =
+export const TableActions: FC<TableActionsPropsType> = memo(
     ({ packId, myCards, packName, isCards, defaultImg }) => {
-
-    const {learnHandler} = useLearn(packId)
+        const { learnHandler } = useLearn(packId)
 
         return (
             <Box display={'flex'}>
                 <IconButton size={'small'} onClick={learnHandler} disabled={isCards}>
                     <SchoolIcon />
                 </IconButton>
-                {myCards && <UpdatePack packName={packName} packId={packId} defaultImg={defaultImg}/>}
+                {myCards && (
+                    <UpdatePack packName={packName} packId={packId} defaultImg={defaultImg} />
+                )}
                 {myCards && <RemovePack packName={packName} packId={packId} />}
             </Box>
         )
     }
-
+)

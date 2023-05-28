@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import { SearchBar, CardsPagination } from 'common'
 import Grid from '@mui/material/Grid'
 import { useCards } from 'features/cards/hooks/useCards'
@@ -7,7 +7,7 @@ import { useApp } from 'app/hooks/useApp'
 type CardsFilterPropsType = {
     children: React.ReactNode
 }
-export const CardsFilter: FC<CardsFilterPropsType> = ({ children }) => {
+export const CardsFilter: FC<CardsFilterPropsType> = memo(({ children }) => {
     const {
         cardsTotalCount,
         cardsPageCount,
@@ -41,4 +41,4 @@ export const CardsFilter: FC<CardsFilterPropsType> = ({ children }) => {
             </Grid>
         </>
     )
-}
+})
