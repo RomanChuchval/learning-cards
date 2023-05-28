@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import Box from '@mui/material/Box'
 
 type InfoMessageType = {
@@ -6,7 +6,7 @@ type InfoMessageType = {
     margin?: string
 }
 
-export const InfoMessage: FC<InfoMessageType> = ({ text, margin }) => {
+export const InfoMessage: FC<InfoMessageType> = memo(({ text, margin }) => {
     return (
         <Box
             component={'span'}
@@ -20,4 +20,4 @@ export const InfoMessage: FC<InfoMessageType> = ({ text, margin }) => {
             {text}
         </Box>
     )
-}
+})

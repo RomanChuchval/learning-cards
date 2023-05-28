@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import { FieldErrors, UseFormRegister } from 'react-hook-form'
@@ -11,7 +11,7 @@ type EmailInputType = {
     name: 'email' | 'loginEmail'
 }
 
-export const EmailInput: FC<EmailInputType> = ({ label, register, errors, name }) => {
+export const EmailInput: FC<EmailInputType> = memo(({ label, register, errors, name }) => {
     return (
         <Box sx={{ marginTop: '30px' }}>
             <TextField
@@ -25,4 +25,4 @@ export const EmailInput: FC<EmailInputType> = ({ label, register, errors, name }
             />
         </Box>
     )
-}
+})

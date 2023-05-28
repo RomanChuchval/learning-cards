@@ -4,17 +4,18 @@ import {
     redirectPathSelector,
     profileSelector,
     checkEmailMessageSelector,
-    userIdSelector
+    userIdSelector,
 } from 'features/auth/auth.selectors'
 import { LoginFieldsType } from 'features/auth/components/login/Login'
 import {
     ForgotPassBodyType,
     RegisterBodyType,
     SetNewPassBodyType,
-    UpdateProfileBodyType
+    UpdateProfileBodyType,
 } from 'features/auth/auth.api'
 import { emailMessage } from 'features/auth/constants'
 import { useAppDispatch } from 'app'
+import { useCallback } from 'react'
 
 export const useAuth = () => {
     const dispatch = useAppDispatch()
@@ -26,37 +27,56 @@ export const useAuth = () => {
     const isProfileDefine = () => Boolean(profile)
     const isUserAuth = isProfileDefine()
 
-    const login = (data: LoginFieldsType) => {
-        const payload = {
-            email: data.loginEmail,
-            password: data.loginPassword,
-            rememberMe: data.rememberMe
-        }
-        dispatch(authThunks.login(payload))
-    }
-    const logout = () => dispatch(authThunks.logout())
-    const registration = (data: RegisterBodyType) => {
-        dispatch(authThunks.register(data))
-    }
-    const forgotPassword = (data: { email: string }) => {
-        const payload: ForgotPassBodyType = {
-            email: data.email,
-            from: 'App developers ;)',
-            message: emailMessage
-        }
-        dispatch(authThunks.forgotPassword(payload))
-    }
-    const setNewPassword = (password: string, token: string) => {
-        const payload: SetNewPassBodyType = {
-            password,
-            resetPasswordToken: token
-        }
-        dispatch(authThunks.setNewPassword(payload))
-    }
+    const login = useCallback(
+        (data: LoginFieldsType) => {
+            const payload = {
+                email: data.loginEmail,
+                password: data.loginPassword,
+                rememberMe: data.rememberMe,
+            }
+            dispatch(authThunks.login(payload))
+        },
+        [dispatch]
+    )
 
-    const updateUserName = (data: UpdateProfileBodyType) => {
-        dispatch(authThunks.updateProfile(data))
-    }
+    const logout = useCallback(() => dispatch(authThunks.logout()), [dispatch])
+
+    const registration = useCallback(
+        (data: RegisterBodyType) => {
+            dispatch(authThunks.register(data))
+        },
+        [dispatch]
+    )
+
+    const forgotPassword = useCallback(
+        (data: { email: string }) => {
+            const payload: ForgotPassBodyType = {
+                email: data.email,
+                from: 'App developers ;)',
+                message: emailMessage,
+            }
+            dispatch(authThunks.forgotPassword(payload))
+        },
+        [dispatch]
+    )
+
+    const setNewPassword = useCallback(
+        (password: string, token: string) => {
+            const payload: SetNewPassBodyType = {
+                password,
+                resetPasswordToken: token,
+            }
+            dispatch(authThunks.setNewPassword(payload))
+        },
+        [dispatch]
+    )
+
+    const updateUserName = useCallback(
+        (data: UpdateProfileBodyType) => {
+            dispatch(authThunks.updateProfile(data))
+        },
+        [dispatch]
+    )
 
     return {
         login,
@@ -69,6 +89,6 @@ export const useAuth = () => {
         isUserAuth,
         redirectPath,
         emailAddress,
-        authorizedUserId
+        authorizedUserId,
     }
 }

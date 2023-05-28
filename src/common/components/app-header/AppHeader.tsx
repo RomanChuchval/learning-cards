@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import logo from 'assets/img/logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 import AppBar from '@mui/material/AppBar/AppBar'
@@ -11,6 +11,8 @@ import { useAuth } from 'features/auth/hooks/useAuth'
 export const AppHeader = () => {
     const navigate = useNavigate()
     const { profile } = useAuth()
+
+    const toLogin = useCallback(() => navigate(paths.LOGIN), [])
 
     return (
         <AppBar color={'inherit'} position={'static'}>
@@ -26,7 +28,7 @@ export const AppHeader = () => {
                         <HeaderProfile userName={profile.name} avatar={profile.avatar} />
                     ) : (
                         <SuperButton
-                            callback={() => navigate(paths.LOGIN)}
+                            callback={toLogin}
                             width={'113'}
                             rounded={true}
                             color={'primary'}

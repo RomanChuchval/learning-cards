@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, memo, useState } from 'react'
 import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import { FieldErrors, UseFormRegister } from 'react-hook-form'
@@ -14,7 +14,7 @@ type PasswordInputType = {
     name: 'password' | 'loginPassword' | 'confirmPassword'
 }
 
-export const PasswordInput: FC<PasswordInputType> = ({ label, register, errors, name }) => {
+export const PasswordInput: FC<PasswordInputType> = memo(({ label, register, errors, name }) => {
     const [visibilityEye, setVisibilityEye] = useState<boolean>(false)
     const setPasswordVisible = () => {
         setVisibilityEye(!visibilityEye)
@@ -37,4 +37,4 @@ export const PasswordInput: FC<PasswordInputType> = ({ label, register, errors, 
             </Box>
         </Box>
     )
-}
+})

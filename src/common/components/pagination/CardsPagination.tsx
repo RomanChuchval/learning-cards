@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl'
 import MenuItem from '@mui/material/MenuItem'
@@ -14,9 +14,8 @@ export type CardsPaginationPropsType = {
     onChange: (page: string, count: string) => void
 }
 
-export const CardsPagination: React.FC<CardsPaginationPropsType> =
+export const CardsPagination: React.FC<CardsPaginationPropsType> = memo(
     ({ page, pageCount, totalCount, onChange, disabled }) => {
-
         const lastPage = Math.ceil(totalCount / +pageCount) || 0
 
         const styleForContainer = {
@@ -24,13 +23,13 @@ export const CardsPagination: React.FC<CardsPaginationPropsType> =
             alignItems: 'center',
             width: '100%',
             flexWrap: 'wrap',
-            gap: '20px'
+            gap: '20px',
         }
         const styleForFormControl = {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            gap: '10px'
+            gap: '10px',
         }
 
         const handleSelectorChange = (event: SelectChangeEvent) => {
@@ -52,11 +51,12 @@ export const CardsPagination: React.FC<CardsPaginationPropsType> =
                 />
                 <FormControl sx={styleForFormControl}>
                     <Box component={'span'}>Show</Box>
-                    <Select disabled={disabled}
-                            autoWidth={true}
-                            sx={{ width: '70px', height: '36px' }}
-                            value={`${pageCount || 4}`}
-                            onChange={handleSelectorChange}
+                    <Select
+                        disabled={disabled}
+                        autoWidth={true}
+                        sx={{ width: '70px', height: '36px' }}
+                        value={`${pageCount || 4}`}
+                        onChange={handleSelectorChange}
                     >
                         <MenuItem value={'4'}>4</MenuItem>
                         <MenuItem value={'7'}>7</MenuItem>
@@ -67,3 +67,4 @@ export const CardsPagination: React.FC<CardsPaginationPropsType> =
             </Box>
         )
     }
+)

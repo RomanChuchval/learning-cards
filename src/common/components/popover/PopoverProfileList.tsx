@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import Divider from '@mui/material/Divider'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
@@ -15,10 +15,12 @@ export const PopoverProfileList = () => {
     const navigate = useNavigate()
     const { logout } = useAuth()
 
+    const toProfile = useCallback(() => navigate(paths.PROFILE), [])
+
     return (
         <List>
             <ListItem disablePadding>
-                <ListItemButton onClick={() => navigate(paths.PROFILE)}>
+                <ListItemButton onClick={toProfile}>
                     <ListItemIcon>
                         <AccountCircleIcon />
                     </ListItemIcon>

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { memo } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
@@ -14,7 +14,7 @@ const style = {
     width: 400,
     background: '#fff',
     borderRadius: '2px',
-    boxShadow: 24
+    boxShadow: 24,
 }
 
 type PacksModalPropsType = {
@@ -27,43 +27,60 @@ type PacksModalPropsType = {
     onRemove: () => void
 }
 
-export const RemoveModal: React.FC<PacksModalPropsType> = (
-    { entityName, removedTitle, children, title, open, handleClose, onRemove }) => {
-    return (
-        <div>
-            {children}
-            <Modal open={open} onClose={handleClose}>
-                <Box sx={style}>
-                    <Box display={'flex'}
-                         justifyContent='space-between'
-                         sx={{ borderBottom: '1px solid #D9D9D9' }}>
-                        <Typography variant='h6' component='h2' sx={{ p: 2 }}>
-                            {title}
+export const RemoveModal: React.FC<PacksModalPropsType> = memo(
+    ({ entityName, removedTitle, children, title, open, handleClose, onRemove }) => {
+        return (
+            <div>
+                {children}
+                <Modal open={open} onClose={handleClose}>
+                    <Box sx={style}>
+                        <Box
+                            display={'flex'}
+                            justifyContent='space-between'
+                            sx={{ borderBottom: '1px solid #D9D9D9' }}
+                        >
+                            <Typography variant='h6' component='h2' sx={{ p: 2 }}>
+                                {title}
+                            </Typography>
+                            <IconButton onClick={handleClose} sx={{ p: 2 }}>
+                                <CloseIcon />
+                            </IconButton>
+                        </Box>
+                        <Typography
+                            variant='h6'
+                            component='div'
+                            sx={{ p: '30px 20px', fontSize: '14px', fontWeight: '400' }}
+                        >
+                            Do you really want to remove{' '}
+                            <b style={{ color: 'red' }}>{entityName}</b>?
+                            <br />
+                            {removedTitle} will be deleted
                         </Typography>
-                        <IconButton onClick={handleClose} sx={{ p: 2 }}>
-                            <CloseIcon />
-                        </IconButton>
+                        <Box
+                            display={'flex'}
+                            justifyContent='space-between'
+                            sx={{ p: '0 24px 36px' }}
+                        >
+                            <SuperButton
+                                name={'Cancel'}
+                                color={'secondary'}
+                                rounded={true}
+                                width={'130'}
+                                type={'button'}
+                                callback={handleClose}
+                            />
+                            <SuperButton
+                                name={'Remove'}
+                                textColor={'white'}
+                                color={'error'}
+                                rounded={true}
+                                width={'130'}
+                                callback={onRemove}
+                            />
+                        </Box>
                     </Box>
-                    <Typography variant='h6' component='div' sx={{ p: '30px 20px', fontSize: '14px', fontWeight: '400' }}>
-                        Do you really want to remove <b style={{color: 'red'}}>{entityName}</b>?
-                        <br/>{removedTitle} will be deleted
-                    </Typography>
-                    <Box display={'flex'} justifyContent='space-between' sx={{ p: '0 24px 36px' }}>
-                        <SuperButton name={'Cancel'}
-                                     color={'secondary'}
-                                     rounded={true}
-                                     width={'130'}
-                                     type={'button'}
-                                     callback={handleClose} />
-                        <SuperButton name={'Remove'}
-                                     textColor={'white'}
-                                     color={'error'}
-                                     rounded={true}
-                                     width={'130'}
-                                     callback={onRemove} />
-                    </Box>
-                </Box>
-            </Modal>
-        </div>
-    )
-}
+                </Modal>
+            </div>
+        )
+    }
+)

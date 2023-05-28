@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import Box from '@mui/material/Box'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
@@ -12,7 +12,7 @@ type HeaderProfilePropsType = {
     avatar: string
 }
 
-export const HeaderProfile: FC<HeaderProfilePropsType> = ({ userName, avatar }) => {
+export const HeaderProfile: FC<HeaderProfilePropsType> = memo(({ userName, avatar }) => {
     const { anchorEl, closePopover, handleClick } = usePopover()
 
     return (
@@ -35,4 +35,4 @@ export const HeaderProfile: FC<HeaderProfilePropsType> = ({ userName, avatar }) 
             </CustomPopover>
         </Box>
     )
-}
+})

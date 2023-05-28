@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import notFound from 'assets/img/400.svg'
 import { SuperButton } from 'common/components/button/SuperButton'
 import { useNavigate } from 'react-router-dom'
@@ -9,6 +9,7 @@ import { paths } from 'common'
 
 export const PageNotFound = () => {
     const navigate = useNavigate()
+    const toPacks = useCallback(() => navigate(paths.PACKS), [])
     return (
         <Grid
             container
@@ -29,9 +30,7 @@ export const PageNotFound = () => {
                 </Grid>
                 <Grid item>
                     <SuperButton
-                        callback={() => {
-                            navigate(paths.PACKS)
-                        }}
+                        callback={toPacks}
                         name={'Back to home page!'}
                         textColor={'white'}
                         color={'primary'}

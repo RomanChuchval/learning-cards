@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Divider from '@mui/material/Divider'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
@@ -17,26 +17,28 @@ type PopoverCardsPackPropsType = {
     handleClose: () => void
 }
 
-export const PopoverCards: React.FC<PopoverCardsPackPropsType> = ({ packId, packName, cards }) => {
-    const { learnHandler } = useLearn(packId)
-    return (
-        <List>
-            <ListItem disablePadding>
-                <UpdatePackTitle packName={packName} packId={packId} />
-            </ListItem>
-            <Divider />
-            <ListItem disablePadding>
-                <RemovePackPopover packName={packName} packId={packId} />
-            </ListItem>
-            <Divider />
-            <ListItem disablePadding>
-                <ListItemButton onClick={learnHandler} disabled={cards === 0}>
-                    <ListItemIcon>
-                        <SchoolIcon />
-                    </ListItemIcon>
-                    <ListItemText primary='Learn' />
-                </ListItemButton>
-            </ListItem>
-        </List>
-    )
-}
+export const PopoverCards: React.FC<PopoverCardsPackPropsType> = memo(
+    ({ packId, packName, cards }) => {
+        const { learnHandler } = useLearn(packId)
+        return (
+            <List>
+                <ListItem disablePadding>
+                    <UpdatePackTitle packName={packName} packId={packId} />
+                </ListItem>
+                <Divider />
+                <ListItem disablePadding>
+                    <RemovePackPopover packName={packName} packId={packId} />
+                </ListItem>
+                <Divider />
+                <ListItem disablePadding>
+                    <ListItemButton onClick={learnHandler} disabled={cards === 0}>
+                        <ListItemIcon>
+                            <SchoolIcon />
+                        </ListItemIcon>
+                        <ListItemText primary='Learn' />
+                    </ListItemButton>
+                </ListItem>
+            </List>
+        )
+    }
+)

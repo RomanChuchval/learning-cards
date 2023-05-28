@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import { Link } from 'react-router-dom'
 import { AppLink } from 'common/components/link/AppLink'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
@@ -9,7 +9,7 @@ type BackToPropsType = {
     link: string
 }
 
-export const BackTo: FC<BackToPropsType> = ({ text, link }) => {
+export const BackTo: FC<BackToPropsType> = memo(({ text, link }) => {
     return (
         <AppLink justifyContent={'flex-start'} colorText={'#000'}>
             <Link to={link}>
@@ -28,4 +28,4 @@ export const BackTo: FC<BackToPropsType> = ({ text, link }) => {
             </Link>
         </AppLink>
     )
-}
+})

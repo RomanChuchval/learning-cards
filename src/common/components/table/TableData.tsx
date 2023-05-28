@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import noFile from 'assets/img/no-file.svg'
 import Box from '@mui/material/Box'
 
@@ -6,7 +6,7 @@ type TableDataPropsType = {
     image: string | undefined
     text: string
 }
-export const TableData: FC<TableDataPropsType> = ({ image, text }) => {
+export const TableData: FC<TableDataPropsType> = memo(({ image, text }) => {
     return (
         <Box
             sx={{
@@ -27,4 +27,4 @@ export const TableData: FC<TableDataPropsType> = ({ image, text }) => {
             )}
         </Box>
     )
-}
+})

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from 'react'
+import React, { ChangeEvent, FC, memo, useState } from 'react'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { SuperButton } from 'common'
@@ -12,7 +12,7 @@ type EditableTitlePropsType = {
     margin?: string
 }
 
-export const EditableTitle: FC<EditableTitlePropsType> = ({ userName, margin }) => {
+export const EditableTitle: FC<EditableTitlePropsType> = memo(({ userName, margin }) => {
     const [newUserName, setNewUserName] = useState<string>(userName)
     const [editMode, setEditMode] = useState<boolean>(false)
     const { updateUserName } = useAuth()
@@ -71,4 +71,4 @@ export const EditableTitle: FC<EditableTitlePropsType> = ({ userName, margin }) 
             )}
         </Box>
     )
-}
+})
