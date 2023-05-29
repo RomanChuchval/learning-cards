@@ -35,7 +35,6 @@ export const router = createHashRouter([
                     },
                     {
                         path: paths.PROFILE,
-                        index: true,
                         element: <Profile />,
                     },
                     {

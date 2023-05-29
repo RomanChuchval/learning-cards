@@ -30,6 +30,7 @@ export const usePacksParamsFilter = () => {
         if (params.packName?.length) lastParams.packName = params.packName
         setSearchParams({ ...lastParams })
     }, [setSearchParams, params])
+
     const onDispatchParams = useCallback((paramsArg: GetPacksParamsType) => {
         dispatch(packsAction.setQueryParams({ params: { ...paramsArg } }))
         dispatch(packsThunks.getPacks())
