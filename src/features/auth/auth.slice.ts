@@ -10,7 +10,7 @@ import {
 } from 'features/auth/auth.api'
 import { createAppAsyncThunk, thunkErrorHandler } from 'common'
 import { appActions } from 'app/app.slice'
-import { clearRedirectPathAction } from 'common'
+import { clearRedirectPathAction } from 'common/utils/clearRedirectPathAction'
 
 const slice = createSlice({
     name: 'auth',
