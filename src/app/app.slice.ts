@@ -7,7 +7,7 @@ import {
     pending,
     rejected,
 } from 'app/constants'
-import { clearNotifyStateAction } from 'common/utils/clearNotifyStateAction'
+import { clearNotifyStateAction } from 'common'
 
 const slice = createSlice({
     name: 'app',
