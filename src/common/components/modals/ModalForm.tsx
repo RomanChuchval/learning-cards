@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import FormGroup from '@mui/material/FormGroup/FormGroup'
+import FormGroup from '@mui/material/FormGroup'
 import Box from '@mui/material/Box'
 import { SuperButton } from 'common'
 import { UseFormHandleSubmit } from 'react-hook-form'

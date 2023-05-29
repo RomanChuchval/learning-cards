@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Skeleton from '@mui/material/Skeleton'
-import TableRow from '@mui/material/TableRow/TableRow'
+import TableRow from '@mui/material/TableRow'
 import { TableCell } from '@mui/material'
 
 type TableSkeletonPropsType = {

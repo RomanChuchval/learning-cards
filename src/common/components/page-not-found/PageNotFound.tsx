@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import notFound from 'assets/img/400.svg'
-import { SuperButton } from 'common/components/button/SuperButton'
+import { SuperButton } from 'common'
 import { useNavigate } from 'react-router-dom'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'

@@ -1,4 +1,4 @@
-import { useAppSelector } from 'app'
+import { useAppSelector, useAppDispatch } from 'app'
 import { authThunks } from 'features/auth/auth.slice'
 import {
     redirectPathSelector,
@@ -14,7 +14,6 @@ import {
     UpdateProfileBodyType,
 } from 'features/auth/auth.api'
 import { emailMessage } from 'features/auth/constants'
-import { useAppDispatch } from 'app'
 import { useCallback } from 'react'
 
 export const useAuth = () => {

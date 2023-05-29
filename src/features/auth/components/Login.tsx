@@ -1,9 +1,10 @@
 import React, { FC, useCallback } from 'react'
-import { Checkbox, FormControlLabel } from '@mui/material'
+import Checkbox from '@mui/material/Checkbox'
 import { Link } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import { AppLink, EmailInput, Form, PasswordInput, paths, useAppForm } from 'common'
 import { useAuth } from 'features/auth/hooks/useAuth'
+import FormControlLabel from '@mui/material/FormControlLabel'
 
 export type LoginFieldsType = {
     loginEmail: string

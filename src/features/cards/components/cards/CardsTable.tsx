@@ -1,6 +1,6 @@
 import React from 'react'
 import TableRow from '@mui/material/TableRow'
-import Box from '@mui/material/Box/Box'
+import Box from '@mui/material/Box'
 import TableCell from '@mui/material/TableCell'
 import { CustomTable, CardsRating, TableData, TableSkeleton } from 'common'
 import { useCards } from 'features/cards/hooks/useCards'
@@ -25,7 +25,8 @@ export const CardsTable = () => {
                 tableCellForHeader={['Question', 'Answer', 'Last Updated', 'Grade']}
                 sortHandler={onChangeSort}
                 setSort={setSort}
-                sort={sort}>
+                sort={sort}
+            >
                 {isCardsLoading ? (
                     <TableSkeleton defaultCell={4} defaultRow={cardsPageCountParams ?? '4'} />
                 ) : (

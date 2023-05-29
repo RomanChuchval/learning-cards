@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import TextField from '@mui/material/TextField/TextField'
+import TextField from '@mui/material/TextField'
 import { UseFormRegister } from 'react-hook-form/dist/types/form'
 import { FormInputValues } from 'common'
 
@@ -17,14 +17,16 @@ export const TextFormatModal: FC<TextFormatModalPropsType> = ({ question, answer
                 {...register('question')}
                 variant='standard'
                 label='Question'
-                margin='normal' />
+                margin='normal'
+            />
             <TextField
                 defaultValue={answer}
                 {...register('answer')}
                 sx={{ m: '40px 0' }}
                 variant='standard'
                 label='Answer'
-                margin='normal' />
+                margin='normal'
+            />
         </>
     )
 }

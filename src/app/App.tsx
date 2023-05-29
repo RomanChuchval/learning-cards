@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import Container from '@mui/material/Container'
 import { authThunks } from 'features/auth/auth.slice'
-import LinearProgress from '@mui/material/LinearProgress/LinearProgress'
+import LinearProgress from '@mui/material/LinearProgress'
 import { AppHeader, AppNotify, AppPreloader } from 'common'
 import { useApp, useAppDispatch, useAppNotify } from './hooks'
 

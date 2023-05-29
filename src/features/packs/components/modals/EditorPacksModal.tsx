@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { ChangeEvent, memo } from 'react'
-import TextField from '@mui/material/TextField/TextField'
+import TextField from '@mui/material/TextField'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload'
