@@ -1,4 +1,4 @@
-import { RootState } from 'app/store'
+import { RootState } from 'app'
 
 const profileSelector = (state: RootState) => state.auth.profile
 const redirectPathSelector = (state: RootState) => state.auth.redirectPath

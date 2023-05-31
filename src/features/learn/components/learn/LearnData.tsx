@@ -1,7 +1,7 @@
 import Skeleton from '@mui/material/Skeleton'
 import Typography from '@mui/material/Typography'
 import React from 'react'
-import { useApp } from 'app'
+import { useAppState } from 'app'
 
 type LearnDataPropsType = {
     title: string
@@ -10,7 +10,7 @@ type LearnDataPropsType = {
 }
 
 export const LearnData: React.FC<LearnDataPropsType> = ({ title, data, dataImg }) => {
-    const { isLoadingLearn } = useApp()
+    const { isLoadingLearn } = useAppState()
 
     return (
         <Typography variant='subtitle1' component='div' sx={{ marginBottom: '20px' }}>

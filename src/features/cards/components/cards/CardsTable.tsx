@@ -6,12 +6,12 @@ import { CustomTable, CardsRating, TableData, TableSkeleton } from 'common'
 import { useCards } from 'features/cards/hooks/useCards'
 import { CardsTableActions } from 'features/cards/components/cards-actions/CardsTableActions'
 import { useAuth } from 'features/auth/hooks/useAuth'
-import { useApp } from 'app'
+import { useAppState } from 'app'
 
 export const CardsTable = memo(() => {
     const { cards, packUserId, cardsPageCountParams, setSort, onChangeSort, sort } = useCards()
     const { authorizedUserId } = useAuth()
-    const { isCardsLoading } = useApp()
+    const { isCardsLoading } = useAppState()
     const isMyPack = packUserId === authorizedUserId
     const tableBodySX = {
         wordWrap: 'break-word',

@@ -7,11 +7,11 @@ import Skeleton from '@mui/material/Skeleton'
 import { LearnFormRadio } from 'features/learn/components/learn/LearnFormRadio'
 import { LearnData } from 'features/learn/components/learn/LearnData'
 import { useLearn } from 'features/learn/hooks/useLearn'
-import { useApp } from 'app'
+import { useAppState } from 'app'
 
 export const Learn = () => {
     const { showAnswer, card, onShowAnswer, selectedPack, updateCardGrade } = useLearn()
-    const { isLoadingLearn } = useApp()
+    const { isLoadingLearn } = useAppState()
 
     return (
         <>

@@ -3,9 +3,7 @@ import Box from '@mui/material/Box'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
-import { CustomPopover } from 'common/components/popover/CustomPopover'
-import { PopoverProfileList } from 'common/components/popover/PopoverProfileList'
-import { usePopover } from 'common/hooks/usePopover'
+import { CustomPopover, PopoverProfileList, usePopover } from 'common'
 
 type HeaderProfilePropsType = {
     userName: string

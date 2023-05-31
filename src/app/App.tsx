@@ -4,11 +4,11 @@ import Container from '@mui/material/Container'
 import { authThunks } from 'features/auth/auth.slice'
 import LinearProgress from '@mui/material/LinearProgress'
 import { AppHeader, AppNotify, AppPreloader } from 'common'
-import { useApp, useAppDispatch, useAppNotify } from './hooks'
+import { useAppState, useAppDispatch, useAppNotify } from 'app'
 
 export const App = () => {
     const dispatch = useAppDispatch()
-    const { isInitialize, isLoadingApp } = useApp()
+    const { isInitialize, isLoadingApp } = useAppState()
     useAppNotify()
 
     useEffect(() => {

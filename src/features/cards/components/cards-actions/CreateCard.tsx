@@ -3,12 +3,12 @@ import { SuperButton, useAppModals } from 'common'
 import { AppModal } from 'features/modals/components/AppModal'
 import { useEditorCards } from 'features/cards/hooks/useEditorCards'
 import { CardsModalForm } from 'features/cards/components/modals/CardsModalForm'
-import { useApp } from 'app'
+import { useAppState } from 'app'
 
 export const CreateCard = memo(() => {
     const { openCreateModal, showCreateModal, handleClose } = useAppModals()
     const { createCard } = useEditorCards()
-    const { isLoadingApp } = useApp()
+    const { isLoadingApp } = useAppState()
     return (
         <>
             <SuperButton

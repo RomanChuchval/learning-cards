@@ -1,4 +1,4 @@
-import { RootState } from 'app/store'
+import { RootState } from 'app'
 
 const errorSelector = (state: RootState) => state.app.error
 const infoMessageSelector = (state: RootState) => state.app.infoMessage

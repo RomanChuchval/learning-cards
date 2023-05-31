@@ -8,14 +8,14 @@ import { PageTitle, usePopover, CustomPopover, PopoverCards, SuperButton } from 
 import { useCards } from 'features/cards/hooks/useCards'
 import { useAuth } from 'features/auth/hooks/useAuth'
 import { CreateCard } from 'features/cards/components/cards-actions/CreateCard'
-import { useApp } from 'app'
+import { useAppState } from 'app'
 import { useLearn } from 'features/learn/hooks/useLearn'
 
 export const CardsHeader = () => {
     const { packUserId, selectedPack, cards } = useCards()
     const { authorizedUserId } = useAuth()
     const { anchorEl, closePopover, handleClick } = usePopover()
-    const { isCardsLoading } = useApp()
+    const { isCardsLoading } = useAppState()
     const { learnHandler } = useLearn(selectedPack._id)
 
     const isMyPack = packUserId === authorizedUserId

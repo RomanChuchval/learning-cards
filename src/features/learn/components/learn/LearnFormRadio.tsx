@@ -7,7 +7,7 @@ import Radio from '@mui/material/Radio'
 import { SuperButton, FormInputValues, useAppForm } from 'common'
 import { LearnData } from 'features/learn/components/learn/LearnData'
 import { GradeType } from 'features/learn/hooks/useLearn'
-import { useApp } from 'app'
+import { useAppState } from 'app'
 
 type LearnFormRadioPropsType = {
     answer: string
@@ -20,7 +20,7 @@ export const LearnFormRadio: React.FC<LearnFormRadioPropsType> = ({
     updateCardGrade,
 }) => {
     const { handleSubmit, register } = useAppForm([])
-    const { isLoadingLearn } = useApp()
+    const { isLoadingLearn } = useAppState()
 
     const onSubmit = (data: FormInputValues) => updateCardGrade(data.radio)
 

@@ -7,8 +7,7 @@ import {
     cardsTotalCountSelector,
     packUserIdSelector,
 } from 'features/cards/cards.selectors'
-import { cardsActions, cardsThunks } from 'features/cards/cards.slice'
-import { GetCardsParamsType } from 'features/cards/cards.api'
+import { cardsActions, cardsThunks, GetParamsType } from 'features/cards/cards.slice'
 import { useCallback, useState } from 'react'
 import { selectedPackSelector } from 'features/packs/packs.selectors'
 import { cardIdsSelector } from 'features/modals/modals.selector'
@@ -77,6 +76,3 @@ export const useCards = () => {
         sort,
     }
 }
-
-//TYPES
-export type GetParamsType = Omit<GetCardsParamsType, 'cardsPack_id'>

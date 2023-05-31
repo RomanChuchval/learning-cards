@@ -1,12 +1,9 @@
-import { useAppSelector } from 'app/hooks/useAppSelector'
-import { errorSelector, infoMessageSelector } from 'app/app.selectors'
 import { toast } from 'react-toastify'
-import { useAppDispatch } from 'app/hooks/useAppDispatch'
 import { packsErrorSelector, packsInfoMessageSelector } from 'features/packs/packs.selectors'
-import { clearNotifyStateAction } from 'common/utils/clearNotifyStateAction'
 import { cardQuestionsSelector, cardsInfoMessageSelector } from 'features/cards/cards.selectors'
-import { CustomToast } from 'common/components/custom-toast/CustomToast'
 import { errorLearnSelector } from 'features/learn/learn.selector'
+import { errorSelector, infoMessageSelector, useAppDispatch, useAppSelector } from 'app'
+import { clearNotifyStateAction, CustomToast } from 'common'
 
 export const useAppNotify = () => {
     const appError = useAppSelector(errorSelector)

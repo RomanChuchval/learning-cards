@@ -1,7 +1,7 @@
 import { redirectPathSelector } from 'features/auth/auth.selectors'
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector, useAppDispatch } from 'app'
-import { clearRedirectPathAction } from 'common/utils/clearRedirectPathAction'
+import { clearRedirectPathAction } from 'common'
 
 export const useRedirect = () => {
     const redirectPath = useAppSelector(redirectPathSelector)

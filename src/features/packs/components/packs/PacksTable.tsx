@@ -9,13 +9,13 @@ import { cardsActions, cardsThunks } from 'features/cards/cards.slice'
 import { packsAction } from 'features/packs/packs.slice'
 import { useNavigate } from 'react-router-dom'
 import { CustomTable, TableSkeleton, paths } from 'common'
-import { useAppDispatch, useApp } from 'app'
+import { useAppDispatch, useAppState } from 'app'
 
 export const PacksTable = () => {
     const { packs, params, userId, sort, setSort, sortHandler } = usePacksParamsFilter()
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
-    const { isLoadingApp } = useApp()
+    const { isLoadingApp } = useAppState()
 
     const tableBodySX = {
         wordWrap: 'break-word',

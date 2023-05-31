@@ -1,4 +1,4 @@
-import { RootState } from 'app/store'
+import { RootState } from 'app'
 
 const cardsSelector = (state: RootState) => state.cards.cards.cards
 const cardsPageCountSelector = (state: RootState) => state.cards.cards.pageCount

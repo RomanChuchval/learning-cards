@@ -5,7 +5,7 @@ import { AppModal } from 'features/modals/components/AppModal'
 import { useEditorCards } from 'features/cards/hooks/useEditorCards'
 import { CardsModalForm } from 'features/cards/components/modals/CardsModalForm'
 import { useAppModals } from 'common'
-import { useApp } from 'app'
+import { useAppState } from 'app'
 
 type UpdateCardActionsPropsType = {
     question: string
@@ -24,7 +24,7 @@ export const UpdateCard: React.FC<UpdateCardActionsPropsType> = memo(
             questionImg,
         })
         const { updateCard } = useEditorCards()
-        const { isLoadingApp } = useApp()
+        const { isLoadingApp } = useAppState()
         return (
             <>
                 <IconButton size={'small'} onClick={openUpdateModal} disabled={isLoadingApp}>

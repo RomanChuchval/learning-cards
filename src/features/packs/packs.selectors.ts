@@ -1,4 +1,4 @@
-import { RootState } from 'app/store'
+import { RootState } from 'app'
 
 const packsSelector = (state: RootState) => state.packs.packs
 const paramsSelector = (state: RootState) => state.packs.params

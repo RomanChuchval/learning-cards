@@ -1,8 +1,18 @@
-import { createSlice, isFulfilled, isPending, isRejected, isRejectedWithValue, PayloadAction } from '@reduxjs/toolkit'
-import { cardsApi, CardType, GetCardsParamsType, UpdateCardGradeRequestType } from 'features/cards/cards.api'
-import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
-import { thunkErrorHandler } from 'common'
-import { clearNotifyStateAction } from 'common/utils/clearNotifyStateAction'
+import {
+    createSlice,
+    isFulfilled,
+    isPending,
+    isRejected,
+    isRejectedWithValue,
+    PayloadAction,
+} from '@reduxjs/toolkit'
+import {
+    cardsApi,
+    CardType,
+    GetCardsParamsType,
+    UpdateCardGradeRequestType,
+} from 'features/cards/cards.api'
+import { createAppAsyncThunk, clearNotifyStateAction, thunkErrorHandler } from 'common/utils'
 
 const slice = createSlice({
     name: 'learn',
@@ -12,7 +22,7 @@ const slice = createSlice({
         requestsCount: 0 as number,
         selectedPackId: '' as string,
         isLoading: false as boolean,
-        error: null as null | string
+        error: null as null | string,
     },
     reducers: {
         setAnswersCount: state => {
@@ -27,7 +37,7 @@ const slice = createSlice({
             if (state.requestsCount === 2) {
                 state.requestsCount = 0
             }
-        }
+        },
     },
     extraReducers: builder => {
         builder
@@ -49,7 +59,7 @@ const slice = createSlice({
             .addMatcher(rejectedWithValueLearn, (state, action) => {
                 state.error = action.payload
             })
-    }
+    },
 })
 
 const getSortCard = createAppAsyncThunk<{ cards: CardType[] }, string>(
@@ -61,7 +71,7 @@ const getSortCard = createAppAsyncThunk<{ cards: CardType[] }, string>(
             const param: GetCardsParamsType = {
                 cardsPack_id: id,
                 pageCount: '5',
-                sortCards: sortGrade
+                sortCards: sortGrade,
             }
             const res = await cardsApi.getCards(param)
             dispatch(learnActions.resetCounter(id))
@@ -71,7 +81,8 @@ const getSortCard = createAppAsyncThunk<{ cards: CardType[] }, string>(
             const error = thunkErrorHandler(e)
             return rejectWithValue(error)
         }
-    })
+    }
+)
 const updateCardGrade = createAppAsyncThunk<void, UpdateCardGradeRequestType>(
     'learn/updateCardGrade',
     async (data, thunkApi) => {

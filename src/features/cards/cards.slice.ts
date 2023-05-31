@@ -6,9 +6,7 @@ import {
     GetCardsResponseType,
     UpdateCardRequestType,
 } from 'features/cards/cards.api'
-import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
-import { thunkErrorHandler, clearNotifyStateAction } from 'common'
-import { GetParamsType } from 'features/cards/hooks/useCards'
+import { thunkErrorHandler, clearNotifyStateAction, createAppAsyncThunk } from 'common/utils'
 
 const slice = createSlice({
     name: 'cards',
@@ -146,3 +144,4 @@ export type CardQuestionType = {
     question: string
     questionImg: string
 }
+export type GetParamsType = Omit<GetCardsParamsType, 'cardsPack_id'>

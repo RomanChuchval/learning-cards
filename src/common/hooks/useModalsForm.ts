@@ -1,5 +1,5 @@
-import { FormInputValues, useAppForm, ValidateFieldsType } from 'common/hooks/useAppForm'
-import { useAppSelector } from 'app/hooks/useAppSelector'
+import { FormInputValues, useAppForm, ValidateFieldsType } from 'common'
+import { useAppSelector } from 'app'
 import { modalStateSelector } from 'features/modals/modals.selector'
 import { useCallback } from 'react'
 

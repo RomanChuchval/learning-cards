@@ -1,6 +1,4 @@
 import { modalsAction, ModalStateArgsType } from 'features/modals/modals.slice'
-import { useAppDispatch } from 'app/hooks/useAppDispatch'
-import { useAppSelector } from 'app/hooks/useAppSelector'
 import {
     cardIdsSelector,
     packIdSelector,
@@ -9,6 +7,7 @@ import {
     showUpdateModalSelector,
 } from 'features/modals/modals.selector'
 import { useCallback } from 'react'
+import { useAppDispatch, useAppSelector } from 'app'
 
 export const useAppModals = (modalState: ModalStateArgsType = {}) => {
     const dispatch = useAppDispatch()

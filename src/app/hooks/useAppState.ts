@@ -1,10 +1,9 @@
-import { isInitializeSelector, isLoadingSelector } from 'app/app.selectors'
-import { useAppSelector } from 'app/hooks/useAppSelector'
 import { isLoadingPacksSelector } from 'features/packs/packs.selectors'
 import { isLoadingLearnSelector } from 'features/learn/learn.selector'
 import { isCardsLoadingSelector } from 'features/cards/cards.selectors'
+import { isInitializeSelector, isLoadingSelector, useAppSelector } from 'app'
 
-export const useApp = () => {
+export const useAppState = () => {
     const isAuthLoading = useAppSelector(isLoadingSelector)
     const isInitialize = useAppSelector(isInitializeSelector)
     const isPacksLoading = useAppSelector(isLoadingPacksSelector)
@@ -18,6 +17,6 @@ export const useApp = () => {
         isInitialize,
         isLoadingApp,
         isCardsLoading,
-        isLoadingLearn
+        isLoadingLearn,
     }
 }

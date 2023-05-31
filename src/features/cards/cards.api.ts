@@ -1,4 +1,4 @@
-import { instance } from 'common'
+import { instance } from 'common/api'
 
 export const cardsApi = {
     getCards: (params: GetCardsParamsType) => {

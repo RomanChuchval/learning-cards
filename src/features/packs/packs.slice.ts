@@ -14,8 +14,7 @@ import {
     PackType,
     UpdatePackModelType,
 } from 'features/packs/packs.api'
-import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
-import { thunkErrorHandler, clearNotifyStateAction } from 'common'
+import { thunkErrorHandler, clearNotifyStateAction, createAppAsyncThunk } from 'common/utils'
 
 const slice = createSlice({
     name: 'packs',

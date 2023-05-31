@@ -8,9 +8,8 @@ import {
     SetNewPassBodyType,
     UpdateProfileBodyType,
 } from 'features/auth/auth.api'
-import { createAppAsyncThunk, thunkErrorHandler } from 'common'
-import { appActions } from 'app/app.slice'
-import { clearRedirectPathAction } from 'common/utils/clearRedirectPathAction'
+import { createAppAsyncThunk, clearRedirectPathAction, thunkErrorHandler } from 'common/utils'
+import { appActions } from 'app'
 
 const slice = createSlice({
     name: 'auth',
@@ -145,7 +144,6 @@ const updateProfile = createAppAsyncThunk<{ profile: UserProfileType }, UpdatePr
         }
     }
 )
-
 export const authReducer = slice.reducer
 export const authThunks = {
     register,

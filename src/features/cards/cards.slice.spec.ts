@@ -1,6 +1,6 @@
 import { describe, it, expect } from '@jest/globals'
-import { CardQuestionType, cardsActions, cardsReducer } from 'features/cards/cards.slice'
-import { GetParamsType } from 'features/cards/hooks/useCards'
+import { CardQuestionType, cardsActions, GetParamsType } from 'features/cards/cards.slice'
+import { cardsReducer } from 'features'
 import { GetCardsParamsType, GetCardsResponseType } from 'features/cards/cards.api'
 
 describe('cards slice', () => {
@@ -12,7 +12,6 @@ describe('cards slice', () => {
             params: {
                 cardAnswer: '',
                 cardQuestion: '',
-                cardsPack_id: '',
                 min: '0',
                 max: '100',
                 sortCards: '0grade',
