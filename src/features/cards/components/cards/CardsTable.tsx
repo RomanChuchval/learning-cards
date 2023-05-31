@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import TableRow from '@mui/material/TableRow'
 import Box from '@mui/material/Box'
 import TableCell from '@mui/material/TableCell'
@@ -8,7 +8,7 @@ import { CardsTableActions } from 'features/cards/components/cards-actions/Cards
 import { useAuth } from 'features/auth/hooks/useAuth'
 import { useApp } from 'app'
 
-export const CardsTable = () => {
+export const CardsTable = memo(() => {
     const { cards, packUserId, cardsPageCountParams, setSort, onChangeSort, sort } = useCards()
     const { authorizedUserId } = useAuth()
     const { isCardsLoading } = useApp()
@@ -18,7 +18,6 @@ export const CardsTable = () => {
         minWidth: '150px',
         maxWidth: '200px',
     }
-
     return (
         <div>
             <CustomTable
@@ -59,4 +58,4 @@ export const CardsTable = () => {
             </CustomTable>
         </div>
     )
-}
+})

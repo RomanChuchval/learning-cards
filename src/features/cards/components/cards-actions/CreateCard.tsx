@@ -1,15 +1,14 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { SuperButton, useAppModals } from 'common'
 import { AppModal } from 'features/modals/components/AppModal'
 import { useEditorCards } from 'features/cards/hooks/useEditorCards'
 import { CardsModalForm } from 'features/cards/components/modals/CardsModalForm'
 import { useApp } from 'app'
 
-export const CreateCard = () => {
+export const CreateCard = memo(() => {
     const { openCreateModal, showCreateModal, handleClose } = useAppModals()
     const { createCard } = useEditorCards()
     const { isLoadingApp } = useApp()
-
     return (
         <>
             <SuperButton
@@ -24,4 +23,4 @@ export const CreateCard = () => {
             </AppModal>
         </>
     )
-}
+})

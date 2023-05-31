@@ -8,12 +8,11 @@ import { paths, SuperButton } from 'common'
 import { HeaderProfile } from 'common/components/header-profile/HeaderProfile'
 import { useAuth } from 'features/auth/hooks/useAuth'
 
-export const AppHeader = () => {
+export const AppHeader = React.memo(() => {
     const navigate = useNavigate()
     const { profile } = useAuth()
 
     const toLogin = useCallback(() => navigate(paths.LOGIN), [])
-
     return (
         <AppBar color={'inherit'} position={'static'}>
             <Container fixed>
@@ -40,4 +39,4 @@ export const AppHeader = () => {
             </Container>
         </AppBar>
     )
-}
+})
