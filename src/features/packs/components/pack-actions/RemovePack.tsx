@@ -18,7 +18,6 @@ export const RemovePack: React.FC<RemovePackPropsType> = memo(({ packName, packI
     const onRemovePack = useCallback(() => {
         removePack(false)
     }, [removePack])
-
     return (
         <>
             <RemoveModal
