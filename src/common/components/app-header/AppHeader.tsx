@@ -12,6 +12,7 @@ export const AppHeader = React.memo(() => {
     const { profile } = useAuth()
 
     const toLogin = useCallback(() => navigate(paths.LOGIN), [])
+
     return (
         <AppBar color={'inherit'} position={'static'}>
             <Container fixed>
