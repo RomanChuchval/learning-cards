@@ -1,5 +1,5 @@
 import { appActions, appReducer } from 'app'
-import { clearNotifyStateAction } from 'common'
+import { clearNotifyStateAction, setAppInitializeAction } from 'common'
 import { authThunks } from 'features/auth/auth.slice'
 import { UserProfileType } from 'features/auth/auth.api'
 
@@ -25,7 +25,7 @@ describe('app slice', () => {
     })
 
     it('should handle setAppInitialize action', () => {
-        const nextState = appReducer(initialState, appActions.setAppInitialize())
+        const nextState = appReducer(initialState, setAppInitializeAction())
 
         expect(nextState.isAppInitialized).toEqual(false)
     })

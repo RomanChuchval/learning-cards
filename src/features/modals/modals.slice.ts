@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-const initialState: InitialStateType = {
+const initialState: ModalsInitialStateType = {
     showCreateModal: false,
     showUpdateModal: false,
     showRemoveModal: false,
@@ -49,7 +49,7 @@ type ModalStateType = {
     questionImg: string
     answerImg: string
 }
-type InitialStateType = {
+export type ModalsInitialStateType = {
     showCreateModal: boolean
     showUpdateModal: boolean
     showRemoveModal: boolean

@@ -8,28 +8,31 @@ import {
 } from 'features/cards/cards.api'
 import { thunkErrorHandler, clearNotifyStateAction, createAppAsyncThunk } from 'common/utils'
 
+const initialState = {
+    cards: {} as GetCardsResponseType,
+    params: {
+        cardAnswer: '',
+        cardQuestion: '',
+        cardsPack_id: '',
+        min: '0',
+        max: '100',
+        sortCards: '0grade',
+        page: '1',
+        pageCount: '4',
+    } as GetCardsParamsType,
+    selectedCardsPackId: '' as string,
+    isLoading: false as boolean,
+    infoMessage: '' as string,
+    updateCardQuestions: {
+        question: '',
+        questionImg: '',
+    } as CardQuestionType,
+}
+export type CardsInitialStateType = typeof initialState
+
 const slice = createSlice({
     name: 'cards',
-    initialState: {
-        cards: {} as GetCardsResponseType,
-        params: {
-            cardAnswer: '',
-            cardQuestion: '',
-            cardsPack_id: '',
-            min: '0',
-            max: '100',
-            sortCards: '0grade',
-            page: '1',
-            pageCount: '4',
-        } as GetCardsParamsType,
-        selectedCardsPackId: '' as string,
-        isLoading: false as boolean,
-        infoMessage: '' as string,
-        updateCardQuestions: {
-            question: '',
-            questionImg: '',
-        } as CardQuestionType,
-    },
+    initialState: initialState,
     reducers: {
         setCardsParams: (state, action: PayloadAction<{ params: GetParamsType }>) => {
             state.params = { ...state.params, ...action.payload.params }
