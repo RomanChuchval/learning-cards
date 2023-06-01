@@ -95,7 +95,7 @@ describe('packs slice', () => {
                         _id: 'pack3',
                         user_id: 'string',
                         user_name: 'string',
-                        name: 'pack4',
+                        name: 'pack3',
                         private: false,
                         path: 'string',
                         grade: 0,
