@@ -1,15 +1,14 @@
+import { useAppDispatch, useAppState } from 'app/hooks'
 import React, { useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
-import Container from '@mui/material/Container'
 import { authThunks } from 'features/auth/auth.slice'
 import LinearProgress from '@mui/material/LinearProgress'
-import { AppHeader, AppNotify, AppPreloader } from 'common'
-import { useAppState, useAppDispatch, useAppNotify } from 'app'
+import Container from '@mui/material/Container'
+import { AppPreloader } from 'common'
+import { Outlet } from 'react-router-dom'
 
-export const App = () => {
+export const Main = () => {
     const dispatch = useAppDispatch()
     const { isInitialize, isLoadingApp } = useAppState()
-    useAppNotify()
 
     useEffect(() => {
         dispatch(authThunks.authMe())
@@ -17,10 +16,8 @@ export const App = () => {
 
     return (
         <>
-            <AppHeader />
             {isLoadingApp && <LinearProgress />}
             <Container fixed>{isInitialize ? <AppPreloader /> : <Outlet />}</Container>
-            <AppNotify />
         </>
     )
 }
