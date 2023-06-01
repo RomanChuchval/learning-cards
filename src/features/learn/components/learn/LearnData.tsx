@@ -18,7 +18,7 @@ export const LearnData: React.FC<LearnDataPropsType> = ({ title, data, dataImg }
             {isLoadingLearn ? (
                 <Skeleton variant='text' />
             ) : data && data !== ' ' ? (
-                data
+                <div style={{ wordBreak: 'break-all'}}>{data}</div>
             ) : (
                 <div
                     style={{
