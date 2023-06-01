@@ -6,8 +6,8 @@ import {
     pending,
     rejected,
     initializePending,
+    clearNotifyStateAction,
 } from 'common'
-import { clearNotifyStateAction } from 'common'
 
 const slice = createSlice({
     name: 'app',

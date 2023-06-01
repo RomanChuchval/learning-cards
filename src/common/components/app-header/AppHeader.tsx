@@ -4,8 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Container from '@mui/material/Container'
-import { paths, SuperButton } from 'common'
-import { HeaderProfile } from 'common/components/header-profile/HeaderProfile'
+import { paths, SuperButton, HeaderProfile } from 'common'
 import { useAuth } from 'features/auth/hooks/useAuth'
 
 export const AppHeader = React.memo(() => {
