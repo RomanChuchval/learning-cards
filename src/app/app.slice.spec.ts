@@ -73,12 +73,4 @@ describe('app slice', () => {
 
         expect(nextState.infoMessage).toEqual(infoMessage)
     })
-
-    // it('should handle logout error message when logout rejected', () => {
-    //     const infoMessage = 'Logout failed'
-    //     const action = { type: authThunks.logout.rejected.type, payload: { info: infoMessage } }
-    //     const nextState = appReducer(initialState, action)
-    //
-    //     expect(nextState.error).toBe(infoMessage)
-    // })
 })
