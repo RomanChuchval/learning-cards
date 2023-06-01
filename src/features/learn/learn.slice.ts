@@ -14,16 +14,18 @@ import {
 } from 'features/cards/cards.api'
 import { createAppAsyncThunk, clearNotifyStateAction, thunkErrorHandler } from 'common/utils'
 
+const learnInitialState = {
+    cards: [] as CardType[],
+    answersCount: 0,
+    requestsCount: 0,
+    selectedPackId: '',
+    isLoading: false,
+    error: null as null | string,
+}
+
 const slice = createSlice({
     name: 'learn',
-    initialState: {
-        cards: [] as CardType[],
-        answersCount: 0 as number,
-        requestsCount: 0 as number,
-        selectedPackId: '' as string,
-        isLoading: false as boolean,
-        error: null as null | string,
-    },
+    initialState: learnInitialState,
     reducers: {
         setAnswersCount: state => {
             state.answersCount = state.answersCount + 1
@@ -109,3 +111,6 @@ const rejectedWithValueLearn = isRejectedWithValue(getSortCard, updateCardGrade)
 export const learnReducer = slice.reducer
 export const learnActions = slice.actions
 export const learnThunks = { getSortCard, updateCardGrade }
+
+// types
+export type learnInitialStateType = typeof learnInitialState
