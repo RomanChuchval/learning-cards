@@ -17,7 +17,6 @@ export const UpdatePack: React.FC<UpdatePackPropsType> = memo(
             packId,
             packName,
         })
-
         const { updatePack, img, setImg } = useEditorPack(defaultImg)
         return (
             <>
