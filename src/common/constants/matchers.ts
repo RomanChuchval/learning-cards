@@ -1,6 +1,7 @@
 import { isFulfilled, isPending, isRejectedWithValue } from '@reduxjs/toolkit'
 import { authThunks } from 'features/auth/auth.slice'
 import { learnThunks } from 'features/learn/learn.slice'
+import { cardsThunks } from 'features'
 
 export const rejected = isRejectedWithValue(
     authThunks.login,
@@ -8,7 +9,11 @@ export const rejected = isRejectedWithValue(
     authThunks.logout,
     authThunks.updateProfile,
     authThunks.register,
-    authThunks.setNewPassword
+    authThunks.setNewPassword,
+    cardsThunks.getCards,
+    cardsThunks.updateCard,
+    cardsThunks.createCard,
+    cardsThunks.removeCard
 )
 export const fulfilledWithInfo = isFulfilled(
     authThunks.logout,
