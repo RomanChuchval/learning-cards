@@ -16,23 +16,25 @@ import {
 } from 'features/packs/packs.api'
 import { thunkErrorHandler, clearNotifyStateAction, createAppAsyncThunk } from 'common/utils'
 
+const packsInitialState = {
+    packs: {} as PacksResponseType,
+    params: {
+        page: '1',
+        pageCount: '4',
+        min: '0',
+        max: '100',
+        user_id: '',
+        packName: '',
+    } as GetPacksParamsType,
+    isLoading: false,
+    error: null as string | null,
+    infoMessage: null as string | null,
+    selectedPack: {} as PackType,
+}
+
 const slice = createSlice({
     name: 'packs',
-    initialState: {
-        packs: {} as PacksResponseType,
-        params: {
-            page: '1',
-            pageCount: '4',
-            min: '0',
-            max: '100',
-            user_id: '',
-            packName: '',
-        } as GetPacksParamsType,
-        isLoading: false,
-        error: null as string | null,
-        infoMessage: null as string | null,
-        selectedPack: {} as PackType,
-    },
+    initialState: packsInitialState,
     reducers: {
         setQueryParams: (state, actions: PayloadAction<{ params: GetPacksParamsType }>) => {
             state.params = { ...state.params, ...actions.payload.params }
@@ -140,3 +142,6 @@ const rejectedWithValuePacks = isRejectedWithValue(getPacks, createPack, removeP
 export const packsReducer = slice.reducer
 export const packsAction = slice.actions
 export const packsThunks = { getPacks, createPack, removePack, updatePack }
+
+// type
+export type PacksInitialStateType = typeof packsInitialState
