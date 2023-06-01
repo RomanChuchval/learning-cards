@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid'
 import { CreatePack } from 'features/packs/components/pack-actions/CreatePack'
 import { PageTitle } from 'common'
 
-export const PacksHeader = React.memo(() => {
+export const PacksHeader = () => {
     return (
         <>
             <Grid item md={8}>
@@ -14,4 +14,4 @@ export const PacksHeader = React.memo(() => {
             </Grid>
         </>
     )
-})
+}
