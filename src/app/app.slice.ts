@@ -6,9 +6,8 @@ import {
     pending,
     rejected,
     initializePending,
-    clearNotifyStateAction,
 } from 'common'
-
+import { clearNotifyStateAction, setAppInitializeAction } from 'common/utils'
 const slice = createSlice({
     name: 'app',
     initialState: {
@@ -21,15 +20,15 @@ const slice = createSlice({
         setIsLoading: (state, action: PayloadAction<{ isLoading: boolean }>) => {
             state.isLoading = action.payload.isLoading
         },
-        setAppInitialize: state => {
-            state.isAppInitialized = false
-        },
     },
     extraReducers: builder => {
         builder
             .addCase(clearNotifyStateAction, state => {
                 state.error = null
                 state.infoMessage = null
+            })
+            .addCase(setAppInitializeAction, state => {
+                state.isAppInitialized = false
             })
             .addMatcher(initializePending, state => {
                 state.isAppInitialized = true

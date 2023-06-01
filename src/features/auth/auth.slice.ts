@@ -8,16 +8,23 @@ import {
     SetNewPassBodyType,
     UpdateProfileBodyType,
 } from 'features/auth/auth.api'
-import { createAppAsyncThunk, clearRedirectPathAction, thunkErrorHandler } from 'common/utils'
-import { appActions } from 'app'
+import {
+    createAppAsyncThunk,
+    clearRedirectPathAction,
+    thunkErrorHandler,
+    setAppInitializeAction,
+} from 'common/utils'
+
+const initialState = {
+    profile: null as UserProfileType | null,
+    redirectPath: '/' as RedirectPathType,
+    checkEmailMessage: '' as string,
+}
+export type AuthInitialStateType = typeof initialState
 
 const slice = createSlice({
     name: 'auth',
-    initialState: {
-        profile: null as UserProfileType | null,
-        redirectPath: '/' as RedirectPathType,
-        checkEmailMessage: '' as string,
-    },
+    initialState: initialState,
     reducers: {},
     extraReducers: builder => {
         builder
@@ -98,7 +105,7 @@ const authMe = createAppAsyncThunk<{ profile: UserProfileType }>(
             const error = thunkErrorHandler(e)
             return rejectWithValue(error)
         } finally {
-            dispatch(appActions.setAppInitialize())
+            dispatch(setAppInitializeAction())
         }
     }
 )
