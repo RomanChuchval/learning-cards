@@ -71,7 +71,7 @@ export const PacksTable = () => {
                                                 }}
                                             />
                                         )}
-                                        {pack.name}
+                                        <div style={{wordBreak: 'break-all'}}>{pack.name}</div>
                                     </Box>
                                 </TableCell>
                                 <TableCell sx={tableBodySX}>{pack.cardsCount}</TableCell>
