@@ -18,7 +18,7 @@ export const TableData: FC<TableDataPropsType> = memo(({ image, text }) => {
         >
             {!image || image === ' ' ? (
                 text !== ' ' ? (
-                    text
+                    <div style={{ wordBreak: 'break-all'}}>{text}</div>
                 ) : (
                     <img style={{ width: '35px' }} src={noFile} alt='no-file' />
                 )
