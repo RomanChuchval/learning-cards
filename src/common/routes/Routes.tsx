@@ -1,6 +1,6 @@
 import { createHashRouter } from 'react-router-dom'
 import React from 'react'
-import { App } from 'app/App'
+import { App } from 'app/components/App'
 import { PageNotFound } from 'common/components/page-not-found/PageNotFound'
 import { paths } from 'common'
 import { Cards } from 'features/cards/components/cards/Cards'
