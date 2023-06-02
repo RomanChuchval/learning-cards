@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/smart-cards/static/css/main.daf97ad5.css",
+    "main.js": "/smart-cards/static/js/main.021225f2.js",
+    "static/js/787.5a03379c.chunk.js": "/smart-cards/static/js/787.5a03379c.chunk.js",
+    "static/media/logo.png": "/smart-cards/static/media/logo.6a2b757d4014702c2c73.png",
+    "static/media/400.svg": "/smart-cards/static/media/400.8baa1b795048b6fa13ff8d30800aa1b1.svg",
+    "static/media/email.svg": "/smart-cards/static/media/email.60d22132e695aaf69c80c38f51983922.svg",
+    "index.html": "/smart-cards/index.html",
+    "static/media/no-file.svg": "/smart-cards/static/media/no-file.219f9ec327e41fcd91de7e5a531e2646.svg",
+    "main.daf97ad5.css.map": "/smart-cards/static/css/main.daf97ad5.css.map",
+    "main.021225f2.js.map": "/smart-cards/static/js/main.021225f2.js.map",
+    "787.5a03379c.chunk.js.map": "/smart-cards/static/js/787.5a03379c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.daf97ad5.css",
+    "static/js/main.021225f2.js"
+  ]
+}
