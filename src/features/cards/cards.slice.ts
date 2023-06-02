@@ -135,7 +135,7 @@ const removeCard = createAppAsyncThunk<
     }
 })
 
-const cardsPending = isPending(getCards)
+const cardsPending = isPending(getCards, updateCard, createCard, removeCard)
 const cardsActionsFulfilled = isFulfilled(updateCard, createCard, removeCard)
 
 export const cardsReducer = slice.reducer

@@ -21,6 +21,7 @@ export const PacksTable = () => {
         wordWrap: 'break-word',
         minWidth: '150px',
         maxWidth: '200px',
+        wordBreak: 'break-all',
     }
 
     const toCards = (id: string) => {
@@ -53,25 +54,25 @@ export const PacksTable = () => {
                                     sx={{
                                         ...tableBodySX,
                                         paddingLeft: '40px',
-                                        maxWidth: '500px',
                                         cursor: 'pointer',
                                         verticalAlign: 'center',
                                         ':hover': { textDecoration: 'underline' },
                                     }}
                                 >
-                                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                                         {pack.deckCover && (
                                             <div
                                                 style={{
                                                     marginLeft: '-12px',
                                                     width: '60px',
-                                                    height: '35px',
-                                                    display: 'inline-block',
+                                                    height: '60px',
                                                     background: `url(${pack.deckCover}) no-repeat center/contain`,
                                                 }}
                                             />
                                         )}
-                                        <div style={{wordBreak: 'break-all'}}>{pack.name}</div>
+                                        <div style={{ wordBreak: 'break-all', width: '160px' }}>
+                                            {pack.name}
+                                        </div>
                                     </Box>
                                 </TableCell>
                                 <TableCell sx={tableBodySX}>{pack.cardsCount}</TableCell>

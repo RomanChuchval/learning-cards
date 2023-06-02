@@ -24,6 +24,7 @@ export const CustomTable: React.FC<CustomTablePropsType> = memo(
             fontWeight: 700,
             '&:first-of-type': { paddingLeft: '40px' },
             '&:last-of-type': { paddingRight: '54px' },
+            width: '200px',
         }
 
         const onClickHandler = () => {
@@ -33,7 +34,7 @@ export const CustomTable: React.FC<CustomTablePropsType> = memo(
 
         return (
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }}>
+                <Table sx={{ minWidth: '650px' }}>
                     <TableHead>
                         <TableRow sx={{ background: '#EFEFEF' }}>
                             {tableCellForHeader.map(textHead => (

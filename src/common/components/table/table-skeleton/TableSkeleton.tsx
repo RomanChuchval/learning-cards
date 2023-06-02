@@ -20,7 +20,7 @@ export const TableSkeleton: React.FC<TableSkeletonPropsType> = ({ defaultCell, d
 
     const tableCell = cell.map((c, i) => (
         <TableCell key={i}>
-            <Skeleton variant='rounded' width={'100%'} height={30} />
+            <Skeleton variant='rounded' height={30} />
         </TableCell>
     ))
 

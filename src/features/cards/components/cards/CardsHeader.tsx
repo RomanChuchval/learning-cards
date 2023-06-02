@@ -24,7 +24,7 @@ export const CardsHeader = () => {
         <>
             <Grid item md={6}>
                 {isCardsLoading ? (
-                    <Skeleton width={'150px'} height={'50px'} />
+                    <Skeleton width={'150px'} height={'32px'} />
                 ) : isMyPack ? (
                     <Box
                         sx={{

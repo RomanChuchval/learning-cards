@@ -5,6 +5,7 @@ import LinearProgress from '@mui/material/LinearProgress'
 import Container from '@mui/material/Container'
 import { AppPreloader } from 'common'
 import { Outlet } from 'react-router-dom'
+import Box from '@mui/material/Box'
 
 export const Main = () => {
     const dispatch = useAppDispatch()
@@ -16,7 +17,7 @@ export const Main = () => {
 
     return (
         <>
-            {isLoadingApp && <LinearProgress />}
+            <Box sx={{ height: '4px' }}>{isLoadingApp && <LinearProgress />}</Box>
             <Container fixed>{isInitialize ? <AppPreloader /> : <Outlet />}</Container>
         </>
     )
