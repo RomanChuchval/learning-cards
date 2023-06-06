@@ -1,32 +1,23 @@
 import React from 'react'
-import { PacksModalForm } from 'features/packs/components/modals/PacksModalForm'
-import { AppModal } from 'features/modals/components/AppModal'
-import { useEditorPack } from 'features/packs/hooks/useEditorPack'
-import { useAppModals, SuperButton } from 'common'
-import { useAppState } from 'app'
+import { SuperButton } from 'common'
+import { useAppDispatch, useAppState } from 'app'
+import { modalsAction } from 'features/modals/modals.slice'
 
 export const CreatePack = () => {
-    const { openCreateModal, showCreateModal, handleClose } = useAppModals()
-    const { createPack, img, setImg } = useEditorPack()
+    const dispatch = useAppDispatch()
     const { isLoadingApp } = useAppState()
 
+    const openCreateModal = () => {
+        dispatch(modalsAction.showCreateModal({}))
+    }
+
     return (
-        <>
-            <SuperButton
-                name={'Add new pack'}
-                callback={openCreateModal}
-                rounded={true}
-                textColor={'white'}
-                disable={isLoadingApp}
-            />
-            <AppModal title={'Create Pack'} open={showCreateModal} handleClose={handleClose}>
-                <PacksModalForm
-                    onSubmit={createPack}
-                    handleClose={handleClose}
-                    img={img}
-                    setImg={setImg}
-                />
-            </AppModal>
-        </>
+        <SuperButton
+            name={'Add new pack'}
+            callback={openCreateModal}
+            rounded={true}
+            textColor={'white'}
+            disable={isLoadingApp}
+        />
     )
 }
