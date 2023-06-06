@@ -1,42 +1,25 @@
 import React, { memo } from 'react'
 import IconButton from '@mui/material/IconButton'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
-import { useEditorPack } from 'features/packs/hooks/useEditorPack'
-import { AppModal } from 'features/modals/components/AppModal'
-import { PacksModalForm } from 'features/packs/components/modals/PacksModalForm'
-import { useAppModals } from 'common'
+import { modalsAction } from 'features/modals/modals.slice'
+import { useAppDispatch } from 'app'
 
 type UpdatePackPropsType = {
     packId: string
     packName: string
-    defaultImg?: string
+    packImg?: string
 }
 export const UpdatePack: React.FC<UpdatePackPropsType> = memo(
-    ({ packId, packName, defaultImg }) => {
-        const { openUpdateModal, handleClose, showUpdateModal, isSelectedPack } = useAppModals({
-            packId,
-            packName,
-        })
-        const { updatePack, img, setImg } = useEditorPack(defaultImg)
+    ({ packId, packName, packImg }) => {
+        const dispatch = useAppDispatch()
+        const openUpdateModal = () => {
+            dispatch(modalsAction.showUpdateModal({ packId, packName, packImg }))
+        }
+
         return (
-            <>
-                <IconButton size={'small'} onClick={openUpdateModal}>
-                    <BorderColorIcon />
-                </IconButton>
-                <AppModal
-                    title={'Update Pack'}
-                    open={isSelectedPack && showUpdateModal}
-                    handleClose={handleClose}
-                >
-                    <PacksModalForm
-                        onSubmit={updatePack}
-                        handleClose={handleClose}
-                        img={img}
-                        setImg={setImg}
-                        defaultImg={defaultImg}
-                    />
-                </AppModal>
-            </>
+            <IconButton size={'small'} onClick={openUpdateModal}>
+                <BorderColorIcon />
+            </IconButton>
         )
     }
 )
