@@ -83,7 +83,7 @@ export const PacksTable = () => {
                                         packName={pack.name}
                                         myCards={userId === pack.user_id}
                                         packId={pack._id}
-                                        defaultImg={pack.deckCover}
+                                        packImg={pack.deckCover}
                                         isCards={pack.cardsCount === 0}
                                     />
                                 </TableCell>
