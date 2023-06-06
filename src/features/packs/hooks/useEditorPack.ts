@@ -28,7 +28,7 @@ export const useEditorPack = (defaultImg: string = '') => {
     )
 
     const removePack = useCallback(
-        (withRedirect: boolean = false) => {
+        (withRedirect: boolean) => {
             if (packId)
                 dispatch(packsThunks.removePack({ packId, withRedirect })).then(() =>
                     withRedirect ? navigate('/packs') : ''

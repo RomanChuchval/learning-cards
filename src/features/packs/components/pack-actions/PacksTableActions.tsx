@@ -8,19 +8,20 @@ type TableActionsPropsType = {
     packName: string
     myCards: boolean
     packId: string
-    packImg?: string
+    packCover?: string
     isCards: boolean
 }
 
-export const TableActions: FC<TableActionsPropsType> = memo(
-    ({ packId, myCards, packName, isCards, packImg }) => {
+export const PacksTableActions: FC<TableActionsPropsType> = memo(
+    ({ packId, myCards, packName, isCards, packCover }) => {
         return (
             <Box display={'flex'}>
                 <LearnPack packId={packId} isCards={isCards} />
-                {myCards && <UpdatePack packName={packName} packId={packId} packImg={packImg} />}
+                {myCards && (
+                    <UpdatePack packName={packName} packId={packId} packCover={packCover} />
+                )}
                 {myCards && <RemovePack packName={packName} packId={packId} />}
             </Box>
         )
     }
 )
-

@@ -7,19 +7,22 @@ import { useAppDispatch } from 'app'
 type UpdatePackPropsType = {
     packId: string
     packName: string
-    packImg?: string
+    packCover?: string
 }
-export const UpdatePack: React.FC<UpdatePackPropsType> = memo(
-    ({ packId, packName, packImg }) => {
-        const dispatch = useAppDispatch()
-        const openUpdateModal = () => {
-            dispatch(modalsAction.showUpdateModal({ packId, packName, packImg }))
-        }
-
-        return (
-            <IconButton size={'small'} onClick={openUpdateModal}>
-                <BorderColorIcon />
-            </IconButton>
+export const UpdatePack: React.FC<UpdatePackPropsType> = memo(({ packId, packName, packCover }) => {
+    const dispatch = useAppDispatch()
+    const openUpdateModal = () => {
+        dispatch(
+            modalsAction.openModal({
+                modalAction: 'updatePack',
+                modalState: { packId, packName, packCover },
+            })
         )
     }
-)
+
+    return (
+        <IconButton size={'small'} onClick={openUpdateModal}>
+            <BorderColorIcon />
+        </IconButton>
+    )
+})

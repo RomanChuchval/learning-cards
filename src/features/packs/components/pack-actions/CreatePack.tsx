@@ -6,9 +6,8 @@ import { modalsAction } from 'features/modals/modals.slice'
 export const CreatePack = () => {
     const dispatch = useAppDispatch()
     const { isLoadingApp } = useAppState()
-
     const openCreateModal = () => {
-        dispatch(modalsAction.showCreateModal({}))
+        dispatch(modalsAction.openModal({ modalAction: 'createPack' }))
     }
 
     return (

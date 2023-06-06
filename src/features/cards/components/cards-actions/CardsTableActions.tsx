@@ -20,7 +20,7 @@ export const CardsTableActions: React.FC<CardsTableActionsPropsType> = memo(
                     questionImg={questionImg}
                     answerImg={answerImg}
                 />
-                <RemoveCard cardId={cardId} question={question} />
+                <RemoveCard cardId={cardId} question={question} questionImg={questionImg} />
             </>
         )
     }

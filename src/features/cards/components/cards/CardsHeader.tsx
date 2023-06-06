@@ -74,6 +74,7 @@ export const CardsHeader = () => {
                     cards={cards?.length}
                     packId={selectedPack._id}
                     packName={selectedPack.name}
+                    packCover={selectedPack.deckCover}
                     handleClose={closePopover}
                 />
             </CustomPopover>

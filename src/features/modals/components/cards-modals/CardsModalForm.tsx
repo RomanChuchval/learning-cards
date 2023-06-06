@@ -1,6 +1,8 @@
 import React, { memo } from 'react'
-import { useModalsForm, ModalForm, FormInputValues } from 'common'
-import { EditorCardsModal } from 'features/cards/components/modals/EditorCardsModal'
+import { FormInputValues } from 'common'
+import { EditorCardsModal } from 'features/modals/components/cards-modals/EditorCardsModal'
+import { useModalsForm } from 'features/modals/hooks/useModalsForm'
+import { ModalForm } from 'features/modals/components/common/ModalForm'
 
 type CardsModalFormPropsType = {
     onSubmit: (data: FormInputValues) => void

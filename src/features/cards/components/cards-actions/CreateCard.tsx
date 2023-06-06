@@ -1,26 +1,22 @@
 import React, { memo } from 'react'
-import { SuperButton, useAppModals } from 'common'
-import { AppModal } from 'features/modals/components/AppModal'
-import { useEditorCards } from 'features/cards/hooks/useEditorCards'
-import { CardsModalForm } from 'features/cards/components/modals/CardsModalForm'
-import { useAppState } from 'app'
+import { SuperButton } from 'common'
+import { useAppDispatch, useAppState } from 'app'
+import { modalsAction } from 'features/modals/modals.slice'
 
 export const CreateCard = memo(() => {
-    const { openCreateModal, showCreateModal, handleClose } = useAppModals()
-    const { createCard } = useEditorCards()
     const { isLoadingApp } = useAppState()
+    const dispatch = useAppDispatch()
+    const openCreateModal = () => {
+        dispatch(modalsAction.openModal({ modalAction: 'createCard' }))
+    }
+
     return (
-        <>
-            <SuperButton
-                name={'Add new card'}
-                callback={openCreateModal}
-                rounded={true}
-                textColor={'white'}
-                disable={isLoadingApp}
-            />
-            <AppModal title={'Create Card'} open={showCreateModal} handleClose={handleClose}>
-                <CardsModalForm onSubmit={createCard} handleClose={handleClose} />
-            </AppModal>
-        </>
+        <SuperButton
+            name={'Add new card'}
+            callback={openCreateModal}
+            rounded={true}
+            textColor={'white'}
+            disable={isLoadingApp}
+        />
     )
 })

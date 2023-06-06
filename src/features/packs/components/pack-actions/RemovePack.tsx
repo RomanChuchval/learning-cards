@@ -7,11 +7,17 @@ import { useAppDispatch } from 'app'
 export type RemovePackPropsType = {
     packName: string
     packId: string
+    packCover?: string
 }
-export const RemovePack: React.FC<RemovePackPropsType> = memo(({ packName, packId }) => {
+export const RemovePack: React.FC<RemovePackPropsType> = memo(({ packName, packId, packCover }) => {
     const dispatch = useAppDispatch()
     const openRemoveModal = () => {
-        dispatch(modalsAction.showRemoveModal({ packId, packName }))
+        dispatch(
+            modalsAction.openModal({
+                modalAction: 'removePack',
+                modalState: { packId, packName, packCover },
+            })
+        )
     }
 
     return (

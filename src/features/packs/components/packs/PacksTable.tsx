@@ -4,7 +4,7 @@ import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
 import Box from '@mui/material/Box'
 import { usePacksParamsFilter } from 'features/packs/hooks/usePacksParamsFilter'
-import { TableActions } from 'features/packs/components/pack-actions/TableActions'
+import { PacksTableActions } from 'features/packs/components/pack-actions/PacksTableActions'
 import { cardsActions, cardsThunks } from 'features/cards/cards.slice'
 import { packsAction } from 'features/packs/packs.slice'
 import { useNavigate } from 'react-router-dom'
@@ -79,11 +79,11 @@ export const PacksTable = () => {
                                 <TableCell sx={tableBodySX}>{pack.updated.slice(0, 10)}</TableCell>
                                 <TableCell sx={tableBodySX}>{pack.user_name}</TableCell>
                                 <TableCell>
-                                    <TableActions
+                                    <PacksTableActions
                                         packName={pack.name}
                                         myCards={userId === pack.user_id}
                                         packId={pack._id}
-                                        packImg={pack.deckCover}
+                                        packCover={pack.deckCover}
                                         isCards={pack.cardsCount === 0}
                                     />
                                 </TableCell>

@@ -6,7 +6,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import SchoolIcon from '@mui/icons-material/School'
-import { UpdatePackTitle } from 'features/cards/components/cards-actions/UpdatePackTitle'
+import { UpdatePackPopover } from 'features/cards/components/cards-actions/UpdatePackPopover'
 import { useLearn } from 'features/learn/hooks/useLearn'
 import { RemovePackPopover } from 'features/cards/components/cards-actions/RemovePackPopover'
 
@@ -15,19 +15,20 @@ type PopoverCardsPackPropsType = {
     cards: number
     packName: string
     handleClose: () => void
+    packCover?: string
 }
 
 export const PopoverCards: React.FC<PopoverCardsPackPropsType> = memo(
-    ({ packId, packName, cards }) => {
+    ({ packId, packName, cards, packCover }) => {
         const { learnHandler } = useLearn(packId)
         return (
             <List>
                 <ListItem disablePadding>
-                    <UpdatePackTitle packName={packName} packId={packId} />
+                    <UpdatePackPopover packName={packName} packId={packId} packCover={packCover} />
                 </ListItem>
                 <Divider />
                 <ListItem disablePadding>
-                    <RemovePackPopover packName={packName} packId={packId} />
+                    <RemovePackPopover packName={packName} packId={packId} packCover={packCover} />
                 </ListItem>
                 <Divider />
                 <ListItem disablePadding>

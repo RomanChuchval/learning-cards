@@ -1,16 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: ModalsInitialStateType = {
-    showCreateModal: false,
-    showUpdateModal: false,
-    showRemoveModal: false,
+    isOpen: false,
+    modalAction: null as ModalActionsType & null,
     modalState: {
         packId: '',
         cardId: '',
         packName: '',
         question: '',
         answer: '',
-        packImg: '',
+        packCover: '',
         questionImg: '',
         answerImg: '',
     },
@@ -20,17 +19,10 @@ const slice = createSlice({
     name: 'modals',
     initialState: initialState,
     reducers: {
-        showCreateModal: (state, action: PayloadAction<ModalStateArgsType>) => {
-            state.showCreateModal = true
-            state.modalState = { ...state.modalState, ...action.payload }
-        },
-        showUpdateModal: (state, action: PayloadAction<ModalStateArgsType>) => {
-            state.showUpdateModal = true
-            state.modalState = { ...state.modalState, ...action.payload }
-        },
-        showRemoveModal: (state, action: PayloadAction<ModalStateArgsType>) => {
-            state.showRemoveModal = true
-            state.modalState = { ...state.modalState, ...action.payload }
+        openModal: (state, action: PayloadAction<ConfigModalType>) => {
+            state.isOpen = true
+            state.modalAction = action.payload.modalAction
+            state.modalState = { ...state.modalState, ...action.payload.modalState }
         },
         closeModal: () => initialState,
     },
@@ -41,19 +33,33 @@ export const modalsAction = slice.actions
 
 //types
 export type ModalStateArgsType = Partial<ModalStateType>
+
+export type ConfigModalType = {
+    modalAction: ModalActionsType
+    modalState?: ModalStateArgsType
+}
 type ModalStateType = {
     packId: string
     cardId: string
     packName: string
     question: string
     answer: string
-    packImg: string
+    packCover: string
     questionImg: string
     answerImg: string
 }
+export type ModalActionsType =
+    | 'createPack'
+    | 'updatePack'
+    | 'removePack'
+    | 'createCard'
+    | 'updateCard'
+    | 'removeCard'
+    | 'popoverRemovePack'
+    | 'popoverUpdatePack'
+
 export type ModalsInitialStateType = {
-    showCreateModal: boolean
-    showUpdateModal: boolean
-    showRemoveModal: boolean
+    isOpen: boolean
+    modalAction: ModalActionsType
     modalState: ModalStateType
 }
