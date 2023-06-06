@@ -10,6 +10,7 @@ const initialState: ModalsInitialStateType = {
         packName: '',
         question: '',
         answer: '',
+        packImg: '',
         questionImg: '',
         answerImg: '',
     },
@@ -46,6 +47,7 @@ type ModalStateType = {
     packName: string
     question: string
     answer: string
+    packImg: string
     questionImg: string
     answerImg: string
 }
