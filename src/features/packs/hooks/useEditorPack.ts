@@ -51,7 +51,7 @@ export const useEditorPack = (defaultImg: string = '') => {
             dispatch(modalsAction.closeModal())
             setImg('')
         },
-        [img, packId]
+        [img, packId, defaultImg]
     )
 
     return { createPack, removePack, updatePack, setImg, img }
