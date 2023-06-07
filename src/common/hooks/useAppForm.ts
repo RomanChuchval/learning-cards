@@ -18,10 +18,7 @@ import { useMemo } from 'react'
  * @property {Object} control - Объект, содержащий методы для управления значениями формы.
  */
 
-export const useAppForm = (
-    validateFields: ValidateFieldsType[] = [],
-    defaultInputValues: DefaultFieldsValues = {}
-) => {
+export const useAppForm = (validateFields: ValidateFieldsType[] = []) => {
     const { validators } = useValidators()
 
     const getValidateSchema = useMemo(
@@ -47,7 +44,6 @@ export const useAppForm = (
     } = useForm<FormInputValues>({
         resolver: yupResolver(validateSchema),
         mode: 'onTouched',
-        defaultValues: defaultInputValues,
     })
 
     return {
