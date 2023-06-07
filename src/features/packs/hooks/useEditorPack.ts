@@ -40,11 +40,12 @@ export const useEditorPack = (defaultImg: string = '') => {
 
     const updatePack = useCallback(
         (data: FormInputValues) => {
+            const updatedDeckCover = img === '' ? defaultImg : img
             const payload: UpdatePackModelType = {
                 _id: packId || '',
                 name: data.textInput,
                 private: data.private,
-                deckCover: img,
+                deckCover: updatedDeckCover,
             }
             dispatch(packsThunks.updatePack(payload))
             dispatch(modalsAction.closeModal())
