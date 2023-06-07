@@ -24,6 +24,7 @@ export const CardsPagination: React.FC<CardsPaginationPropsType> = memo(
             width: '100%',
             flexWrap: 'wrap',
             gap: '20px',
+            marginBottom: '40px',
         }
         const styleForFormControl = {
             display: 'flex',
