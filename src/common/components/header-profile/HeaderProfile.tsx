@@ -29,7 +29,7 @@ export const HeaderProfile: FC<HeaderProfilePropsType> = memo(({ userName, avata
                 <Avatar alt='user_avatar' src={avatar} />
             </IconButton>
             <CustomPopover anchorEl={anchorEl} closePopover={closePopover}>
-                <PopoverProfileList />
+                <PopoverProfileList closePopover={closePopover} />
             </CustomPopover>
         </Box>
     )

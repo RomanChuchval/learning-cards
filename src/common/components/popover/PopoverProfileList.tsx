@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { FC, useCallback } from 'react'
 import Divider from '@mui/material/Divider'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
@@ -11,7 +11,10 @@ import { paths } from 'common/constants'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from 'features/auth/hooks/useAuth'
 
-export const PopoverProfileList = () => {
+type PopoverProfileListPropsType = {
+    closePopover: () => void
+}
+export const PopoverProfileList: FC<PopoverProfileListPropsType> = ({ closePopover }) => {
     const navigate = useNavigate()
     const { logout } = useAuth()
 
@@ -19,7 +22,7 @@ export const PopoverProfileList = () => {
 
     return (
         <List>
-            <ListItem disablePadding>
+            <ListItem disablePadding onClick={closePopover}>
                 <ListItemButton onClick={toProfile}>
                     <ListItemIcon>
                         <AccountCircleIcon />
@@ -28,7 +31,7 @@ export const PopoverProfileList = () => {
                 </ListItemButton>
             </ListItem>
             <Divider />
-            <ListItem disablePadding>
+            <ListItem disablePadding onClick={closePopover}>
                 <ListItemButton onClick={logout}>
                     <ListItemIcon>
                         <LogoutIcon />

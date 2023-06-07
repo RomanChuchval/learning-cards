@@ -19,19 +19,19 @@ type PopoverCardsPackPropsType = {
 }
 
 export const PopoverCards: React.FC<PopoverCardsPackPropsType> = memo(
-    ({ packId, packName, cards, packCover }) => {
+    ({ packId, packName, cards, packCover, handleClose }) => {
         const { learnHandler } = useLearn(packId)
         return (
             <List>
-                <ListItem disablePadding>
+                <ListItem disablePadding onClick={handleClose}>
                     <UpdatePackPopover packName={packName} packId={packId} packCover={packCover} />
                 </ListItem>
                 <Divider />
-                <ListItem disablePadding>
+                <ListItem disablePadding onClick={handleClose}>
                     <RemovePackPopover packName={packName} packId={packId} packCover={packCover} />
                 </ListItem>
                 <Divider />
-                <ListItem disablePadding>
+                <ListItem disablePadding onClick={handleClose}>
                     <ListItemButton onClick={learnHandler} disabled={cards === 0}>
                         <ListItemIcon>
                             <SchoolIcon />
