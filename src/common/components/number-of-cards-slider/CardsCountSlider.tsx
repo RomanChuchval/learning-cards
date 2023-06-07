@@ -12,7 +12,6 @@ type CardsCountSliderPropsType = {
 
 export const CardsCountSlider: React.FC<CardsCountSliderPropsType> = memo(
     ({ onChange, disabled, minMax, setMinMax }) => {
-
         const handleMouseUp = () => {
             onChange(minMax[0].toString(), minMax[1].toString())
         }
@@ -20,7 +19,6 @@ export const CardsCountSlider: React.FC<CardsCountSliderPropsType> = memo(
             if (Array.isArray(newValue)) setMinMax(newValue)
         }
 
-        console.log('Slider')
         const boxSx = {
             width: '63px',
             height: '36px',
