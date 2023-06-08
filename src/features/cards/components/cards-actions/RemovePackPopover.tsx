@@ -13,8 +13,9 @@ export const RemovePackPopover: FC<RemovePackPropsType> = memo(({ packId, packNa
     const openRemoveModal = () => {
         dispatch(
             modalsAction.openModal({
-                modalAction: 'popoverRemovePack',
+                modalAction: 'removePack',
                 modalState: { packId, packName },
+                withRedirect: true
             })
         )
     }
