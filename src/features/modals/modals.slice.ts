@@ -23,7 +23,7 @@ const slice = createSlice({
         openModal: (state, action: PayloadAction<ConfigModalType>) => {
             state.isOpen = true
             state.modalAction = action.payload.modalAction
-            state.withRedirect = action.payload.withRedirect || false
+            state.withRedirect = action.payload.withRedirect ?? false
             state.modalState = { ...state.modalState, ...action.payload.modalState }
         },
         closeModal: () => initialState,
@@ -35,7 +35,6 @@ export const modalsAction = slice.actions
 
 //types
 export type ModalStateArgsType = Partial<ModalStateType>
-
 export type ConfigModalType = {
     modalAction: ModalActionsType
     modalState?: ModalStateArgsType
@@ -58,7 +57,6 @@ export type ModalActionsType =
     | 'createCard'
     | 'updateCard'
     | 'removeCard'
-
 export type ModalsInitialStateType = {
     isOpen: boolean
     withRedirect: boolean
