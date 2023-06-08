@@ -26,17 +26,6 @@ export const useEditorPack = (defaultImg: string = '', withRedirect: boolean = f
         },
         [dispatch, img]
     )
-
-    const removePack = useCallback(() => {
-            if (packId)
-                dispatch(packsThunks.removePack({ packId, withRedirect })).then(() =>
-                    withRedirect ? navigate('/packs') : ''
-                )
-            dispatch(modalsAction.closeModal())
-        },
-        [dispatch, navigate, packId, withRedirect]
-    )
-
     const updatePack = useCallback(
         (data: FormInputValues) => {
             const updatedDeckCover = img === '' ? defaultImg : img
@@ -51,6 +40,16 @@ export const useEditorPack = (defaultImg: string = '', withRedirect: boolean = f
             setImg('')
         },
         [dispatch, img, packId, defaultImg]
+    )
+
+
+    const removePack = useCallback(() => {
+            if (packId)
+                dispatch(packsThunks.removePack({ packId, withRedirect }))
+                    .then(() => withRedirect ? navigate('/packs') : '')
+            dispatch(modalsAction.closeModal())
+        },
+        [dispatch, navigate, packId, withRedirect]
     )
 
     return { createPack, removePack, updatePack, setImg, img }
