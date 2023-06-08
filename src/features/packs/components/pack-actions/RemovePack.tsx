@@ -10,6 +10,7 @@ export type RemovePackPropsType = {
     packCover?: string
 }
 export const RemovePack: React.FC<RemovePackPropsType> = memo(({ packName, packId, packCover }) => {
+
     const dispatch = useAppDispatch()
     const openRemoveModal = () => {
         dispatch(
