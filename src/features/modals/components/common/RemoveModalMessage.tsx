@@ -8,10 +8,10 @@ type RemoveModalMessagePropsType = {
     whatToDelete: string
 }
 export const RemoveModalMessage: FC<RemoveModalMessagePropsType> = ({
-                                                                        entityName,
-                                                                        whatToDelete,
-                                                                        entityImage
-                                                                    }) => {
+    entityName,
+    whatToDelete,
+    entityImage,
+}) => {
     const isImageDisplay = entityImage !== undefined && entityImage !== ' ' && entityImage
     return (
         <>
@@ -24,10 +24,11 @@ export const RemoveModalMessage: FC<RemoveModalMessagePropsType> = ({
                     fontWeight: '400',
                     position: 'relative',
                     display: 'flex',
-                    justifyContent: 'space-around'
+                    justifyContent: 'space-around',
+                    alignItems: 'center',
                 }}
             >
-                <Box>
+                <Box sx={{ textAlign: 'center' }}>
                     Do you really want to remove
                     <b style={{ color: 'red' }}>{` ${entityName}`}</b>
                     ?
@@ -40,7 +41,7 @@ export const RemoveModalMessage: FC<RemoveModalMessagePropsType> = ({
                             width: '65px',
                             margin: '5px',
                             top: 20,
-                            right: 50
+                            right: 50,
                         }}
                         src={entityImage}
                         alt={'question'}
