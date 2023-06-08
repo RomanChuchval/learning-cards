@@ -13,6 +13,7 @@ describe('cards slice', () => {
         initialState = {
             isOpen: false,
             modalAction: null as ModalActionsType & null,
+            withRedirect: false,
             modalState: {
                 packId: '',
                 cardId: '',
@@ -48,6 +49,7 @@ describe('cards slice', () => {
         const startState: ModalsInitialStateType = {
             isOpen: false,
             modalAction: 'updatePack',
+            withRedirect: false,
             modalState: {
                 packId: 'packId',
                 cardId: 'cardId',
