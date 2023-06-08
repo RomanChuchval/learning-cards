@@ -11,7 +11,7 @@ export const RemoveModalMessage: FC<RemoveModalMessagePropsType> = ({
     whatToDelete,
     entityImage,
 }) => {
-    const isImageDisplay = entityImage !== undefined && entityImage !== ' '
+    const isImageDisplay = entityImage !== undefined && entityImage !== ' ' && entityImage
     return (
         <>
             <Typography
