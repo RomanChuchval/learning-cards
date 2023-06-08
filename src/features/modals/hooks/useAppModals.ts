@@ -9,6 +9,7 @@ import { useCallback } from 'react'
 import { useAppDispatch, useAppSelector } from 'app'
 import { useEditorPack } from 'features/packs/hooks/useEditorPack'
 import { useEditorCards } from 'features/cards/hooks/useEditorCards'
+import { FormInputValues } from 'common'
 
 export const useAppModals = () => {
     const dispatch = useAppDispatch()
@@ -26,14 +27,13 @@ export const useAppModals = () => {
         packCover,
         withRedirect
     )
-
     const { createCard, updateCard, removeCard } = useEditorCards()
 
     const handleClose = useCallback(() => {
         dispatch(modalsAction.closeModal())
     }, [dispatch])
 
-    const getModalConfig = () => {
+    const getModalConfig = (): ModalConfigType => {
         switch (modalAction) {
             case 'createPack':
                 return { title: 'Create pack', action: createPack, variant: 'packModal' }
@@ -62,21 +62,28 @@ export const useAppModals = () => {
                     whatToDelete: 'This card',
                 }
             default:
-                return {}
+                return {} as ModalConfigType
         }
     }
 
     const modalConfig = getModalConfig()
+    const defaultPackCover = img || packCover
 
     return {
         handleClose,
-        packCover,
-        packName,
-        cardQuestion,
-        cardQuestionImg,
         isModalOpen,
-        modalAction,
         modalConfig,
-        withRedirect,
+        defaultPackCover,
+        setImg
     }
+}
+
+//Types
+type ModalConfigType = {
+    title: string
+    action: (data: FormInputValues) => void
+    variant: 'packModal' | 'cardModal' | 'removeModal'
+    entityName?: string
+    entityImage?: string
+    whatToDelete?: 'This pack' | 'This card'
 }
