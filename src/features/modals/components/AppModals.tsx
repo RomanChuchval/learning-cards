@@ -12,19 +12,22 @@ export const AppModals = () => {
     const {
         isModalOpen,
         modalAction,
-        modalTitle,
+        modalConfig,
         handleClose,
         cardQuestion,
         cardQuestionImg,
         packName,
         packCover,
-        withRedirect
+        withRedirect,
     } = useAppModals()
     const { createCard, updateCard, removeCard } = useEditorCards()
-    const { createPack, updatePack, removePack, img, setImg } = useEditorPack(packCover, withRedirect)
+    const { createPack, updatePack, removePack, img, setImg } = useEditorPack(
+        packCover,
+        withRedirect
+    )
 
     return (
-        <AppModal title={modalTitle} open={isModalOpen} handleClose={handleClose}>
+        <AppModal title={modalConfig.title} open={isModalOpen} handleClose={handleClose}>
             {modalAction === 'createPack' && (
                 <PacksModalForm
                     onSubmit={createPack}
@@ -44,14 +47,14 @@ export const AppModals = () => {
             )}
             {modalAction === 'removePack' && (
                 <RemoveModal
-                    modalTitle={modalTitle}
+                    modalTitle={modalConfig}
                     handleClose={handleClose}
                     onRemove={removePack}
                 >
                     <RemoveModalMessage
                         entityName={packName}
-                        whatToDelete={'This pack'}
                         entityImage={packCover}
+                        whatToDelete={'This pack'}
                     />
                 </RemoveModal>
             )}
@@ -63,14 +66,14 @@ export const AppModals = () => {
             )}
             {modalAction === 'removeCard' && (
                 <RemoveModal
+                    modalTitle={modalConfig}
                     handleClose={handleClose}
                     onRemove={removeCard}
-                    modalTitle={modalTitle}
                 >
                     <RemoveModalMessage
                         entityName={cardQuestion}
-                        whatToDelete={'This card'}
                         entityImage={cardQuestionImg}
+                        whatToDelete={'This card'}
                     />
                 </RemoveModal>
             )}

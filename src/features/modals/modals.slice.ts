@@ -23,7 +23,7 @@ const slice = createSlice({
         openModal: (state, action: PayloadAction<ConfigModalType>) => {
             state.isOpen = true
             state.modalAction = action.payload.modalAction
-            state.withRedirect = action.payload.withRedirect as boolean
+            state.withRedirect = action.payload.withRedirect || false
             state.modalState = { ...state.modalState, ...action.payload.modalState }
         },
         closeModal: () => initialState,

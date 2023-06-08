@@ -2,14 +2,16 @@ import { modalsAction } from 'features/modals/modals.slice'
 import {
     isModalOpenSelector,
     modalActionSelector,
-    modalStateSelector, withRedirectModalSelector
+    modalStateSelector,
+    withRedirectModalSelector,
 } from 'features/modals/modals.selector'
 import { useCallback } from 'react'
 import { useAppDispatch, useAppSelector } from 'app'
+import { useEditorPack } from 'features/packs/hooks/useEditorPack'
+import { useEditorCards } from 'features/cards/hooks/useEditorCards'
 
 export const useAppModals = () => {
     const dispatch = useAppDispatch()
-
     const modalsState = useAppSelector(modalStateSelector)
     const modalAction = useAppSelector(modalActionSelector)
     const isModalOpen = useAppSelector(isModalOpenSelector)
@@ -17,33 +19,54 @@ export const useAppModals = () => {
 
     const packCover = modalsState.packCover
     const packName = modalsState.packName
-    const cardQuestion = modalsState.question
     const cardQuestionImg = modalsState.questionImg
+    const cardQuestion = modalsState.question
 
+    const { createPack, updatePack, removePack, img, setImg } = useEditorPack(
+        packCover,
+        withRedirect
+    )
+
+    const { createCard, updateCard, removeCard } = useEditorCards()
 
     const handleClose = useCallback(() => {
         dispatch(modalsAction.closeModal())
     }, [dispatch])
 
-    const getModalTitle = () => {
+    const getModalConfig = () => {
         switch (modalAction) {
             case 'createPack':
-                return 'Create pack'
+                return { title: 'Create pack', action: createPack, variant: 'packModal' }
             case 'updatePack':
-                return 'Update pack'
-            case 'removePack':
-                return 'Remove pack'
+                return { title: 'Update pack', action: updatePack, variant: 'packModal' }
             case 'createCard':
-                return 'Create card'
+                return { title: 'Create card', action: createCard, variant: 'cardModal' }
             case 'updateCard':
-                return 'Update card'
+                return { title: 'Update card', action: updateCard, variant: 'cardModal' }
+            case 'removePack':
+                return {
+                    title: 'Remove pack',
+                    action: removePack,
+                    variant: 'removeModal',
+                    entityName: packName,
+                    entityImage: packCover,
+                    whatToDelete: 'This pack',
+                }
             case 'removeCard':
-                return 'Remove card'
+                return {
+                    title: 'Remove card',
+                    action: removeCard,
+                    variant: 'removeModal',
+                    entityName: cardQuestion,
+                    entityImage: cardQuestionImg,
+                    whatToDelete: 'This card',
+                }
             default:
-                return ''
+                return {}
         }
     }
-    const modalTitle = getModalTitle()
+
+    const modalConfig = getModalConfig()
 
     return {
         handleClose,
@@ -53,7 +76,7 @@ export const useAppModals = () => {
         cardQuestionImg,
         isModalOpen,
         modalAction,
-        modalTitle,
-        withRedirect
+        modalConfig,
+        withRedirect,
     }
 }

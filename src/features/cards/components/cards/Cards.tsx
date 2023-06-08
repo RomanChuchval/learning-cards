@@ -15,7 +15,6 @@ export const Cards = () => {
                     <CardsTable />
                 </CardsFilter>
             </Grid>
-
         </>
     )
 }
