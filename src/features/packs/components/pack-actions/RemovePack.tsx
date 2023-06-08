@@ -15,7 +15,7 @@ export const RemovePack: React.FC<RemovePackPropsType> = memo(({ packName, packI
         dispatch(
             modalsAction.openModal({
                 modalAction: 'removePack',
-                modalState: { packId, packName, packCover },
+                modalState: { packId, packName, packCover }
             })
         )
     }
