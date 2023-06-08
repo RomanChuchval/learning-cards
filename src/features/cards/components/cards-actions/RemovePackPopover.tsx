@@ -7,14 +7,14 @@ import { RemovePackPropsType } from 'features/packs/components/pack-actions/Remo
 import { useAppDispatch } from 'app'
 import { modalsAction } from 'features/modals/modals.slice'
 
-export const RemovePackPopover: FC<RemovePackPropsType> = memo(({ packId, packName }) => {
+export const RemovePackPopover: FC<RemovePackPropsType> = memo(({ packId, packName, packCover }) => {
     const dispatch = useAppDispatch()
 
     const openRemoveModal = () => {
         dispatch(
             modalsAction.openModal({
                 modalAction: 'removePack',
-                modalState: { packId, packName },
+                modalState: { packId, packName, packCover },
                 withRedirect: true
             })
         )
