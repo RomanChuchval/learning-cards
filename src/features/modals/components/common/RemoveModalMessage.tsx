@@ -1,5 +1,6 @@
 import Typography from '@mui/material/Typography'
 import React, { FC } from 'react'
+import Box from '@mui/material/Box'
 
 type RemoveModalMessagePropsType = {
     entityName: string
@@ -7,10 +8,10 @@ type RemoveModalMessagePropsType = {
     whatToDelete: string
 }
 export const RemoveModalMessage: FC<RemoveModalMessagePropsType> = ({
-    entityName,
-    whatToDelete,
-    entityImage,
-}) => {
+                                                                        entityName,
+                                                                        whatToDelete,
+                                                                        entityImage
+                                                                    }) => {
     const isImageDisplay = entityImage !== undefined && entityImage !== ' ' && entityImage
     return (
         <>
@@ -22,21 +23,24 @@ export const RemoveModalMessage: FC<RemoveModalMessagePropsType> = ({
                     fontSize: '14px',
                     fontWeight: '400',
                     position: 'relative',
+                    display: 'flex',
+                    justifyContent: 'space-around'
                 }}
             >
-                Do you really want to remove
-                <b style={{ color: 'red' }}>{` ${entityName}`}</b>
-                ?
-                <br />
-                {whatToDelete} will be deleted.
+                <Box>
+                    Do you really want to remove
+                    <b style={{ color: 'red' }}>{` ${entityName}`}</b>
+                    ?
+                    <br />
+                    {whatToDelete} will be deleted.
+                </Box>
                 {isImageDisplay && (
                     <img
                         style={{
                             width: '65px',
                             margin: '5px',
-                            position: 'absolute',
                             top: 20,
-                            right: 50,
+                            right: 50
                         }}
                         src={entityImage}
                         alt={'question'}
