@@ -20,7 +20,7 @@ export const PacksTableActions: FC<TableActionsPropsType> = memo(
                 {myCards && (
                     <UpdatePack packName={packName} packId={packId} packCover={packCover} />
                 )}
-                {myCards && <RemovePack packName={packName} packId={packId} />}
+                {myCards && <RemovePack packName={packName} packId={packId} packCover={packCover} />}
             </Box>
         )
     }
