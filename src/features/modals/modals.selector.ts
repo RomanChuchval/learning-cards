@@ -12,6 +12,7 @@ const packIdSelector = (state: RootState) => state.modals.modalState.packId
 const cardIdsSelector = (state: RootState) => state.modals.modalState.cardId
 const modalActionSelector = (state: RootState) => state.modals.modalAction
 const isModalOpenSelector = (state: RootState) => state.modals.isOpen
+const withRedirectModalSelector = (state: RootState) => state.modals.withRedirect
 
 export {
     modalStateSelector,
@@ -19,4 +20,5 @@ export {
     cardIdsSelector,
     modalActionSelector,
     isModalOpenSelector,
+    withRedirectModalSelector
 }
