@@ -43,6 +43,7 @@ describe('cards slice', () => {
         expect(nextState.modalState.cardId).toEqual('')
         expect(nextState.modalAction).toEqual('createPack')
         expect(nextState.isOpen).toEqual(true)
+        expect(nextState.withRedirect).toEqual(false)
     })
 
     it('should set state to initial value when modal closed correctly', () => {
@@ -64,6 +65,25 @@ describe('cards slice', () => {
         const nextState = modalsReducer(startState, modalsAction.closeModal())
 
         expect(nextState).toEqual(initialState)
-        expect(nextState.isOpen).toEqual(false)
+    })
+
+    it('should set modalState and toggle withRedirect flag correctly', () => {
+        const modalPayload: ConfigModalType = {
+            modalAction: 'removePack',
+            withRedirect: true,
+            modalState: {
+                packId: 'qwerty12345',
+                packName: 'Game Of Packs',
+            },
+        }
+        const nextState = modalsReducer(initialState, modalsAction.openModal(modalPayload))
+
+        expect(nextState.modalState.packId).toEqual('qwerty12345')
+        expect(nextState.modalState.packName).toEqual('Game Of Packs')
+        expect(nextState.modalState.packCover).toEqual('')
+        expect(nextState.modalState.cardId).toEqual('')
+        expect(nextState.modalAction).toEqual('removePack')
+        expect(nextState.isOpen).toEqual(true)
+        expect(nextState.withRedirect).toEqual(true)
     })
 })
