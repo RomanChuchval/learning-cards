@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: ModalsInitialStateType = {
     isOpen: false,
+    withRedirect: false,
     modalAction: null as ModalActionsType & null,
     modalState: {
         packId: '',
@@ -22,6 +23,7 @@ const slice = createSlice({
         openModal: (state, action: PayloadAction<ConfigModalType>) => {
             state.isOpen = true
             state.modalAction = action.payload.modalAction
+            state.withRedirect = action.payload.withRedirect as boolean
             state.modalState = { ...state.modalState, ...action.payload.modalState }
         },
         closeModal: () => initialState,
@@ -37,6 +39,7 @@ export type ModalStateArgsType = Partial<ModalStateType>
 export type ConfigModalType = {
     modalAction: ModalActionsType
     modalState?: ModalStateArgsType
+    withRedirect?: boolean
 }
 type ModalStateType = {
     packId: string
@@ -55,11 +58,10 @@ export type ModalActionsType =
     | 'createCard'
     | 'updateCard'
     | 'removeCard'
-    | 'popoverRemovePack'
-    | 'popoverUpdatePack'
 
 export type ModalsInitialStateType = {
     isOpen: boolean
+    withRedirect: boolean
     modalAction: ModalActionsType
     modalState: ModalStateType
 }
