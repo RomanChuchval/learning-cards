@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from 'app'
 import { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export const useEditorPack = (defaultImg: string = '') => {
+export const useEditorPack = (defaultImg: string = '', withRedirect: boolean = false) => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const packId = useAppSelector(packIdSelector)
@@ -24,18 +24,17 @@ export const useEditorPack = (defaultImg: string = '') => {
             dispatch(modalsAction.closeModal())
             setImg('')
         },
-        [img]
+        [dispatch, img]
     )
 
-    const removePack = useCallback(
-        (withRedirect: boolean) => {
+    const removePack = useCallback(() => {
             if (packId)
                 dispatch(packsThunks.removePack({ packId, withRedirect })).then(() =>
                     withRedirect ? navigate('/packs') : ''
                 )
             dispatch(modalsAction.closeModal())
         },
-        [navigate, packId]
+        [dispatch, navigate, packId, withRedirect]
     )
 
     const updatePack = useCallback(
@@ -51,7 +50,7 @@ export const useEditorPack = (defaultImg: string = '') => {
             dispatch(modalsAction.closeModal())
             setImg('')
         },
-        [img, packId, defaultImg]
+        [dispatch, img, packId, defaultImg]
     )
 
     return { createPack, removePack, updatePack, setImg, img }
