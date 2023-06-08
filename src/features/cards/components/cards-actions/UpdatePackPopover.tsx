@@ -17,8 +17,8 @@ export const UpdatePackPopover: React.FC<UpdatePackTitlePropsType> = memo(
         const openUpdateModal = () => {
             dispatch(
                 modalsAction.openModal({
-                    modalAction: 'popoverUpdatePack',
-                    modalState: { packId, packName, packCover },
+                    modalAction: 'updatePack',
+                    modalState: { packId, packName, packCover }
                 })
             )
         }
